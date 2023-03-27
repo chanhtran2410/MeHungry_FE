@@ -1,0 +1,90 @@
+:root{
+    --color-greytext:#666666;
+    --color-orange: rgba(255, 132, 0,0.2);
+    --color-blue:rgba(0, 106, 255,0.2); 
+    --color-green: rgba(0, 128, 0, 0.2);   
+}
+body{
+    margin:0;
+    padding:0;
+    font-family: 'Roboto Condensed';
+    height:100vh;
+    width:100vw;
+}
+
+
+.Home .bgimg{
+    top:0;
+    width:100%;
+    height: fit-content;
+    overflow: hidden;
+    z-index:0;
+}
+
+.Home .bgimg img{
+    width:100%;
+    height:15em;
+    z-index:0;
+}
+
+.Home .home-info{
+    position: absolute;
+    display: block;
+    box-shadow: rgb(168 168 168 / 15%) 0px 4px 20px;
+    border-radius: 15px;
+    background: white;
+    width: 80%;
+    margin:7%;
+    padding-left:5%;
+    height:150px;
+    margin-top:-75px;
+    z-index:20;
+}
+.Home .title{
+    font-size:20px;
+    font-weight: 700;
+    margin:1em 0;
+}
+.Home .description{
+    font-size: 18px;
+}
+
+
+.Home .btn{
+    margin-top:8em;
+}
+.Home button{
+    width:80%;
+    height:6em;
+    margin:1em 10%;
+    border-radius: 10px;
+    border:none;
+    display:flex;
+    align-items: center;
+    color:black !important;
+    text-decoration: none !important;
+    padding-left:3em;
+    font-weight:bold;
+    text-transform: uppercase;
+    font-family: 'Roboto Condensed';
+}
+.Home button svg{
+    font-size: 40px;
+    margin:0 .5em;
+}
+.Home button p{
+    font-size: 30px;
+    margin:0;
+    text-decoration: none !important;
+
+}
+.Home .order{
+    background-color: var(--color-orange);
+    text-decoration: none !important;
+}
+.Home .checkout{
+    background-color: var(--color-blue);
+}
+.Home .staff{
+    background-color: var(--color-green);
+}
