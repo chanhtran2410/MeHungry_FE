@@ -102,14 +102,13 @@ body{
 
 
 /*=====Order form=====*/
-.block .item #quantity{
+.additem{
+    display: flex;
     height:2.5em;
-    width:1.5em;
-    margin-top:.5em;
-    border:solid 1px var(--color-greytext);
-    border-radius: 5px;
-    text-align: center;
-    font-size: 20px;
+    width:4em
+}
+.additem input{
+    width:2em;
 }
 .block #note{
     height:2.5em;

@@ -1,6 +1,7 @@
 import React from 'react'
 import "./Menu.css"
 import { Link } from 'react-router-dom'
+import Item from '../../components/Item'
 import {
   RiArrowGoBackFill,
   RiShoppingCart2Line,
@@ -39,24 +40,9 @@ const Itemblock = ({Category}) => {
   return (
     <div className='block'>
       <h5>{Category} (Quantity)</h5>
-      <div className='item'>
-        <img src="https://images.immediate.co.uk/production/volatile/sites/30/2013/05/Puttanesca-fd5810c.jpg" alt="dishes" />
-        <div className='item-info'>
-          <h6>Name of dishes</h6>
-          <p>$100.000</p>
-        </div>
-        <AiOutlinePlusCircle/>
-      </div>
-      <div className='item'>
-        <img src="https://images.immediate.co.uk/production/volatile/sites/30/2013/05/Puttanesca-fd5810c.jpg" alt="dishes" />
-        <div className='item-info'>
-          <h6>Name of dishes</h6>
-          <p>$100.000</p>
-        </div>
-        <AiOutlinePlusCircle/>
-      </div>
-    </div>
-    
+      <Item Name="Name of dishes" Price="100.000" />
+      <Item Name="Name of dishes 2" Price="200.000" />
+    </div>  
   )
 }
 
