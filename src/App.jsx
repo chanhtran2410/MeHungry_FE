@@ -6,6 +6,8 @@ import Menu from './pages/Menu/Menu';
 import Order from './pages/Menu/Order';
 import Request from './pages/Request/Request';
 import Checkout from './pages/Checkout/Checkout';
+import PayMethod from './pages/PaymentMethod/PayMethod';
+import Rating from './pages/Rating/Rating';
 
 function App() {
   return (
@@ -17,6 +19,9 @@ function App() {
       <Route path ="/order" element={<Order />} />
       <Route path ="/request" element={<Request/>} />
       <Route path ="/checkout" element={<Checkout/>} />
+      <Route path ="/paymethod" element={<PayMethod/>} />
+      <Route path ="/rating" element={<Rating/>} />
+
     </Routes>
   </BrowserRouter>
   );
