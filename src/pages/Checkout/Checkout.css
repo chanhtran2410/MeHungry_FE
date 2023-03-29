@@ -1,0 +1,112 @@
+:root{
+    --color-greytext:#666666;
+    --color-orange: rgba(255, 132, 0,0.2);
+    --color-blue:rgba(0, 106, 255,0.2); 
+    --color-green: rgba(0, 128, 0, 0.2);   
+}
+body{
+    margin:0;
+    padding:0;
+    font-family: 'Roboto Condensed';
+    height:100vh;
+    width:100vw;
+}
+hr{
+    margin-top:3em;
+}
+/*=====Navbar=====*/
+.checkout .nav{
+    width:100%;
+    height:fit-content;
+    background-color: var(--color-blue);
+    padding-bottom: .5em;
+}
+.checkout .nav .nav-top{
+    display:flex;
+    justify-content: space-between;
+    font-size: 25px;
+    width:90%;
+    padding:.5em 5%;
+}
+.checkout .nav-top h5{
+    margin:0;
+}
+.payment{
+    height:3.5em;
+    width:60%;
+    margin:0 20%;
+    border-radius: 5px;
+    border:none;
+    background-color: rgb(0, 106, 255);
+    margin-top:0em;
+    color:white;
+    font-weight: bold;
+}
+
+
+/*-----Tip-----*/
+.tip-holder{
+    text-align: center;
+}
+.tip{
+    display: flex;
+    justify-content:space-around;
+}
+.tip button{
+    width:4em;
+    font-size: 15px;
+    font-weight: bold;
+    border: solid 1px rgb(255, 132, 0);
+    border-radius: 10px;
+    background-color: white;
+}
+
+/*-----payment method-----*/
+.paymentmethod{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width:100%;
+    margin:2em 0;
+    box-shadow: 5px 4px 8px 8px  #d2d2d2;
+    padding:3% 5%;
+    width:90%;
+    height:2.5em;
+    margin:2em 0;
+}
+.paymentmethod .intro{
+    display: flex;
+    width:50%;
+    font-size: 20px;
+
+}
+.paymentmethod .intro h4{
+    margin:0;
+    margin-left:1em;
+}
+.result{
+    color:var(--color-greytext);
+    font-size: 20px;
+    font-weight: bold;
+}
+.result a{
+    text-decoration: none;
+}
+.result button{
+    width:fit-content;
+    height:fit-content;
+    padding:0 0em;
+    font-size: 20px ;
+    font-family: 'Roboto Condensed';
+    display: flex;
+    color: var(--color-greytext);
+    background-color: transparent;
+    border: none;
+}
+.result button h4{
+    margin:0;
+    margin-left:1em;
+}
+.result button svg{
+   font-size: 25px;
+}

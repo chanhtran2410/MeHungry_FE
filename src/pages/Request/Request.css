@@ -34,6 +34,8 @@ body{
     height:3em;
     width:100%;
     margin-top:1em;
+    border:solid 1px var(--color-greytext);
+    border-radius: 5px;
 }
 
 .requestbtn{

@@ -109,6 +109,10 @@ body{
 }
 .additem input{
     width:2em;
+    border:solid 1px var(--color-greytext);
+    border-radius: 5px;
+    text-align: center;
+    font-size: 15px;;
 }
 .block #note{
     height:2.5em;

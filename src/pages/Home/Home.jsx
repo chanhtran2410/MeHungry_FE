@@ -47,7 +47,7 @@ const Home = () => {
       <Info/>
       <div className='btn'>
         <Link to="/menu" style={{ textDecoration: 'none' }}><button className='order'><RxDashboard /> <p>Order</p></button></Link>
-        <Link style={{ textDecoration: 'none' }}><button className='checkout'><RiBillLine/><p>Check out</p></button></Link>
+        <Link to="/checkout" style={{ textDecoration: 'none' }}><button className='checkout'><RiBillLine/><p>Check out</p></button></Link>
         <Link to="/request" style={{ textDecoration: 'none' }}><button className='staff'><FaRegBell/> <p>Staff</p></button></Link>
       </div>
     </div>
