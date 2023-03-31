@@ -1,0 +1,169 @@
+:root{
+    --color-greytext:#666666;
+    --color-orange: rgba(255, 132, 0,0.2);
+    --color-blue:rgba(0, 106, 255,0.2); 
+    --color-green: rgba(0, 128, 0, 0.2);   
+}
+
+.leftBar{
+    position: absolute;
+    /* top: 1446px; 
+    left: 24px;  */
+    width: 1440px;
+    height: 900px;
+    background: #FFF7F0FF; /* primary-100 */
+}
+
+.tableSelect{
+    position: absolute; 
+    top: 27px; 
+    left: 311px; 
+    width: 1103px; 
+    height: 845px; 
+    background: #FFFFFFFF; /* white */
+    border-radius: 15px;
+    padding-top: 36px;
+    padding-left: 30px;
+}
+
+.tableContent{
+    position: absolute; 
+    top: 73px; 
+    left: 1004px; 
+    width: 375px; 
+    height: 754px;
+    padding-top: 10px;
+    padding-left: 20px;
+    background: #FF77001A; /* primary-500 */
+    border-radius: 15px;
+}
+
+.home .tableSelect .Table{
+    width: 40px;
+    height: 40px;
+    z-index:0;
+}
+
+.button{
+    position: absolute; 
+    width: 280px; 
+    height: 77px; 
+    border-radius: 15px;
+    font-family: Roboto; 
+    font-size: 25px; 
+    /* line-height: 38px; */
+    font-weight: bold;
+    border-width: 0px;
+}
+
+.bill{
+    width: 350px; 
+    height: 60px;
+    font-family: Roboto; 
+    font-size: 25px; 
+    /* line-height: 38px; */
+    font-weight: bold;
+}
+
+.billTitle{
+    position: absolute;
+    width: 190px; 
+    height: 77px;
+    /* top: 200px; */
+    font-family: Roboto; 
+    font-size: 25px; 
+    /* line-height: 38px; */
+    font-weight: bold;
+}
+
+.billPrice{
+    position: absolute;
+    width: 150px; 
+    height: 77px;
+    margin-top: 0px;
+    top: 0px;
+    left: 200px;
+    font-family: Roboto; 
+    font-size: 25px;
+    color: darkgray;
+    /* line-height: 38px; */
+    text-align: right;
+}
+
+#homebutt{
+    position: absolute; 
+    top: 159px; 
+    left: 17px;
+    background: #FF770033; /* primary-500 */ 
+}
+
+#menubutt{
+    position: absolute; 
+    top: 239px; 
+    left: 17px;
+    background: #FFF7F0FF; /* primary-100 */
+}
+
+h1{
+  /* position: absolute;  */
+    top: 63px; 
+    left: 341px; 
+    font-family: Poppins; /* Heading */
+    font-size: 32px; 
+    line-height: 48px; 
+    color: #171A1FFF; /* neutral-900 */
+}
+
+#logo{
+    /* position: absolute;  */
+    top: 27px; 
+    left: 61px; 
+    width: 71px; 
+    height: 71px; 
+    background: #DEE1E6FF; /* neutral-300 */
+    border-radius: 50%; 
+    border-width: 1px; 
+    border-color: #BCC1CAFF; /* neutral-400 */
+    border-style: solid;
+}
+
+#resName{
+    position: absolute;
+    top: 10px;
+    left: 100px;
+    width: 200px;
+    font-size: 25px;
+}
+
+#checkoutButton{
+    position: absolute; 
+    top: 674px; 
+    left: 140px;
+    height: 50px; 
+    padding: 0 20px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-family: Inter; /* Body */
+    font-size: 18px; 
+    line-height: 28px; 
+    color: #FFFFFFFF; /* white */
+    background: #FF7700FF; /* primary-500 */
+    opacity: 1; 
+    border: none; 
+    border-radius: 4px; /* border-m */
+  }
+  /* Hover */
+  .button:hover {
+    color: #FFFFFFFF; /* white */
+    background: rgb(255, 155, 69); /* primary-550 */
+  }
+  /* Pressed */
+  .button:hover:active {
+    color: #FFFFFFFF; /* white */
+    background: #CA5E00FF; /* primary-600 */
+  }
+  /* Disabled */
+  .button:disabled {
+    opacity: 0.4;
+}
