@@ -1,6 +1,5 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 import MealInfo from "../../components/MealInfo"
-import Table from "../../components/Table"
 import "./Menu.css"
 
 const FoodList = [["Food1", "Description", "Available", "100000", "Img"], ["Food2", "Description", "Available", "200000", "Img"], ["Food3", "Description", "Unavailable", "150000", "Img"]]
@@ -23,25 +22,35 @@ const LeftBar = (props) =>{
 }
 
 const TableSelect = () =>{
-  
+  const [mealtype, setMealtype] = useState("food")
     return(
         <div className="menulist">
-            <h1>Menu</h1>
-            <ToggleBar/>
-            
-            {FoodList.map((meal) => {
+            <h1 id="menulable">Menu</h1>
+            <ToggleBar mealtype={mealtype} setMealtype={setMealtype}/>
+            {mealtype == "food" ? FoodList.map((meal) => {
                 return <MealInfo name={meal[0]} description={meal[1]} status={meal[2]} price={meal[3]} img={meal[4]}/>
-            })}
+            }) : DrinkList.map((meal) => {
+              return <MealInfo name={meal[0]} description={meal[1]} status={meal[2]} price={meal[3]} img={meal[4]}/>
+          })}
         </div>
     )
 }
 
-const ToggleBar = () => {
+const ToggleBar = (props) => {  
+
+  const chooseFoodType = () => {
+    props.setMealtype("food")
+  }
+  
+  const chooseDrinkType = () => {
+    props.setMealtype("drink")
+  }
+
   return(
     <div>
-      <button id="foodbtn">Food</button>
-      <button id="drinkbtn">Drink</button>
-      <button>+</button>
+      <button id="foodbtn" onClick={chooseFoodType}>Food</button>
+      <button id="drinkbtn" onClick={chooseDrinkType}>Drink</button>
+      <button id="addbtn">+</button>
     </div>
   )
 }
