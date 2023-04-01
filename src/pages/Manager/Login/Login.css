@@ -1,0 +1,102 @@
+:root{
+    --color-greytext:#666666;
+    --color-orange: rgba(255, 132, 0,0.2);
+    --color-blue:rgba(0, 106, 255,0.2); 
+    --color-green: rgba(0, 128, 0, 0.2);   
+}
+body{
+    margin:0;
+    padding:0;
+    font-family: 'Roboto Condensed';
+    height:100vh;
+    width:100vw;
+    background-color: var(--color-orange);
+}
+.login_container .container{
+    position:absolute;
+    left:10vw;
+    top:3vh;
+    bottom:0;
+    right:0;
+    background-color: white;
+    width:80vw;
+    height:90vh;
+    border-radius: 20px;
+}
+.login_container .logo{
+    display:flex;
+    position:absolute;
+    top:1em;
+    left:2em;
+    bottom:0;
+    right:0;
+    width:fit-content;
+}
+.login_container .logo h4{
+    margin-left:.5em;
+    margin-top:1em;
+    font-size: 20px;
+}
+
+.login_container .side_image{
+    position: absolute;
+    left:40%;
+    width:60%;
+    height:100%;
+    display:flex;
+    justify-content: center;
+}
+.login_container .side_image img{
+    width:96%;
+    height:96%;
+    margin:2%;
+    border-radius: 20px;
+}
+/*---login form---*/
+.login_container .login-wrapper{
+    width:40%;
+    height:60%;
+    margin:15% 0;
+    text-align: center;
+}
+.login_container .form-group{
+    text-align: left;
+    width:70%;
+    margin:1em 15%;
+}
+.login_container .form-group label{
+    margin:0 0.3em;
+    color:var(--color-greytext);
+}
+.login_container .form-group input{
+    height:3em;
+    width:100%;
+    margin:.3em;
+    border-radius: 5px;
+    border:solid 1px var(--color-greytext);
+}
+.login_container .form-group-check {
+    text-align: left;
+    width:70%;
+    margin:0 15%;
+    color:var(--color-greytext)
+}
+.login_container .form-group-check #checkbox{
+    height: 1.2em;
+    width:2em;
+}
+.login_container .form-button button{
+    height:3em;
+    width:20em;
+    margin-top:2em;
+    border-radius: 5px;
+    border:none;
+    background-color: rgba(255, 132, 0 , 0.8);
+    color: white;
+    font-weight: bold;
+}
+.login_container .form-button button:hover{
+    background-color: rgba(255, 132, 0);
+    cursor: pointer;
+    color:#F1F1F1;
+}

@@ -2,63 +2,67 @@
     --color-greytext:#666666;
     --color-button: rgb(255, 132, 0);
 }
+html{
+    background-color: white;
+}
 body{
     margin:0;
     padding:0;
     font-family: 'Roboto Condensed';
     height:100vh;
     width:100vw;
+    background-color: white !important;
 }
 
-.bgimg{
+.startpage .bgimg{
     top:0;
     width:100%;
     height: fit-content;
     overflow: hidden;
     z-index:0;
 }
-.bgimg img{
+.startpage .bgimg img{
     width:100%;
     height:20em;
     z-index:0;
 }
 
 
-.logo{
+.startpage .logo{
     top:0;
     text-align: center;
     margin-top:-100px;
-    z-index:20;
+    z-index:20; 
 }
-.logo img{
+.startpage .logo img{
     width:200px;
     height:200px;
     border-radius: 50%;
     background-color: #d2d2d2;
     z-index:20;
 }
-.logo h4{
+.startpage .logo h4{
     margin:0;
     font-size: 2em;
 }
 
-.holder{
+.startpage .holder{
     display: flex;
     justify-content: center;
 }
-.form{
+.startpage .form{
     margin:3em 0;
 }
-.form label{
+.startpage .form label{
     color:var(--color-greytext);
 }
-.form input{
+.startpage .form input{
     height:3em;
     width:20em;
     border: solid 1px var(--color-greytext);
     border-radius: 5px;
 }
-.form button{
+.startpage .form button{
     height:3.5em;
     width:20.5em;
     border-radius: 5px;
