@@ -18,13 +18,16 @@ import Login from './pages/Manager/Login/Login';
 
 function App() {
   
-  const tableIDRegex = /^\/([a-zA-Z0-9]{6})$/; // Regex to match '/{id}' pattern
+  const tableIDRegex = /^\/([a-zA-Z0-9]{8})$/; // Regex to match '/{id}' pattern
   
   // Check if the URL matches the pattern and extract the {id}
   const match = window.location.pathname.match(tableIDRegex);
   if (match !== null) {
     const tableID = match[1];
     localStorage.setItem('tableID', tableID);
+  }
+  else{
+  return (<><h1>404 ERROR</h1></>)
   }
 
   // Set initial state of auth
