@@ -1,9 +1,13 @@
 import React from 'react'
-
+import Sidebar from '../../../components/Sidebar/Sidebar'
+import MainContent from '../../../components/MainContent/MainContent'
 const Add = () => {
   return (
     <div>
-      Add menu here
+      <Sidebar/>
+      <MainContent>
+      Hello from add
+      </MainContent>
     </div>
   )
 }

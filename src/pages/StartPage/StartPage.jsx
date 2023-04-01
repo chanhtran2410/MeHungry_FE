@@ -51,7 +51,7 @@ const Form = () =>{
 
 const StartPage = () => {
   return (
-    <div>
+    <div className='startpage'>
       <BgImage />
       <Logo />
       <Form />

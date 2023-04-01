@@ -15,6 +15,7 @@ import Add from './pages/Manager/Menu/Add';
 import Edit from './pages/Manager/Menu/Edit';
 import Login from './pages/Manager/Login/Login';
 
+
 function App() {
   
   const tableIDRegex = /^\/([a-zA-Z0-9]{6})$/; // Regex to match '/{id}' pattern
@@ -27,7 +28,7 @@ function App() {
   }
 
   // Set initial state of auth
-  const [auth, setAuth] = useState(false);
+  const [auth, setAuth] = useState(true);
   
   // Check if user is authenticated before accessing manager pages
   const checkAuth = () => {
@@ -51,6 +52,7 @@ function App() {
         <Route path="/paymethod" element={<PayMethod />} />
         <Route path="/rating" element={<Rating />} />
         <Route path="/login" element={<Login/>} />
+
         <Route path="/manager/" element={auth ? <M_Home /> : <Navigate to="/login" />} />
         <Route path="/manager/menu" element={auth ? <M_Menu /> : <Navigate to="/login" />} />
         <Route path="/manager/add" element={auth ? <Add /> : <Navigate to="/login" />} />
