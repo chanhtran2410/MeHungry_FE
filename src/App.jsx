@@ -26,9 +26,7 @@ function App() {
     const tableID = match[1];
     localStorage.setItem('tableID', tableID);
   }
-  else{
-  return (<><h1>404 ERROR</h1></>)
-  }
+
 
   // Set initial state of auth
   const [auth, setAuth] = useState(true);
