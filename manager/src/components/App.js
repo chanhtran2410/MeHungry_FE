@@ -8,9 +8,9 @@ const App = () =>{
   
     return(
         // <Add/>
-        <Edit/>
+        // <Edit/>
         // <Menu/>
-        // <Home/>
+        <Home/>
     )
   }
 

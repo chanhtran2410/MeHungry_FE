@@ -126,4 +126,3 @@ const MainContent = ({children}) => {
 };
 
 export default MainContent;
-

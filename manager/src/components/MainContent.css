@@ -1,4 +1,20 @@
-:root{
+.container {
+    position: absolute;
+    height:92%;
+    width:75%;
+    top:4%;
+    left:23%;
+    right:0;
+    bottom:0;
+    z-index: 1;
+    background-color: white;
+    border-radius: 10px;
+    border:none;
+    box-shadow: 5px 10px 18px #acacac;
+    font-family: 'Roboto Condensed';
+  }
+
+  :root{
     --color-greytext:#666666;
     --color-orange: rgba(255, 132, 0,0.2);
     --color-blue:rgba(0, 106, 255,0.2); 
@@ -16,8 +32,8 @@
 
 .tableSelect{
     position: absolute; 
-    top: 27px; 
-    left: 311px; 
+    top: 0px; 
+    left: 0px; 
     width: 1103px; 
     height: 845px; 
     background: #FFFFFFFF; /* white */
@@ -28,7 +44,7 @@
 
 .tableContent{
     position: absolute; 
-    top: 73px; 
+    top: 40px; 
     left: 694px; 
     width: 375px; 
     height: 754px;
