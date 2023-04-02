@@ -14,6 +14,7 @@ import M_Menu from './pages/Manager/Menu/M_Menu';
 import Add from './pages/Manager/Menu/Add';
 import Edit from './pages/Manager/Menu/Edit';
 import Login from './pages/Manager/Login/Login';
+import Guest from './pages/Guest/Guest';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
     const tableID = match[1];
     localStorage.setItem('tableID', tableID);
   }
+  
 
 
   // Set initial state of auth
@@ -44,6 +46,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Guest />} />
         <Route path="/:id" element={<StartPage />} />
         <Route path="/home" element={<Home />} />
         <Route path="/menu" element={<Menu />} />
