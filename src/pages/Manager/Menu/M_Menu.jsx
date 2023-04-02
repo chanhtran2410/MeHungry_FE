@@ -2,6 +2,7 @@ import React from 'react'
 import Sidebar from '../../../components/Sidebar/Sidebar'
 import MainContent from '../../../components/MainContent/MainContent'
 import { Tabs } from 'antd';
+import { Link } from 'react-router-dom';
 import Food from '../../../components/Dishes/Food';
 import Drinks from '../../../components/Dishes/Drinks';
 
@@ -32,7 +33,7 @@ const M_Menu = () => {
       <h1 className='title'>MENU</h1>
       <div className='tabs'>
         <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
-        <GrAdd id='add'/>
+        <Link to='/manager/add'><button id='add'><GrAdd/></button></Link>
       </div>
       </MainContent>
     </div>

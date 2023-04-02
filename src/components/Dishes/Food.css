@@ -53,11 +53,16 @@ body{
     width:15%;
 }
 .food .item_price .edit{
-    width:100%;
+    width:40%;
     height:20%;
-    text-align: right;
+    display: flex;
+    justify-content: space-around;
 }
-.food .item_price .edit svg{
+.food .item_price .edit button{
+    margin-left:3em;
+    margin-top: -.2em;
+}
+.food .item_price .edit {
     font-size: 20px;
     margin:0 .2em;
 }

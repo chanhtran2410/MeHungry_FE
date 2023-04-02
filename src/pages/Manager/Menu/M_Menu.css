@@ -28,18 +28,23 @@ body{
     border-radius: 15px;
 }
 
-.M_menu .title{
+.title{
     margin-left:2em;
 }
-#add{
-    margin-top:.5em;
-    margin-left:-2em;
-    font-size: 20px;
-}
+
 .M_menu .tabs{
     width:88%;
     margin:0 6%;
     display: flex;
+}
+.M_menu .tabs button{
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top:.5em;
+    margin-left:-2em;
+    position: absolute;
+    background-color: transparent;
 }
 .ant-tabs{
     width:100%;
