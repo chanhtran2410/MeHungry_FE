@@ -1,5 +1,6 @@
 import React from 'react'
 import './Food.css'
+import { Link } from 'react-router-dom'
 import {RiDeleteBin6Line ,RiEdit2Line} from 'react-icons/ri'
 
 const Item =() =>{
@@ -16,9 +17,9 @@ const Item =() =>{
           <h2>Available</h2>
         </div>
         <div className='item_price'>
-          <div className='edit'>
-            <RiDeleteBin6Line/>
-            <RiEdit2Line/>
+        <div className='edit'>
+            <Link><button><RiDeleteBin6Line/></button></Link>
+            <Link to='/manager/edit'><button><RiEdit2Line/></button></Link>
           </div>
           <div className='price'>
             <h2>$100.000</h2>
