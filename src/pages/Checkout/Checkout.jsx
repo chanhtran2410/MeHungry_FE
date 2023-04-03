@@ -98,11 +98,13 @@ const PaymentMethod = () => {
 }
 
 const Total = ({ selectedTip }) => {
-    const dishesOrdered = JSON.parse(localStorage.getItem('DishesOrdered'));
     let total = 0;
-    
-    for (let i = 0; i < dishesOrdered.length; i++) {
-      total += dishesOrdered[i].Price * dishesOrdered[i].quantity;
+    if(localStorage.getItem('DishesOrdered')){
+      const dishesOrdered = JSON.parse(localStorage.getItem('DishesOrdered'));
+      
+      for (let i = 0; i < dishesOrdered.length; i++) {
+        total += dishesOrdered[i].Price * dishesOrdered[i].quantity;
+      }
     }
     
     total += selectedTip;
@@ -125,8 +127,11 @@ const Checkout = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem('DishesOrdered'));
-    setItems(data);
+    if(localStorage.getItem('DishesOrdered')){
+      const data = JSON.parse(localStorage.getItem('DishesOrdered'));
+      setItems(data);
+    }
+
   }, []);
   return (
         <div className='checkout'>

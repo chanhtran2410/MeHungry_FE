@@ -114,7 +114,7 @@ const PayMethod = () => {
   const [paymentOption, setPaymentOption] = useState('');
   const handleInput = (option) => {
     setPaymentOption(option);
-    localStorage.setItem('PayMethod', JSON.stringify(option));
+    localStorage.setItem('PayMethod', option);
   };
 
   return (
