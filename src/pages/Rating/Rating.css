@@ -80,7 +80,7 @@ body{
   }
   
   .rating button {
-    background-color: orange;
+    background-color: rgb(255, 132, 0);
     color: white;
     padding: 10px 20px;
     border: none;
@@ -102,4 +102,28 @@ body{
     color:white;
     font-weight: bold;
     margin-top:2em;
+  }
+
+
+  /*=====Tags=====*/
+  .rating-tag{
+    text-align: center;
+  }
+  .rating-tag h2{
+    font-size: 22px;
+    margin-left:1em;
+  }
+  .rating-tag .ant-space{
+    width:80%;
+    margin: 0 15%;
+  }
+  .rating-tag .ant-space-item span {
+    font-size: 18px;
+    padding: .8em 1.5em;
+    border:solid 2px var(--color-orange);
+    border-radius: 15px;
+  }
+  .rating-tag .ant-space-item .ant-tag-checkable-checked{
+    background-color: var(--color-orange);
+    color:rgb(255, 132, 0);
   }
