@@ -42,11 +42,33 @@ body{
     border:solid 1px var(--color-greytext);
     margin-bottom:1em;
 }
+.add .add_info .basic .flex-holder{
+    display: flex;
+    gap: 7.5em;
+}
 .add .add_info .basic .ant-input-number{
     width: 10em;
     height:2.5em;
     margin: .5em 0;
     border:solid 1px var(--color-greytext);
+}
+
+.add .add_info .basic .ant-select-selector{
+    width: 8.5em;
+    height:2.5em;
+    margin: .5em 0;
+    border:solid 1px var(--color-greytext);
+}
+.add .add_info .basic .avai{
+    width:fit-content;
+}
+.add .add_info .basic .ant-radio-group .ant-radio-button-wrapper{
+    margin-top:.5em;
+    height:2.5em;
+}
+.add .add_info .basic .ant-radio-group{
+    width: fit-content;
+    display: flex;
 }
 
 

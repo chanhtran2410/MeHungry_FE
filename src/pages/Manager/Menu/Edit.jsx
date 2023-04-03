@@ -2,7 +2,7 @@ import React from 'react'
 import Sidebar from '../../../components/Sidebar/Sidebar'
 import MainContent from '../../../components/MainContent/MainContent'
 import { Input } from 'antd';
-import { InputNumber, Space } from 'antd';
+import { InputNumber, Radio , Select } from 'antd';
 import { useState, useEffect } from 'react';
 import './Add.css'
 import Button from "@material-ui/core/Button";
@@ -16,11 +16,25 @@ const onChange = (value) => {
 /*=====Description===== */
 const { TextArea } = Input;
 
+/*=====Category=====*/
+const handleChange = (value) => {
+  console.log(`selected ${value}`);
+};
+
 
 
 const Edit = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
+
+
+  /*=====Category=====*/
+  const [value, setValue] = useState('Available');
+  const onChange = ({ target: { value } }) => {
+    console.log('radio checked', value);
+    setValue(value);
+  };
+
 
   useEffect(() => {
     if (selectedImage) {
@@ -38,14 +52,55 @@ const Edit = () => {
         <div className='basic'>
           <label>Name</label><br/>
           <Input placeholder="Name" id='name' />
-          <label>Price</label><br/>
-          <InputNumber
-            defaultValue={1000}
-            formatter={(value) => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-            parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
-            onChange={onChange}
-            id='price'
-          />
+          <div className='flex-holder'>
+            <div>
+              <label>Price</label><br/>
+              <InputNumber
+                defaultValue={1000}
+                formatter={(value) => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
+                onChange={onChange}
+                id='price'
+              />
+            </div>
+            <div>
+              <label>Category</label><br/>
+              <Select
+                id='category'
+                defaultValue="Food"
+                style={{
+                  width: 120,
+                }}
+                onChange={handleChange}
+                options={[
+                  {
+                    value: 'Food',
+                    label: 'Food',
+                  },
+                  {
+                    value: 'Drinks',
+                    label: 'Drinks',
+                  },
+                ]}
+              />
+            </div>
+            <div className='avai'>
+              <label>Availability</label><br/>
+              <Radio.Group 
+              options={[
+                {
+                  label: 'Available',
+                  value: 'Available',
+                },
+                {
+                  label: 'UnAvailable',
+                  value: 'UnAvailable',
+                }]} 
+              onChange={onChange} 
+              value={value} 
+              optionType="button" />
+            </div>
+          </div>
         </div>
         <div className='img'>
           <input
@@ -73,7 +128,7 @@ const Edit = () => {
         <TextArea rows={4} placeholder="MaxLength is 120 characters" maxLength={120} />
       </div>
       <div className='button'>
-        <button id='Create'>Save</button>
+        <button id='Create'>Create</button>
       </div>
       </MainContent>
     </div>
