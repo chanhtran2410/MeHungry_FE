@@ -5,7 +5,7 @@
 html{
     background-color: white;
 }
-body{
+.guest{
     margin:0;
     padding:0;
     font-family: 'Roboto Condensed';
@@ -67,7 +67,7 @@ body{
 .guest .item_block{
     height:fit-content;
     width:90%;
-    margin:0 4%;
+    margin:5% 4%;
 }
 .guest .item_img img{
     height:10em;

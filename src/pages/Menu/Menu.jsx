@@ -40,8 +40,8 @@ const Itemblock = ({Category}) => {
   return (
     <div className='block'>
       <h5>{Category} (Quantity)</h5>
-      <Item Name="Name of dishes" Price="100.000" />
-      <Item Name="Name of dishes 2" Price="200.000" />
+      <Item Name="Name of dishes" Price="100.99" />
+      <Item Name="Name of dishes 2" Price="200.99" />
     </div>  
   )
 }

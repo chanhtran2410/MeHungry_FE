@@ -4,7 +4,7 @@ import { AiOutlinePlusCircle } from "react-icons/ai"
 const Item = ({ Name, Price }) => {
 
   const handleClick = () => {
-    const dish = {Name:Name, Price: Price, quantity: 1 };
+    const dish = {Name:Name, Price: Number(Price), quantity: 1 };
     const dishesOrdered = JSON.parse(localStorage.getItem('DishesOrdered')) || [];
     const existingDish = dishesOrdered.find(d => d.Name === Name);
     if (existingDish) {
