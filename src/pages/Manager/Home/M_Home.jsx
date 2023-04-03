@@ -2,14 +2,14 @@ import React from 'react'
 import Sidebar from '../../../components/Sidebar/Sidebar'
 import MainContent from '../../../components/MainContent/MainContent'
 import Table from "./Table"
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import "./M_Home.css"
 
 
 
 const tableStatus = [[1,true, false], [2,true, false], [3,false, false], [4,false, false], [5,false,false], [6,true,false], [7,true,false], [8,false,false], [9,true, true], [10,true, true], [11,false, false], [12,true, false], [13,false,false], [14,false,false], [15,true,false], [16,false,false]]
 
-const orderComponent = [["Dish1", 100000], ["Dish2", 100000], ["Dish3", 100000], ["Dish4", 100000], ["Dish5", 100000]]
+const orderComponent = [[["Dish1", 100000], ["Dish2", 100000]],[["Dish3", 100000], ["Dish4", 100000], ["Dish5", 100000]]]
 
 const tip = 10
 
@@ -40,18 +40,24 @@ const TableSelect = () =>{
       setSelection(0)
     }
 
-    const select = ({num, free}) => {
-      setSelection(num)
-      toggle(free)
+    // const select = (props) => {
+    //   setSelection(props.idn)
+    //   toggle(free)
+    // }
+
+    useEffect(() =>{
+        // setSelection(0)
     }
+    , []
+    )
 
     return(
         <div className="tableSelect">
-            <h1>Tables</h1>
+            <h1 id="mainTableLable">Tables</h1>
             {tableStatus.map((Tstatus) => {
-                return <Table idn={Tstatus[0]} free={Tstatus[1]} paying={Tstatus[2]} setSel={select} tablenumber={selection}/>
+                return <Table idn={Tstatus[0]} free={Tstatus[1]} paying={Tstatus[2]} setSel={setSelection}/>
             })}
-            {displayB && <TableContent tablenumber={selection} turnoff={turnoff} tog={isToggled} togf={toggle} checkout={checkout}/>}
+            {displayB && <TableContent tablenumber={selection} turnoff={turnoff} tog={isToggled} togf={toggle} checkout={checkout} paying={tableStatus[selection][1]}/>}
         </div>
     )
 }
@@ -63,10 +69,6 @@ const Toggle = ({ label, tog, togf, onClick, turnoff }) => {
         onClick(!tog)
         turnoff()
     }
-
-  //   const update = () => {
-      
-  // }
 
     return (
         <label>
@@ -84,15 +86,15 @@ const TableContent = (props) =>{
     }
 
     let total = 0
-    orderComponent.map((dish) => {
+    orderComponent[props.tablenumber%2].map((dish) => {
         total = total + dish[1]})
     total = total + tip
 
     return(
         <div className="tableContent">
-            <h1>Table {props.tablenumber}</h1>
-            Checkin time: 12:34:56
-            <h1>Orders</h1>
+            <h1 id="tablelab">Table {props.tablenumber}</h1>
+            <h3 className='stext'>Checkin time: 12:34:56</h3>
+            <h1 id="orderlab">Orders</h1>
             <Toggle className="Togglebutton"
             label=""
             // toggled={props.tog}
@@ -101,26 +103,29 @@ const TableContent = (props) =>{
             tog={props.tog}
             togf={props.togf}
             />
-          {props.tog && <div>
-            {orderComponent.map((dish) => {
-                return <DishPrice className="billTitle" name={dish[0]} price={dish[1]}/>
-            })}
+          {props.tog && <div id="billContainer">
+                {/* <ScrollView> */}
+                {orderComponent[props.tablenumber%2].map((dish) => {
+                    return <DishPrice className="billTitle" name={dish[0]} price={dish[1]}/>
+                })}
+                {/* </ScrollView> */}
             <DishPrice className="billTitle" name={"Tip"} price={tip}/>
             <div className="tipline"></div>
             <DishPrice className="billTitle" name={"Total"} price={total}/>
-            <button id="checkoutButton" onClick={props.checkout}>Checkout</button>
+            <div id="checkoutContainer">
+                <button id="checkoutButton" onClick={props.checkout}>Checkout</button>
+            </div>
             </div>}
         </div>
     )
 }
 
 const M_Home = () => {
-  const tagSelect = "home"
   return (
     <div className='M_home'>
       <Sidebar/>
       <MainContent>
-      <TableSelect />
+      <TableSelect/>
       </MainContent>
     </div>
   )

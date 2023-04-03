@@ -5,6 +5,10 @@
     --color-blue:rgba(0, 106, 255,0.2); 
     --color-green: rgba(0, 128, 0, 0.2);   
   }
+
+  body{
+    font-family: 'Roboto Condensed';
+  }
   
  .M_home .leftBar{
     position: absolute;
@@ -20,30 +24,45 @@
     top: 0px; 
     left: 0px; 
     width: 1103px; 
-    height: 845px; 
+    /* height: 845px; */
+    padding-bottom: 20px;
     background: #FFFFFFFF; /* white */
     border-radius: 15px;
-    padding-top: 36px;
+    padding-top: 16px;
     padding-left: 30px;
   }
+
+#mainTableLable{
+  /* position: absolute;  */
+    top: 0px; 
+    left: 0px;
+}
   
   .M_home .tableContent{
+    font-family: 'Roboto Condensed';
     position: absolute; 
     top: 40px; 
     left: 694px; 
-    width: 375px; 
-    height: 754px;
-    padding-top: 10px;
+    width: 375px;
+    /* height: 754px; */
+    padding-top: 7px;
     padding-left: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
     background: #FF77001A; /* primary-500 */
     border-radius: 15px;
   }
+
+#tablelab {
+  font-size: 35px;
+  height: 35px;
+}
   
-  .M_home .home .tableSelect .Table{
+  /* .M_home .home .tableSelect .Table{
     width: 40px;
     height: 40px;
     z-index:0;
-  }
+  } */
   
   .M_home .button{
     position: absolute; 
@@ -56,11 +75,13 @@
     font-weight: bold;
     border-width: 0px;
   }
+
+  #billContainer{}
   
   .M_home .bill{
     width: 350px; 
-    height: 60px;
-    font-family: Roboto; 
+    height: 55px;
+    font-family: 'Roboto Condensed';
     font-size: 25px; 
     /* line-height: 38px; */
     font-weight: bold;
@@ -69,9 +90,9 @@
   .M_home .billTitle{
     position: absolute;
     width: 190px; 
-    height: 77px;
+    height: 57px;
     /* top: 200px; */
-    font-family: Roboto; 
+    font-family: 'Roboto Condensed';
     font-size: 25px; 
     /* line-height: 38px; */
     font-weight: bold;
@@ -80,11 +101,11 @@
   .M_home .billPrice{
     position: absolute;
     width: 150px; 
-    height: 77px;
+    height: 57px;
     margin-top: 0px;
     top: 0px;
     left: 200px;
-    font-family: Roboto; 
+    font-family: 'Roboto Condensed'; 
     font-size: 25px;
     color: darkgray;
     /* line-height: 38px; */
@@ -109,7 +130,7 @@
   /* position: absolute;  */
     top: 63px; 
     left: 341px; 
-    font-family: Poppins; /* Heading */
+    font-family: 'Roboto Condensed'; /* Heading */
     font-size: 32px; 
     line-height: 48px; 
     color: #171A1FFF; /* neutral-900 */
@@ -135,11 +156,17 @@
     width: 200px;
     font-size: 25px;
   }
+
+  #checkoutContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   
   .M_home #checkoutButton{
-    position: absolute; 
+    /* position: absolute; 
     top: 674px; 
-    left: 140px;
+    left: 140px; */
     height: 50px; 
     padding: 0 20px; 
     display: flex; 
@@ -173,6 +200,8 @@
   
   .M_home label {
     position: relative;
+    top: -30px;
+    left: 290px;
     display: inline-block;
     width: 60px;
     height: 30px;
@@ -225,14 +254,29 @@
     cursor: pointer;
   }
   
-  .M_home .Togglebutton{
-    position:absolute;
-    top: 100px;
-    left: 100px;
+  .M_home .tableContent .Togglebutton{
+    position: absolute;
+    /* top: 100px;
+    left: 20px; */
   }
   
   .M_home .tipline{
     width: 355px;
     height: 1px;
     background-color: gray;
+  }
+
+  .M_home .tableContent .stext{
+    /* position: absolute;
+    top: 70px; */
+    padding-left: 20px;
+    padding-bottom: 10px;
+    font-weight: 1px;
+    height: 10px;
+  }
+
+  #orderlab{
+    /* position: absolute;
+    top: 100px; */
+    height: 20px;
   }
