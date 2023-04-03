@@ -3,7 +3,7 @@ import Sidebar from '../../../components/Sidebar/Sidebar'
 import MainContent from '../../../components/MainContent/MainContent'
 import Table from "./Table"
 import {useState} from 'react'
-
+import "./M_Home.css"
 
 
 
@@ -117,7 +117,7 @@ const TableContent = (props) =>{
 const M_Home = () => {
   const tagSelect = "home"
   return (
-    <div>
+    <div className='M_home'>
       <Sidebar/>
       <MainContent>
       <TableSelect />
