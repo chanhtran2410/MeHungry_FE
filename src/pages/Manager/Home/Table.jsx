@@ -13,9 +13,12 @@ const Table = (props) =>{
 
   const handleClick = () => {
     props.setSel(props.idn)
-    if (free == true) {setColor(Corange); color =Corange}
-    else if (paying == false) {setColor(Cgreen); color =Cgreen}
-    else {setColor(Cwhite); color = Cwhite}
+    // if (free == true) {setColor(Corange);}
+    // else if (paying == false) {setColor(Cgreen);}
+    // else {setColor(Cwhite);}
+
+
+    
     // else setColor("white")
     // setFree(free == false)
   }
@@ -42,6 +45,7 @@ const Table = (props) =>{
     borderWidth: '1px',
     top: (((props.idn-((props.idn-1)%4)-1)/4)*140 + 127) + 'px',
     left: (((props.idn-1)%4)*140 + 80) + 'px',
+    boxShadow: '5px 10px 18px #acacac',
   }
 
     return(

@@ -9,34 +9,16 @@
   body{
     font-family: 'Roboto Condensed';
   }
-  
- .M_home .leftBar{
-    position: absolute;
-    /* top: 1446px; 
-    left: 24px;  */
-    width: 1440px;
-    height: 900px;
-    background: #FFF7F0FF; /* primary-100 */
+  hr{
+    width:95%;
+    margin-left:-.2em;
+    color: var(--color-greytext);
   }
   
   .M_home .tableSelect{
-    position: absolute; 
-    top: 0px; 
-    left: 0px; 
-    width: 1103px; 
-    /* height: 845px; */
-    padding-bottom: 20px;
-    background: #FFFFFFFF; /* white */
-    border-radius: 15px;
-    padding-top: 16px;
-    padding-left: 30px;
+    width: 100%; 
   }
 
-#mainTableLable{
-  /* position: absolute;  */
-    top: 0px; 
-    left: 0px;
-}
   
   .M_home .tableContent{
     font-family: 'Roboto Condensed';
@@ -45,39 +27,19 @@
     left: 694px; 
     width: 375px;
     /* height: 754px; */
-    padding-top: 7px;
-    padding-left: 20px;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
+    padding:1em 0;
+    padding-left:20px;
     background: #FF77001A; /* primary-500 */
     border-radius: 15px;
+    height:85%;
   }
 
-#tablelab {
-  font-size: 35px;
-  height: 35px;
-}
-  
-  /* .M_home .home .tableSelect .Table{
-    width: 40px;
-    height: 40px;
-    z-index:0;
-  } */
-  
-  .M_home .button{
-    position: absolute; 
-    width: 280px; 
-    height: 77px; 
-    border-radius: 15px;
-    font-family: Roboto; 
-    font-size: 25px; 
-    /* line-height: 38px; */
-    font-weight: bold;
-    border-width: 0px;
+  #tablelab {
+    font-size: 35px;
+    margin:0;
   }
 
-  #billContainer{}
-  
+
   .M_home .bill{
     width: 350px; 
     height: 55px;
@@ -111,51 +73,9 @@
     /* line-height: 38px; */
     text-align: right;
   }
+
   
-  .M_home #homebutt{
-    position: absolute; 
-    top: 159px; 
-    left: 17px;
-    background: #FF770033; /* primary-500 */ 
-  }
-  
-  .M_home #menubutt{
-    position: absolute; 
-    top: 239px; 
-    left: 17px;
-    background: #FFF7F0FF; /* primary-100 */
-  }
-  
-  .M_home h1{
-  /* position: absolute;  */
-    top: 63px; 
-    left: 341px; 
-    font-family: 'Roboto Condensed'; /* Heading */
-    font-size: 32px; 
-    line-height: 48px; 
-    color: #171A1FFF; /* neutral-900 */
-  }
-  
-  .M_home #logo{
-    /* position: absolute;  */
-    top: 27px; 
-    left: 61px; 
-    width: 71px; 
-    height: 71px; 
-    background: #DEE1E6FF; /* neutral-300 */
-    border-radius: 50%; 
-    border-width: 1px; 
-    border-color: #BCC1CAFF; /* neutral-400 */
-    border-style: solid;
-  }
-  
-  .M_home #resName{
-    position: absolute;
-    top: 10px;
-    left: 100px;
-    width: 200px;
-    font-size: 25px;
-  }
+
 
   #checkoutContainer{
     display: flex;
@@ -164,39 +84,20 @@
   }
   
   .M_home #checkoutButton{
-    /* position: absolute; 
-    top: 674px; 
-    left: 140px; */
-    height: 50px; 
-    padding: 0 20px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-family: Inter; /* Body */
+    position: absolute;
+    top:32em;
+    height: 2.5em; 
+    width:8em;
+    text-align: center;
+    font-family: 'Roboto Condensed';
     font-size: 18px; 
-    line-height: 28px; 
     color: #FFFFFFFF; /* white */
     background: #FF7700FF; /* primary-500 */
-    opacity: 1; 
     border: none; 
-    border-radius: 4px; /* border-m */
+    border-radius: 5px; /* border-m */
   }
-  /* Hover */
-  .M_home.button:hover {
-    color: #FFFFFFFF; /* white */
-    background: rgb(255, 155, 69); /* primary-550 */
-  }
-  /* Pressed */
-  .M_home .button:hover:active {
-    color: #FFFFFFFF; /* white */
-    background: #CA5E00FF; /* primary-600 */
-  }
-  /* Disabled */
-  .M_home .button:disabled {
-    opacity: 0.4;
-  }
-  
-  /* Toggle */
+
+  /* =====Toggle===== */
   
   .M_home label {
     position: relative;
@@ -253,30 +154,17 @@
     margin-left: 10px;
     cursor: pointer;
   }
+
   
-  .M_home .tableContent .Togglebutton{
-    position: absolute;
-    /* top: 100px;
-    left: 20px; */
-  }
-  
-  .M_home .tipline{
-    width: 355px;
-    height: 1px;
-    background-color: gray;
-  }
 
   .M_home .tableContent .stext{
     /* position: absolute;
     top: 70px; */
-    padding-left: 20px;
     padding-bottom: 10px;
     font-weight: 1px;
     height: 10px;
   }
 
   #orderlab{
-    /* position: absolute;
-    top: 100px; */
-    height: 20px;
+    margin:0;
   }

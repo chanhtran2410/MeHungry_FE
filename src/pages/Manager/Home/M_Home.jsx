@@ -53,7 +53,7 @@ const TableSelect = () =>{
 
     return(
         <div className="tableSelect">
-            <h1 id="mainTableLable">Tables</h1>
+            <h1 className='title'>TABLES</h1>
             {tableStatus.map((Tstatus) => {
                 return <Table idn={Tstatus[0]} free={Tstatus[1]} paying={Tstatus[2]} setSel={setSelection}/>
             })}
@@ -106,11 +106,11 @@ const TableContent = (props) =>{
           {props.tog && <div id="billContainer">
                 {/* <ScrollView> */}
                 {orderComponent[props.tablenumber%2].map((dish) => {
-                    return <DishPrice className="billTitle" name={dish[0]} price={dish[1]}/>
+                    return <DishPrice className="bstextillTitle" name={dish[0]} price={dish[1]}/>
                 })}
                 {/* </ScrollView> */}
             <DishPrice className="billTitle" name={"Tip"} price={tip}/>
-            <div className="tipline"></div>
+            <hr/>
             <DishPrice className="billTitle" name={"Total"} price={total}/>
             <div id="checkoutContainer">
                 <button id="checkoutButton" onClick={props.checkout}>Checkout</button>
