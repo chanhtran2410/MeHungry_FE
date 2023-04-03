@@ -74,6 +74,7 @@ body{
     margin:.3em;
     border-radius: 5px;
     border:solid 1px var(--color-greytext);
+    padding:0 1em;
 }
 .login_container .form-group-check {
     text-align: left;
