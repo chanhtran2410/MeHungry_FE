@@ -2,7 +2,7 @@ import React from 'react'
 import { AiOutlinePlusCircle } from "react-icons/ai"
 import { useEffect } from 'react'
 
-const Item = ({ Name, Price }) => {
+const Item = ({ Name, Price ,Description}) => {
 
   const handleClick = () => {
     const dish = {Name:Name, Price: Number(Price), quantity: 1 };
@@ -27,21 +27,21 @@ const Item = ({ Name, Price }) => {
     window.location.reload(false);
   }
 
-  
-
+  const isAvailable = Price !== 'Unavailable';
 
   return (
     <div>
       <div className='item'>
-        <img src="https://images.immediate.co.uk/production/volatile/sites/30/2013/05/Puttanesca-fd5810c.jpg" alt="dishes" />
+      <img style={isAvailable ? {} : { filter: 'blur(3px)' }} src="https://images.immediate.co.uk/production/volatile/sites/30/2013/05/Puttanesca-fd5810c.jpg" alt="dishes" />
         <div className='item-info'>
           <h6>{Name}</h6>
-          <p>${Price}</p>
+          <h5>{Description}</h5>
+          <p style={isAvailable ? {} : { color: 'red' }}>{isAvailable ? `$${Price}` : 'Out of Stock'}</p>
         </div>
-        <AiOutlinePlusCircle onClick={handleClick} />
+        {isAvailable && <AiOutlinePlusCircle onClick={handleClick} />}
       </div>
     </div>
-  )
+  );
 }
 
-export default Item
+export default Item;

@@ -82,11 +82,20 @@ body{
 .block .item .item-info h6{
     font-size: 20px;
     margin:0;
-    margin-top:.2em;
 }
 .block .item .item-info p{
     font-size: 18px;
-    color:var(--color-greytext)
+    color:black;
+    margin:0;
+}
+.block .item .item-info h5{
+    font-size: 15px;
+    color:var(--color-greytext);
+    margin:0;
+    width:90%;
+}
+.OutStock{
+    color: red;
 }
 .block .item svg{
     font-size: 30px;
