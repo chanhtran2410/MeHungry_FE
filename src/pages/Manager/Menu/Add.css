@@ -1,0 +1,112 @@
+:root{
+    --color-greytext:#666666;
+    --color-orange: rgba(255, 132, 0,0.2);
+    --color-blue:rgba(0, 106, 255,0.2); 
+    --color-green: rgba(0, 128, 0, 0.2);   
+}
+body{
+    margin:0;
+    padding:0;
+    font-family: 'Roboto Condensed';
+    height:100vh;
+    width:100vw;
+}
+.add .sb .bground{
+    background-color: rgb(223, 249, 254);
+    width:100vw;
+    height:100vh;
+    z-index:0;
+}
+.add .sidebar_item:hover {
+    background-color: rgba(0, 106, 255,0.2);
+    color: black;
+    border-radius: 15px;
+}
+.add .sidebar_item.active {
+    background-color: rgba(0, 106, 255,0.2);
+    color: black;
+    border-radius: 15px;
+}
+
+/*=====Info upload=====*/
+.add .add_info{
+    display:flex;
+}
+.add .add_info .basic{
+    width:60%;
+    margin: 0 7%;
+}
+.add .add_info .basic #name{
+    margin:.5em 0;
+    height:2.5em;
+    border:solid 1px var(--color-greytext);
+    margin-bottom:1em;
+}
+.add .add_info .basic .ant-input-number{
+    width: 10em;
+    height:2.5em;
+    margin: .5em 0;
+    border:solid 1px var(--color-greytext);
+}
+
+
+
+/*=====Image Upload =====*/
+.add .add_info .img{
+    margin-left:3em;
+    margin-top:1.5em;
+}
+.MuiButton-containedPrimary{
+    background-color: rgb(98, 229, 255) !important ;
+    font-family: 'Roboto Condensed' !important;
+}
+.MuiButton-label{
+    text-transform: none !important;
+}
+.MuiBox-root div{
+    display: none;
+}
+.MuiBox-root img{
+    height:10em;
+    width:15em;
+    margin-left:-4em;
+    margin-top:-3em;
+    border-radius: 10px;
+}
+
+
+/*=====Description=====*/
+.add .add_description{
+    width:86%;
+    margin:0 7%;
+    margin-top:1em;
+}
+.add .add_description textarea{
+    border:solid 1px var(--color-greytext);
+    margin: .5em 0;
+    height:10em;
+    width:100%;
+}
+
+
+.add .button{
+    display: flex;
+    justify-content: right;
+    margin-top:1em;
+    margin-right:5em;
+}
+.add .button button{
+    width: 10em;
+    height:2.5em;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(98, 229, 255);
+    color:white;
+    font-family: 'Roboto Condensed';
+    font-size: 15px;
+    box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12);
+}
+.add .button button:hover{
+    cursor: pointer;
+}
+

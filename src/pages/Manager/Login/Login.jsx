@@ -1,8 +1,6 @@
-// import axios from 'axios';
-// import { useAtom } from 'jotai';
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-// import { authAtom } from '../../store';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 
 const SideImage = () => {
@@ -14,63 +12,67 @@ const SideImage = () => {
 };
 
 const LoginForm = () => {
-  // const [, setAuth] = useAtom(authAtom);
-  // const [username, setUsername] = useState('');
-  // const [password, setPassword] = useState('');
-  
-  // const handleAuthentication = async (e) => {
-  //   e.preventDefault();
-  //   // setAuth({username})
-  //   try {
-  //     const resp = await axios.get(
-  //       `http://localhost:5000/api/user/${username}/${password}`
-  //     );
-  //     if(resp.data.error || !resp.data.status) {
-  //       alert("Invalid credential!")
-  //       return
-  //     }
-  //     setAuth({username})
-  //     window.localStorage.setItem('user', JSON.stringify({username}))
-  //   } catch (error) {
-  //     alert(error)
-  //     console.log(error)
-  //   }
-  // };
+  const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const signinSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post(`http://localhost:1500/api/login`, {
+        username,
+        password,
+      })
+      .then((res) => {
+        const token = res.data;
+        localStorage.setItem(
+          'user',
+          JSON.stringify({
+            access_token: token.accessToken,
+            refresh_token: token.refreshToken,
+          }),
+        );
+        navigate('/manager');
+      })
+      .catch((err) => {
+        console.log({ err });
+        setErrorMessage(err.response.data.message);
+      });
+  };
+
   return (
     <div className="login-wrapper">
       <h1>WELCOME BACK!</h1>
-      <form
-        onSubmit={(e) => {
-          handleAuthentication(e);
-        }}
-      >
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
+      <form method="post" onSubmit={signinSubmit}>
         <div className="form-group">
-          <label htmlFor='username'>Username</label><br/>
+          <label htmlFor="username">Username</label>
+          <br />
           <input
-            // value={username}
-            // onChange={(e) => setUsername(e.target.value)}
             required
             type="text"
             name="username"
             placeholder="Enter your username"
+            onChange={(event) => setUsername(event.target.value)}
           />
         </div>
         <div className="form-group">
-          <label htmlFor='password'>Password</label><br/>
+          <label htmlFor="password">Password</label>
+          <br />
           <input
-            // value={password}
-            // onChange={(e) => setPassword(e.target.value)}
             required
             type="password"
             name="password"
             placeholder="Enter your password"
+            onChange={(event) => setPassword(event.target.value)}
           />
         </div>
         <div className="form-group-check">
           <input id="checkbox" type="checkbox" name="remember" /> Remember me ?
         </div>
         <div className="form-button">
-          <button>LOGIN</button>
+          <button type="submit">LOGIN</button>
         </div>
       </form>
     </div>
@@ -78,6 +80,14 @@ const LoginForm = () => {
 };
 
 const Login = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const userStorage = localStorage.getItem('user');
+    if (userStorage) {
+      navigate('/manager');
+    }
+  }, [navigate]);
+
   return (
     <div className="login_container">
       <div className="container">

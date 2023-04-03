@@ -1,0 +1,99 @@
+:root{
+    --color-greytext:#666666;
+    --color-button: rgb(255, 132, 0);
+}
+html{
+    background-color: white;
+}
+body{
+    margin:0;
+    padding:0;
+    font-family: 'Roboto Condensed';
+    height:100vh;
+    width:100vw;
+    background-color: white !important;
+}
+
+.guest .bgimg{
+    top:0;
+    width:100%;
+    height: fit-content;
+    overflow: hidden;
+    z-index:0;
+}
+.guest .bgimg img{
+    width:100%;
+    height:10em;
+    z-index:0;
+}
+
+
+.guest .logo{
+    top:0;
+    text-align: center;
+    margin-top:-80px;
+    z-index:20; 
+}
+.guest .logo img{
+    width:150px;
+    height:150px;
+    border-radius: 50%;
+    background-color: #d2d2d2;
+    z-index:20;
+}
+.guest .logo h4{
+    margin:0;
+    font-size: 2em;
+}
+
+.guest .menu-tabs{
+    width:100%;
+    display:flex;
+    justify-content: center;
+}
+.guest .ant-tabs-nav-wrap, .guest .ant-tabs-nav-list{
+    width:100%;
+}
+.guest .ant-tabs-tab{
+    width:50%;
+    display: flex;
+    justify-content: center;
+}
+.guest #rc-tabs-1-tab-1, #rc-tabs-1-tab-2{
+    color:var(--color-greytext);
+    font-size: 18px;
+}
+
+
+.guest .item_block{
+    height:fit-content;
+    width:28em;
+    margin-left:.5em;
+}
+.guest .item_img img{
+    height:10em;
+    width:8em;
+}
+.guest .item_info{
+    width: 50em;
+    margin-left:3.5em;
+}
+.guest .item_info p{
+    font-size: 12px;
+    width: 22em;
+}
+.guest .item_avai{
+    display: none;
+}
+
+.guest .item_price .edit{
+    display: none;
+}
+.guest .item_price .price{
+
+}
+.guest .item_price .price h2{
+    font-size: 15px;
+    margin-top:0em;
+    margin-left:-4em;
+}

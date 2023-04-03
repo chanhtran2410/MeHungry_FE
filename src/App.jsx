@@ -14,6 +14,7 @@ import M_Menu from './pages/Manager/Menu/M_Menu';
 import Add from './pages/Manager/Menu/Add';
 import Edit from './pages/Manager/Menu/Edit';
 import Login from './pages/Manager/Login/Login';
+import Guest from './pages/Guest/Guest';
 
 
 function App() {
@@ -26,15 +27,16 @@ function App() {
     const tableID = match[1];
     localStorage.setItem('tableID', tableID);
   }
+  
 
 
   // Set initial state of auth
-  const [auth, setAuth] = useState(true);
+  const [auth, setAuth] = useState(localStorage.getItem('user') ? true : false);
   
   // Check if user is authenticated before accessing manager pages
   const checkAuth = () => {
-    const token = localStorage.getItem('token');
-    if (token === '1234') { // Set your token here
+    const token = localStorage.getItem('user');
+    if (token) { // Set your token here
       setAuth(true);
     } else {
       setAuth(false);
@@ -44,6 +46,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Guest />} />
         <Route path="/:id" element={<StartPage />} />
         <Route path="/home" element={<Home />} />
         <Route path="/menu" element={<Menu />} />
@@ -54,7 +57,7 @@ function App() {
         <Route path="/rating" element={<Rating />} />
         <Route path="/login" element={<Login/>} />
 
-        <Route path="/manager/" element={auth ? <M_Home /> : <Navigate to="/login" />} />
+        <Route path="/manager" element={auth ? <M_Home /> : <Navigate to="/login" />} />
         <Route path="/manager/menu" element={auth ? <M_Menu /> : <Navigate to="/login" />} />
         <Route path="/manager/add" element={auth ? <Add /> : <Navigate to="/login" />} />
         <Route path="/manager/edit" element={auth ? <Edit /> : <Navigate to="/login" />} />
