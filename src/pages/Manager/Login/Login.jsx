@@ -17,6 +17,7 @@ const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  
   const signinSubmit = (e) => {
     e.preventDefault();
     axios
@@ -33,6 +34,7 @@ const LoginForm = () => {
             refresh_token: token.refreshToken,
           }),
         );
+        window.location.reload(false);
         navigate('/manager');
       })
       .catch((err) => {
