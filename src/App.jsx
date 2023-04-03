@@ -60,7 +60,7 @@ function App() {
         <Route path="/manager" element={auth ? <M_Home /> : <Navigate to="/login" />} />
         <Route path="/manager/menu" element={auth ? <M_Menu /> : <Navigate to="/login" />} />
         <Route path="/manager/add" element={auth ? <Add /> : <Navigate to="/login" />} />
-        <Route path="/manager/edit" element={auth ? <Edit /> : <Navigate to="/login" />} />
+        <Route path="/manager/edit/:id" element={auth ? <Edit /> : <Navigate to="/login" />} />
       </Routes>
     </BrowserRouter>
   );
