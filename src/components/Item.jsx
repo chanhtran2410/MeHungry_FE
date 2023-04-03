@@ -1,5 +1,6 @@
 import React from 'react'
 import { AiOutlinePlusCircle } from "react-icons/ai"
+import { useEffect } from 'react'
 
 const Item = ({ Name, Price }) => {
 
@@ -13,7 +14,21 @@ const Item = ({ Name, Price }) => {
       dishesOrdered.push(dish);
     }
     localStorage.setItem('DishesOrdered', JSON.stringify(dishesOrdered));
+
+    let count = 0;
+    const order = JSON.parse(localStorage.getItem('DishesOrdered'));
+    if(order) {
+      Object.values(order).forEach(({ quantity }) => {
+        count += quantity;
+      });
+    }
+    console.log('totalCount', count);
+    localStorage.setItem('TotalQuantity', count)
+    window.location.reload(false);
   }
+
+  
+
 
   return (
     <div>

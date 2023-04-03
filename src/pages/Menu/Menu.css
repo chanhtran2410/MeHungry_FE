@@ -29,6 +29,9 @@ body{
 .nav-top h5{
     margin:0;
 }
+.nav-top svg{
+    font-size: 30px;
+}
 
 .menu .search-wrapper{
     display: flex;
@@ -47,6 +50,7 @@ body{
     border-radius: 5px 0 0 5px;
     background-color: white;
 }
+
 
 
 /*=====Item block=====*/
