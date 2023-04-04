@@ -52,7 +52,7 @@ function App() {
         <Route path="/menu" element={<Menu />} />
         <Route path="/order" element={<Order />} />
         <Route path="/request" element={<Request />} />
-        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/check_out" element={<Checkout />} />
         <Route path="/paymethod" element={<PayMethod />} />
         <Route path="/rating" element={<Rating />} />
         <Route path="/login" element={<Login/>} />

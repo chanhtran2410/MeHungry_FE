@@ -14,7 +14,7 @@ const Navbar = () => {
   return (
     <div className='nav'>
       <div className='nav-top'>
-        <Link to='/checkout'>
+        <Link to='/check_out'>
           <RiArrowGoBackFill />
         </Link>
         <h5>Payment Method</h5>
@@ -128,7 +128,7 @@ const PayMethod = () => {
           <p>{paymentOption}</p>
         </div>
       )}
-      <Link to='/checkout'><button className='payment'>CONFIRM</button></Link>
+      <Link to='/check_out'><button className='payment'>CONFIRM</button></Link>
     </div>
   );
 };

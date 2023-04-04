@@ -167,13 +167,15 @@ const Item = ({ item, onDelete }) => {
 
 const Food = () => {
   const [menuItems, setMenuItems] = useState([]);
-  const config = {
-    headers: {
-      Authorization:
-        "Bearer " +
-        JSON.parse(localStorage.getItem("user")).access_token,
-    },
-  };
+  if(localStorage.getItem("user")){
+    const config = {
+      headers: {
+        Authorization:
+          "Bearer " +
+          JSON.parse(localStorage.getItem("user")).access_token,
+      },
+    };
+  }
 
   useEffect(() => {
     fetch("http://localhost:1500/api/menu")
