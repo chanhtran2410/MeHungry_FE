@@ -5,7 +5,6 @@ import Food from '../../components/Dishes/Food';
 import Drinks from '../../components/Dishes/Drinks';
 
 
-const NAME_STORAGE_KEY = "NAME";
 
 const Logo = () => {
   return (

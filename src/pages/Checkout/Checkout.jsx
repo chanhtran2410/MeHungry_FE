@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import {
   RiArrowGoBackFill, RiShoppingCart2Line,
@@ -29,6 +30,7 @@ const Tipbar = ({tip1, tip2, tip3, tip4, selectedTip, setSelectedTip}) => {
   const handleClick = (e) => {
     const tipValue = e.target.innerText.replace('$', '');
     setSelectedTip(Number(tipValue));
+    localStorage.setItem('Tip',Number(tipValue))
   };
 
   return (
@@ -43,7 +45,7 @@ const Tipbar = ({tip1, tip2, tip3, tip4, selectedTip, setSelectedTip}) => {
       <p>Never Expected But Always Appreciated</p>
       {selectedTip > 0 && (
         <div className='result'>
-          Tip: $ {selectedTip}.000
+          Tip: $ {selectedTip}
         </div>
       )}
     </div>
@@ -72,7 +74,7 @@ const Tipbar = ({tip1, tip2, tip3, tip4, selectedTip, setSelectedTip}) => {
 //             <p>${item.Price}</p>
 //           </div>
 //           <div className='additem'>
-//             <input type='number' value={item.quantity} readOnly />
+//             <input type='number' value={item.Quantity} readOnly />
 //           </div>
 //         </div>
 //       ))}
@@ -103,12 +105,13 @@ const Total = ({ selectedTip }) => {
       const dishesOrdered = JSON.parse(localStorage.getItem('DishesOrdered'));
       
       for (let i = 0; i < dishesOrdered.length; i++) {
-        total += dishesOrdered[i].Price * dishesOrdered[i].quantity;
+        total += dishesOrdered[i].Price * dishesOrdered[i].Quantity;
       }
     }
     
-    total += selectedTip;
-    localStorage.setItem('Total', JSON.stringify(total));
+    total += Number(selectedTip);
+    total = total.toFixed(2);
+    localStorage.setItem('Total', total);
     return (
       <div className='paymentmethod'>
         <div className='intro'>
@@ -116,7 +119,7 @@ const Total = ({ selectedTip }) => {
           <h4>Total</h4>
         </div>
         <div className='result'>
-          $ {total}.000
+          $ {total}
         </div>
       </div>
     )
@@ -133,6 +136,33 @@ const Checkout = () => {
     }
 
   }, []);
+
+  const onCheckoutBtnClick = (e) => {
+    e.preventDefault();
+    if(localStorage.getItem('PayMethod') && localStorage.getItem("Tip") && localStorage.getItem("Total")){
+      const paymethod = localStorage.getItem('PayMethod');
+      console.log(paymethod);
+      const tip = localStorage.getItem("Tip");
+      console.log(tip);
+      const total = localStorage.getItem("Total");
+      console.log(total);
+
+      const tableId = localStorage.getItem("tableID");
+      console.log(tableId);
+
+
+      const data = {
+        'method': paymethod,
+        'tip': tip,
+        'total': total,
+      }
+      try {
+        axios.post(`http://localhost:1500/api/add-items/${tableId}`,data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };  
   return (
         <div className='checkout'>
             <Navbar />
@@ -150,7 +180,7 @@ const Checkout = () => {
                     <p>${item.Price}</p>
                 </div>
                 <div className='additem'>
-                    <input type='number' value={item.quantity} readOnly />
+                    <input type='number' value={item.Quantity} readOnly />
                 </div>
                 </div>
             ))}
@@ -167,7 +197,7 @@ const Checkout = () => {
         
         <PaymentMethod />
         <Total selectedTip={selectedTip} />
-        <Link to='/rating'><button className='payment'>Make payment</button></Link>
+        <Link to='/rating'><button type='submit' className='payment' onClick={onCheckoutBtnClick}>Make Payment</button></Link>
       </form>
     </div>
   );
