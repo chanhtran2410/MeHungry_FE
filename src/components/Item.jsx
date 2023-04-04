@@ -5,11 +5,11 @@ import { useEffect } from 'react'
 const Item = ({ Name, Price ,Description}) => {
 
   const handleClick = () => {
-    const dish = {Name:Name, Price: Number(Price), quantity: 1 };
+    const dish = {Name:Name, Price: Number(Price), Quantity: 1 };
     const dishesOrdered = JSON.parse(localStorage.getItem('DishesOrdered')) || [];
     const existingDish = dishesOrdered.find(d => d.Name === Name);
     if (existingDish) {
-      existingDish.quantity += 1;
+      existingDish.Quantity += 1;
     } else {
       dishesOrdered.push(dish);
     }
@@ -18,8 +18,8 @@ const Item = ({ Name, Price ,Description}) => {
     let count = 0;
     const order = JSON.parse(localStorage.getItem('DishesOrdered'));
     if(order) {
-      Object.values(order).forEach(({ quantity }) => {
-        count += quantity;
+      Object.values(order).forEach(({ Quantity }) => {
+        count += Quantity;
       });
     }
     console.log('totalCount', count);

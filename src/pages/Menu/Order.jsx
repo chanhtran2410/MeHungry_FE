@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import {
   RiArrowGoBackFill,
@@ -24,15 +25,17 @@ const Itemblock = ({ Category }) => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
+    if(localStorage.getItem('DishesOrdered')){
     const data = JSON.parse(localStorage.getItem('DishesOrdered'));
     setItems(data);
+    }
   }, []);
 
   const handleIncrease = (index) => {
     const newItems = [...items];
     newItems[index] = { 
       ...newItems[index], 
-      quantity: newItems[index].quantity + 1 
+      Quantity: newItems[index].Quantity + 1 
     };
     localStorage.setItem('DishesOrdered', JSON.stringify(newItems));
     setItems(newItems);
@@ -40,10 +43,10 @@ const Itemblock = ({ Category }) => {
   
   const handleDecrease = (index) => {
     const newItems = [...items];
-    if (newItems[index].quantity > 0) {
+    if (newItems[index].Quantity > 0) {
       newItems[index] = { 
         ...newItems[index], 
-        quantity: newItems[index].quantity - 1 
+        Quantity: newItems[index].Quantity - 1 
       };
       localStorage.setItem('DishesOrdered', JSON.stringify(newItems));
       setItems(newItems);
@@ -66,7 +69,7 @@ const Itemblock = ({ Category }) => {
           </div>
           <div className='additem'>
             <button onClick={() => handleDecrease(index)}>-</button>
-            <input type='number' value={item.quantity} readOnly />
+            <input type='number' value={item.Quantity} readOnly />
             <button onClick={() => handleIncrease(index)}>+</button>
           </div>
         </div>
@@ -84,12 +87,26 @@ const Itemblock = ({ Category }) => {
 
 
 const Order = () => {
+  const onOrderBtnClick = (e) => {
+    e.preventDefault();
+    if(localStorage.getItem('DishesOrdered') && localStorage.getItem("tableID")){
+      const order = JSON.parse(localStorage.getItem('DishesOrdered'));
+      console.log(order);
+      const tableId = localStorage.getItem("tableID");
+      console.log(tableId);
+      try {
+        axios.post(`http://localhost:1500/api/add-items/${tableId}`,order);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };  
   return (
     <div>
         <Navbar />
-      <form onSubmit={(e) => { e.preventDefault(); }}>
+      <form>
         <Itemblock Category='Selected' />
-        <button className='order'>Order</button>
+        <button type='submit' className='order' onClick={onOrderBtnClick}>Order</button>
       </form>
     </div>
   );
