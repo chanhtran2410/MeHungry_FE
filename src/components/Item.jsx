@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 const Item = ({ Name, Price ,Description}) => {
 
   const handleClick = () => {
-    const dish = {Name:Name, Price: Number(Price), Quantity: 1 };
+    const dish = {Name:Name, Quantity: 1 ,Price: Number(Price)};
     const dishesOrdered = JSON.parse(localStorage.getItem('DishesOrdered')) || [];
     const existingDish = dishesOrdered.find(d => d.Name === Name);
     if (existingDish) {
