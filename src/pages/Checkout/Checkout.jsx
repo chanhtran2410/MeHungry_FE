@@ -147,8 +147,8 @@ const Checkout = () => {
       const total = localStorage.getItem("Total");
       console.log(total);
 
-      const tableId = localStorage.getItem("tableID");
-      console.log(tableId);
+      const table_number = localStorage.getItem("Table_number");
+      console.log(table_number);
 
 
       const data = {
@@ -157,7 +157,8 @@ const Checkout = () => {
         'total': total,
       }
       try {
-        axios.post(`http://localhost:1500/api/add-items/${tableId}`,data);
+        axios.post(`http://localhost:1500/api/add-items/${table_number}`,data);
+        console.log('checkout request successfully')
       } catch (error) {
         console.error(error);
       }

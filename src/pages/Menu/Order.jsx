@@ -90,12 +90,25 @@ const Order = () => {
   const onOrderBtnClick = (e) => {
     e.preventDefault();
     if(localStorage.getItem('DishesOrdered') && localStorage.getItem("tableID")){
-      const order = JSON.parse(localStorage.getItem('DishesOrdered'));
+      // const order = JSON.parse(localStorage.getItem('DishesOrdered'));
+      const order = [
+        {
+            "Name": "Caesar Salad",
+            "Quantity": 1,
+            "Price": 8.99
+        },
+        {
+            "Name": "Nuoc dua",
+            "Quantity": 1,
+            "Price": 12.99
+        }
+      ]
       console.log(order);
-      const tableId = localStorage.getItem("tableID");
-      console.log(tableId);
+      const table_number = localStorage.getItem("Table_number");
+      console.log(table_number);
       try {
-        axios.post(`http://localhost:1500/api/add-items/${tableId}`,order);
+        axios.post(`http://localhost:1500/api/add-items/${table_number}`,order);
+        console.log('order successfully')
       } catch (error) {
         console.error(error);
       }
