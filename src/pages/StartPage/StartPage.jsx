@@ -99,7 +99,7 @@ const Form = () =>{
       if(localStorage.getItem('Table_number') && localStorage.getItem('Customer_name')){
         const table_number = localStorage.getItem('Table_number');
         try {
-          axios.post(`http://localhost:1500/api/add-item/${table_number}/${textinput}`);
+          axios.post(`http://localhost:1500/api/assign-table/${table_number}/${textinput}`);
         } catch (error) {
           console.error(error);
         }
