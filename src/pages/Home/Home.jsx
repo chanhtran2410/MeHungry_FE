@@ -15,7 +15,7 @@ import {
   RiBillLine
 } from "react-icons/ri"
 
-const NAME_STORAGE_KEY = "NAME";
+const NAME_STORAGE_KEY = "Customer_name";
 
 const BgImage = () => {
   return (
