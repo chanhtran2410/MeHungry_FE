@@ -21,29 +21,15 @@ const Table = (props) =>{
     else if (props.free == 1) setColor(Cyellow)
     else if (props.free == 2) setColor(Corange)
     else setColor(Cgreen)
-    // if (free == true) {setColor(Corange);}
-    // else if (paying == false) {setColor(Cgreen);}
-    // else {setColor(Cwhite);}
-
-
-    
-    // else setColor("white")
-    // setFree(free == false)
   }
 
   useEffect(() => {
-    // setFree(props.free)
-    // if (free == false) setColor(Corange)
-    // else {
-    //   if (paying == false) setColor(Cgreen)
-    //   setColor(Cwhite)
-    // }
     if (props.free == 0) setColor(Cwhite)
     else if (props.free == 1) setColor(Cyellow)
     else if (props.free == 2) setColor(Corange)
     else setColor(Cgreen)
-    // props.setSel(props.idn, props.free)
-  }, [props.setTog, props.setSel, props.setStat])
+    props.setSel(props.idn)
+  }, [props.setStat])
 
   const buttonStyles = {
     background : color,

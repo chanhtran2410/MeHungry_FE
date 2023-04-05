@@ -23,51 +23,6 @@ const orderComponent = [[["Dish1", 100000], ["Dish2", 100000]],[["Dish3", 100000
 
 const tip = 10
 
-/* API Stuff
-
-const addItem = async () => {
-    if(localStorage.getItem("user")){
-      const config = {
-        headers: {
-          Authorization: "Bearer " + JSON.parse(localStorage.getItem("user")).access_token,
-        },
-      };
-    
-    try {
-      const data = {
-        item_name: name,
-        description:description,
-        price:price,
-        is_available: availability,
-        category:category,
-      };
-      console.log(data);
-      await axios.post("http://localhost:1500/api/add-item", data, config);
-      message.success("Item added successfully");
-    } catch (error) {
-      console.error(error);
-      message.error("Error adding item");
-    }
-  }
-  };
-
-
-  const config = {
-    headers: {
-      Authorization:
-        "Bearer " +
-        JSON.parse(localStorage.getItem("user")).access_token,
-    },
-  };
-
-  useEffect(() => {
-    fetch("http://localhost:1500/api/menu")
-      .then((response) => response.json())
-      .then((data) => setMenuItems(data))
-      .catch((error) => console.log(error));
-  }, []);
-*/
-
 
 const DishPrice = (props) => {
     return(
@@ -96,57 +51,57 @@ const TableSelect = () =>{
       // tableStatus[selection-1][2] = false
     }
 
+    const payrequest = () => {
+      setStatusDisplay(3)
+    }
     const checkout = () => {
-      const config = {
-        headers: {
-          Authorization:
-            "Bearer " +
-            JSON.parse(localStorage.getItem("user")).access_token,
-        },
-      }
-      console.log(config)
-      fetch(`http://localhost:1500/api/change-status/${selection}`, {
-          method: "POST",
-          headers: config.headers,
-        })
-          .then((response) => response.json())
-          // .then((data) => {
-          //   console.log(data);
-          // })
-          // .catch((error) => console.log(error));
+      // const config = {
+      //   headers: {
+      //     Authorization:
+      //       "Bearer " +
+      //       JSON.parse(localStorage.getItem("user")).access_token,
+      //   },
+      // }
+      // console.log(config)
+      // fetch(`http://localhost:1500/api/change-status/${selection}`, {
+      //     method: "POST",
+      //     headers: config.headers,
+      //   })
+      //     .then((response) => response.json())
+      //     // .then((data) => {
+      //     //   console.log(data);
+      //     // })
+      //     // .catch((error) => console.log(error));
         
-          .then((tdata) => {
-            console.log(tdata)
-          })
-          .catch((error) => console.log(error))
+      //     .then((tdata) => {
+      //       console.log(tdata)
+      //     })
+      //     .catch((error) => console.log(error))
 
       setSelection(0)
+      setStatusDisplay(0)
     }
 
     const startServing = (() => {
       toggle(isToggled)
-      const config = {
-        headers: {
-          Authorization:
-            "Bearer " +
-            JSON.parse(localStorage.getItem("user")).access_token,
-        },
-      }
-      console.log(config)
-      fetch(`http://localhost:1500/api/change-status/${selection}`, {
-          method: "POST",
-          headers: config.headers,
-        })
-          .then((response) => response.json())
-          // .then((data) => {
-          //   console.log(data);
-          // })
-          // .catch((error) => console.log(error));
-        
-          .then((tdata) => {
-            console.log(tdata)
-          })
-          .catch((error) => console.log(error))
+      setStatusDisplay(2)
+      // const config = {
+      //   headers: {
+      //     Authorization:
+      //       "Bearer " +
+      //       JSON.parse(localStorage.getItem("user")).access_token,
+      //   },
+      // }
+      // console.log(config)
+      // fetch(`http://localhost:1500/api/change-status/${selection}`, {
+      //     method: "POST",
+      //     headers: config.headers,
+      //   })
+      //     .then((response) => response.json())
+      //     .then((tdata) => {
+      //       console.log(tdata)
+      //     })
+      //     .catch((error) => console.log(error))
     });
 
     // const select = (props) => {
@@ -184,25 +139,20 @@ const TableSelect = () =>{
         
           console.log("List: ", tableList)
 
-          fetch(`http://localhost:1500/api/view-current-orders`, {
-            method: "GET",
-            headers: config.headers,
-          })
-            .then((response) => response.json())
-            // .then((data) => {
-            //   console.log(data);
-            // })
-            // .catch((error) => console.log(error));
+          // fetch(`http://localhost:1500/api/view-current-orders`, {
+          //   method: "GET",
+          //   headers: config.headers,
+          // })
+          //   .then((response) => response.json())
+          //   .then((odata) => {
+          //     console.log(odata)
+          //     // const newTabL = tdata
+          //     const newTabL = odata.map((odataEle) => {return [odataEle.item_name, odataEle.price]})
+          //     setOrderList(newTabL)
+          //   })
+          //   .catch((error) => console.log(error))
           
-            .then((odata) => {
-              console.log(odata)
-              // const newTabL = tdata
-              const newTabL = odata.map((odataEle) => {return [odataEle.item_name, odataEle.price]})
-              setOrderList(newTabL)
-            })
-            .catch((error) => console.log(error))
-          
-            console.log("OrderList: ", orderList)
+          //   console.log("OrderList: ", orderList)
       }
     }, [toggle, setSelection]);
 
@@ -212,14 +162,26 @@ const TableSelect = () =>{
             {tableList.map((Tstatus) => {
                 return <Table idn={Tstatus[0]} free={Tstatus[1]} setSel={setSelection} setTog={toggle} setStat={setStatusDisplay}/>
             })}
-            {displayB && <TableContent tablenumber={selection} turnoff={turnoff} tog={isToggled} togf={toggle} checkout={checkout} paying={tableStatus[selection-1][1]} statusD={statusDisplay}/>}
+            {displayB && <TableContent
+              tablenumber={selection}
+              turnoff={turnoff}
+              tog={isToggled}
+              togf={toggle}
+              startServing={startServing}
+              payrequest={payrequest}
+              checkout={checkout}
+              paying={tableStatus[selection-1][1]}
+              statusD={statusDisplay}
+              orderComponent={orderComponent}/>}
         </div>
     )
 }
 
-const Toggle = ({ label, tog, togf, onClick, turnoff }) => {
+const Toggle = ({ label, tog, togf, onClick, turnoff, startServing, payrequest}) => {
 
     const callback = () => {
+        if (tog == false) startServing()
+        else payrequest()
         togf(!tog)
         onClick(!tog)
         turnoff()
@@ -234,14 +196,8 @@ const Toggle = ({ label, tog, togf, onClick, turnoff }) => {
 )}
 
 const TableContent = (props) =>{
-
-    // const logState = state => {
-    //     console.log("Toggled:", state)
-    //     // props.togf(!props.tog)
-    // }
-
+    
     let total = 0
-    let tipD = (props.statusDisplay == 3)
     orderComponent[props.tablenumber%2].map((dish) => {
         total = total + dish[1]})
     total = total + tip
@@ -249,19 +205,24 @@ const TableContent = (props) =>{
     return(
         <div className="tableContent">
             <h1 id="tablelab">Table {props.tablenumber} </h1>
-            <h3 className='stext'>Checkin time: 12:34:56</h3>
+            <h3 className='stext'>Checkin time: 19:35:27</h3>
             <h1 id="orderlab">Orders</h1>
-            <Toggle className="Togglebutton"
-            label=""
-            // toggled={props.tog}
-            onClick={props.togf}
-            turnoff={props.turnoff}
-            tog={props.tog}
-            togf={props.togf}
-            />
-          {props.tog && <div id="billContainer">
+            {(props.statusD == 1 || props.statusD == 2) &&
+            <div>
+              <Toggle className="Togglebutton"
+              label=""
+              // toggled={props.tog}
+              onClick={props.togf}
+              startServing={props.startServing}
+              payrequest={props.payrequest}
+              turnoff={props.turnoff}
+              tog={props.tog}
+              togf={props.togf}
+              />
+            </div>}
+          {(props.statusD == 2 || props.statusD == 3) && <div id="billContainer">
                 {/* <ScrollArea> */}
-                {orderComponent[props.tablenumber%2].map((dish) => {
+                {props.orderComponent[props.tablenumber%2].map((dish) => {
                     return <DishPrice className="bstextillTitle" name={dish[0]} price={dish[1]}/>
                 })}
                 {/* </ScrollArea> */}
