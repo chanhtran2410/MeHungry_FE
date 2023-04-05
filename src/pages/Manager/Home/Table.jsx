@@ -38,7 +38,6 @@ const Table = (props) =>{
     //   if (paying == false) setColor(Cgreen)
     //   setColor(Cwhite)
     // }
-    console.log(props.free)
     if (props.free == 0) setColor(Cwhite)
     else if (props.free == 1) setColor(Cyellow)
     else if (props.free == 2) setColor(Corange)

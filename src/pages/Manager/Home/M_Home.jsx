@@ -85,21 +85,10 @@ const TableSelect = () =>{
     const [selection, setSelection] = useState(0);
     const [isToggled, toggle] = useState(false)
     const [statusDisplay, setStatusDisplay] = useState(0)
+
     let displayB = false;
     if (selection < 1) {displayB = false}
     else {displayB = true}
-
-//
-  // if (localStorage.getItem("user")){
-  //   const config = {
-  //     headers: {
-  //       Authorization:
-  //         "Bearer " +
-  //         JSON.parse(localStorage.getItem("user")).access_token,
-  //     },
-  //   }
-  // }
-//
 
     const turnoff = () => {
       // tableStatus[selection-1][2] = false
@@ -110,18 +99,14 @@ const TableSelect = () =>{
     }
 
     const startServing = (() => {
-      // fetch(`http://localhost:1500/api/tables`, {
-      //   method: "GET",
-      //   headers: config.headers,
-      // })
-      
-      // const config = {
-      //   headers: {
-      //     Authorization:
-      //       "Bearer " +
-      //       JSON.parse(localStorage.getItem("user")).access_token,
-      //   },
-      // }
+
+      const config = {
+        headers: {
+          Authorization:
+            "Bearer " +
+            JSON.parse(localStorage.getItem("user")).access_token,
+        },
+      }
       console.log(config)
       axios.post(`http://localhost:1500/api/change-status/${selection}`, config.headers)
         .then((response) => {response.json()})
@@ -145,22 +130,46 @@ const TableSelect = () =>{
       //   method: "GET",
       //   headers: config.headers,
       // })
-      const config = {
-        headers: {
-          Authorization:
-            "Bearer " +
-            JSON.parse(localStorage.getItem("user")).access_token,
-        },
-      }
-      axios.get(`http://localhost:1500/api/tables`, config.headers)
-        .then((response) => response.json())
-        .then((tdata) => {
-          console.log(tdata)
-          // const newTabL = tdata.map((tdataEle) => {return [tdataEle.table_number/*, tdataEle.status*/]})
-          // setTableList(newTabL)
-          // console.log(tableList)
+
+
+      // const config = {
+      //   headers: {
+      //     Authorization:
+      //       "Bearer " +
+      //       JSON.parse(localStorage.getItem("user")).access_token,
+      //   },
+      // }
+      // axios.get(`http://localhost:1500/api/tables`, config.headers)
+      //   .then((response) => response.json())
+      //   .then((data) => {
+      //     console.log(data)
+      //     console.log("hello")
+      //     // const newTabL = tdata.map((tdataEle) => {return [tdataEle.table_number/*, tdataEle.status*/]})
+      //     // setTableList(newTabL)
+      //     // console.log(tableList)
+      //   })
+      //   .catch((error) => console.log(error))
+
+
+      if(localStorage.getItem("user")){
+        const config = {
+          headers: {
+            Authorization:
+              "Bearer " +
+              JSON.parse(localStorage.getItem("user")).access_token,
+          },
+        };
+      
+        fetch(`http://localhost:1500/api/tables`, {
+          method: "GET",
+          headers: config.headers,
         })
-        .catch((error) => console.log(error))
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+          })
+          .catch((error) => console.log(error));
+      }
     }, []);
 
     return(
