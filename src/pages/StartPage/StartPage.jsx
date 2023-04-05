@@ -114,7 +114,7 @@ const Form = () =>{
             <label htmlFor="name">Your name:</label><br/>
             <input id='name' type="text" name = "name" placeholder  = "Please input your name" onChange={onTextInputChange}/>
           </div>
-          <Link to='/home'><button type='submit' disabled={!textinput} onClick={onAddBtnClick}>Get Started</button></Link>
+          <button type='submit' disabled={!textinput} onClick={onAddBtnClick}>Get Started</button>
         </form>
       </div>
     </div>
