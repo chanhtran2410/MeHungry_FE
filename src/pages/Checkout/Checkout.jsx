@@ -130,15 +130,27 @@ const Checkout = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    if(localStorage.getItem('DishesOrdered')){
-      const data = JSON.parse(localStorage.getItem('DishesOrdered'));
-      setItems(data);
+    if (localStorage.getItem('totalOrder')) {
+      const data = JSON.parse(localStorage.getItem('totalOrder'));
+  
+      // find duplicate objects and merge their quantities
+      const mergedItems = data.reduce((acc, curr) => {
+        const existingItem = acc.find(item => item.Name === curr.Name);
+        if (existingItem) {
+          existingItem.Quantity += curr.Quantity;
+        } else {
+          acc.push(curr);
+        }
+        return acc;
+      }, []);
+  
+      setItems(mergedItems);
     }
-
   }, []);
+  
 
-  const onCheckoutBtnClick = (e) => {
-    e.preventDefault();
+
+  const onCheckoutBtnClick = () => {
     if(localStorage.getItem('PayMethod') && localStorage.getItem("Tip") && localStorage.getItem("Total")){
       const paymethod = localStorage.getItem('PayMethod');
       console.log(paymethod);
@@ -157,7 +169,7 @@ const Checkout = () => {
         'total': total,
       }
 
-      axios.post(`http://localhost:1500/api/add-items/${table_number}`,data)
+      axios.post(`http://localhost:1500/api/request-checkout/${table_number}`,data)
         .then((response) => {
           console.log(response.data);
         })
