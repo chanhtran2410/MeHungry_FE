@@ -209,6 +209,37 @@ const Edit = () => {
   }
   };
 
+  useEffect(() => {
+    if(localStorage.getItem("user")){
+      const config = {
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("user")).access_token,
+        },
+      };
+    axios.get(`http://localhost:1500/api/view-item/${itemID}`,config)
+      .then((response) => {
+        console.log(response.data);
+        setName(response.data.item_name);
+        setDescription(response.data.description);
+        setPrice(response.data.price);
+        setAvailability(response.data.is_available ? true : false);
+        setCategory(response.data.category);
+        
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
+
+
+}, []);
+        console.log(name);
+        console.log(description);
+        console.log(price);
+
+        console.log(availability);
+        console.log(category);
+
   return (
     <div className="add">
       <Sidebar />

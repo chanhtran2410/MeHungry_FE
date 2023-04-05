@@ -89,6 +89,7 @@ const Item = ({ Name, Price, Description }) => {
     const existingDish = dishesOrdered.find((d) => d.Name === Name);
     if (existingDish) {
       existingDish.Quantity -= 1;
+      setQuantity(existingDish.Quantity);
       if(existingDish.Quantity === 0){
         const index = dishesOrdered.findIndex((d) => d.Name === existingDish.Name);
         dishesOrdered.splice(index, 1);

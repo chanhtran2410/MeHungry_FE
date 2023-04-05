@@ -57,7 +57,7 @@ const PaymentOptions = ({ handleInput }) => {
             id='cash'
             name='paymentOption'
             value='Cash'
-            checked={selectedOption === 'Cash'}
+            checked={true}
             onChange={() => handleOptionClick('Cash')}
           />
         </div>

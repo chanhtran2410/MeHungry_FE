@@ -29,9 +29,11 @@ const Navbar = () => {
 const Tipbar = ({tip1, tip2, tip3, tip4, selectedTip, setSelectedTip}) => {
   const handleClick = (e) => {
     const tipValue = e.target.innerText.replace('$', '');
-    setSelectedTip(Number(tipValue));
-    localStorage.setItem('Tip',Number(tipValue))
+    const newTip = selectedTip === Number(tipValue) ? 0 : Number(tipValue); // toggle selected tip
+    setSelectedTip(newTip);
+    localStorage.setItem('Tip', newTip);
   };
+  
 
   return (
     <div className='tip-holder'>
@@ -85,7 +87,7 @@ const Tipbar = ({tip1, tip2, tip3, tip4, selectedTip, setSelectedTip}) => {
 
 
 const PaymentMethod = () => {
-    const payMethod = localStorage.getItem('PayMethod') ? localStorage.getItem('PayMethod'): 'Choose one';
+    const payMethod = localStorage.getItem('PayMethod') ? localStorage.getItem('PayMethod'): 'Cash';
     return (
         <div className='paymentmethod'>
             <div className='intro'>
@@ -101,8 +103,8 @@ const PaymentMethod = () => {
 
 const Total = ({ selectedTip }) => {
     let total = 0;
-    if(localStorage.getItem('DishesOrdered')){
-      const dishesOrdered = JSON.parse(localStorage.getItem('DishesOrdered'));
+    if(localStorage.getItem('totalOrder')){
+      const dishesOrdered = JSON.parse(localStorage.getItem('totalOrder'));
       
       for (let i = 0; i < dishesOrdered.length; i++) {
         total += dishesOrdered[i].Price * dishesOrdered[i].Quantity;
@@ -192,11 +194,9 @@ const Checkout = () => {
                 />
                 <div className='item-info'>
                     <h6>{item.Name}</h6>
-                    <p>${item.Price}</p>
+                    <p><span>${item.Price}&nbsp; x &nbsp;{item.Quantity}</span> = <span>${item.Price * item.Quantity}</span></p>
                 </div>
-                <div className='additem'>
-                    <input type='number' value={item.Quantity} readOnly />
-                </div>
+
                 </div>
             ))}
             <hr></hr>
