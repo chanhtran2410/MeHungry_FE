@@ -95,7 +95,7 @@ import {
 import { Badge, Space } from 'antd';
 import axios from 'axios';
 
-const Navbar = ({totalCount}) => {
+const Navbar = () => {
   return (
     <div className='nav'>
       <div className='nav-top'>
@@ -103,9 +103,7 @@ const Navbar = ({totalCount}) => {
           <RiArrowGoBackFill />
         </Link>
         <h5>Menu</h5>
-        <Badge count={totalCount} showZero>
           <RiShoppingCart2Line />
-        </Badge>
       </div>
       <div className='search-wrapper'>
         <label htmlFor='search-form'>
@@ -138,7 +136,6 @@ const Itemblock = ({ Category, items }) => {
 
 const Menu = () => {
   const [menuData, setMenuData] = useState([]);
-  const [totalCount, setTotalCount] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -152,27 +149,13 @@ const Menu = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    const updateTotalCount = () => {
-      const order = localStorage.getItem('TotalQuantity');
-      let totalCount = 0;
-      if (order) {
-        totalCount = order;
-      }
-      setTotalCount(totalCount);
-    };
-
-    updateTotalCount();
-
-    window.addEventListener('storage', updateTotalCount);
-  }, []);
   
   const foodItems = menuData.filter((item) => item.category === 'food');
   const drinkItems = menuData.filter((item) => item.category === 'drink');
 
   return (
     <div className='menu'>
-      <Navbar totalCount={totalCount} />
+      <Navbar/>
       {menuData.length > 0 && (
         <>
           <Itemblock Category='Food' items={foodItems} />

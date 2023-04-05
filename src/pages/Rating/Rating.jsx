@@ -16,7 +16,7 @@ const Navbar = () => {
   return (
     <div className='nav'>
       <div className='nav-top'>
-        <Link to='/checkout'>
+        <Link to='/home'>
           <RiArrowGoBackFill />
         </Link>
         <h5>Rating</h5>
