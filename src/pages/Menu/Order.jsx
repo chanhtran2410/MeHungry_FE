@@ -262,12 +262,12 @@ const Itemblock = ({ Category }) => {
           <div className='additem'>
             {item.Quantity > 0 ? (
               <>
-                <button onClick={() => handleDecrease(item)}> - </button>
+                <button type="button" onClick={() => handleDecrease(item)}> - </button>
                 <input type="number" value={itemQuantity[item.Name]} readOnly />
-                <button onClick={() => handleIncrease(item)}> + </button>
+                <button type="button" onClick={() => handleIncrease(item)}> + </button>
               </>
             ) : (
-              <button onClick={() => handleIncrease(item)}>+</button>
+              <></>
             )}
           </div>
         </div>
