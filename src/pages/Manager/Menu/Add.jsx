@@ -182,11 +182,11 @@ const Add = () => {
 
   const addItem = async () => {
     if(localStorage.getItem("user")){
-      const config = {
-        headers: {
-          Authorization: "Bearer " + JSON.parse(localStorage.getItem("user")).access_token,
-        },
-      };
+        const config = {
+          headers: {
+            Authorization: "Bearer " + JSON.parse(localStorage.getItem("user")).access_token,
+          },
+        };
     
     try {
       const data = {
