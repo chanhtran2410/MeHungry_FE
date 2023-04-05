@@ -155,7 +155,7 @@ const TableSelect = () =>{
           //   console.log("OrderList: ", orderList)
       }
     }, [toggle, setSelection]);
-
+    // tableList
     return(
         <div className="tableSelect">
             <h1 className='title'>TABLES</h1>
@@ -170,7 +170,7 @@ const TableSelect = () =>{
               startServing={startServing}
               payrequest={payrequest}
               checkout={checkout}
-              paying={tableStatus[selection-1][1]}
+              paying={tableList[selection-1][1]}
               statusD={statusDisplay}
               orderComponent={orderComponent}/>}
         </div>

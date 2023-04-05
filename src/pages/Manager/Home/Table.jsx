@@ -23,12 +23,18 @@ const Table = (props) =>{
     else setColor(Cgreen)
   }
 
+  // const recursiveTimer = () => {
+  
+  // }
+
   useEffect(() => {
-    if (props.free == 0) setColor(Cwhite)
-    else if (props.free == 1) setColor(Cyellow)
-    else if (props.free == 2) setColor(Corange)
-    else setColor(Cgreen)
     props.setSel(props.idn)
+    setInterval(function () {
+      if (props.free == 0) setColor(Cwhite)
+      else if (props.free == 1) setColor(Cyellow)
+      else if (props.free == 2) setColor(Corange)
+      else setColor(Cgreen)
+    }, 2000);
   }, [props.setStat])
 
   const buttonStyles = {
