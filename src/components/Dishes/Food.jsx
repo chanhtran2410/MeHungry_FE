@@ -131,6 +131,9 @@ const Item = ({ item, onDelete }) => {
   const handleDelete = () => {
     onDelete(item.item_id);
   };
+  const handleEdit = () => {
+    localStorage.setItem('itemID',item.item_id);
+  };
   return (
     <div className="item_block">
       <div className="item_img">
@@ -152,7 +155,7 @@ const Item = ({ item, onDelete }) => {
             <RiDeleteBin6Line />
           </button>
           <Link to={`/manager/edit/${item.item_id}`}>
-            <button>
+            <button onClick={handleEdit}>
               <RiEdit2Line />
             </button>
           </Link>
