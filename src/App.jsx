@@ -23,11 +23,20 @@ function App() {
   
   // Check if the URL matches the pattern and extract the {id}
   const match = window.location.pathname.match(tableIDRegex);
-  if (match !== null) {
+  const pathname  = window.location.pathname;
+  console.log(pathname)
+  const table_id_list = ['31OFbdzA', 'ip34Rpen', '1qAKpsUL', 'LxSbuAx6', '5WLK1rFw',];
+  const path = ['/home', '/menu', '/order', '/request','/check_out', '/paymethod', '/rating', '/login', '/manager', '/manager/menu', '/manager/add', '/manager/edit/:id']
+  if (match !== null && table_id_list.includes(match[1]) ) {
     const tableID = match[1];
     localStorage.setItem('tableID', tableID);
   }
-  
+  else if(pathname !== '/' && !(table_id_list.includes(pathname)) && !(path.includes(pathname))){
+    return(<><h1>404 Error</h1></>)
+  }
+ 
+ 
+
 
 
   // Set initial state of auth
