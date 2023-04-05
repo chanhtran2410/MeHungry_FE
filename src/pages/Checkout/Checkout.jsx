@@ -156,12 +156,14 @@ const Checkout = () => {
         'tip': tip,
         'total': total,
       }
-      try {
-        axios.post(`http://localhost:1500/api/add-items/${table_number}`,data);
-        console.log('checkout request successfully')
-      } catch (error) {
-        console.error(error);
-      }
+
+      axios.post(`http://localhost:1500/api/add-items/${table_number}`,data)
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   };  
   return (

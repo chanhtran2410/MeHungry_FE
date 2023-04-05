@@ -106,12 +106,13 @@ const Order = () => {
       console.log(order);
       const table_number = localStorage.getItem("Table_number");
       console.log(table_number);
-      try {
-        axios.post(`http://localhost:1500/api/add-items/${table_number}`,order);
-        console.log('order successfully')
-      } catch (error) {
-        console.error(error);
-      }
+        axios.post(`http://localhost:1500/api/add-items/${table_number}`,order)
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   };  
   return (

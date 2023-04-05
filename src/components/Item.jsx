@@ -24,7 +24,6 @@ const Item = ({ Name, Price ,Description}) => {
     }
     console.log('totalCount', count);
     localStorage.setItem('TotalQuantity', count)
-    window.location.reload(false);
   }
 
   const isAvailable = Price !== 'Unavailable';
