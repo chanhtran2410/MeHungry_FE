@@ -26,42 +26,29 @@
 
 //   useEffect(() => {
 //     if(localStorage.getItem('DishesOrdered')){
-//     const data = JSON.parse(localStorage.getItem('DishesOrdered'));
+//     const data = JSON.parse(localStorage.getItem('DishesOrdered')) || [];
 //     setItems(data);
 //     }
 //   }, []);
 
-//   // const handleIncrease = (index) => {
-//   //   const newItems = [...items];
-//   //   newItems[index] = { 
-//   //     ...newItems[index], 
-//   //     Quantity: newItems[index].Quantity + 1 
-//   //   };
-//   //   localStorage.setItem('DishesOrdered', JSON.stringify(newItems));
-//   //   setItems(newItems);
-//   // };
-  
-//   // const handleDecrease = (index) => {
-//   //   const newItems = [...items];
-//   //   if (newItems[index].Quantity > 0) {
-//   //     newItems[index] = { 
-//   //       ...newItems[index], 
-//   //       Quantity: newItems[index].Quantity - 1 
-//   //     };
-//   //     localStorage.setItem('DishesOrdered', JSON.stringify(newItems));
-//   //     setItems(newItems);
-//   //   }
-//   // };
+//   const [itemQuantity, setItemQuantity] = useState({});
+//   useEffect(() => {
+//     const dishQuantities = {};
+//     items.forEach((item) => {
+//       dishQuantities[item.Name] = item.Quantity;
+//     });
+//     setItemQuantity(dishQuantities);
+//   }, [items]);
 
-//   const [quantity, setQuantity] = useState(0);
 //   const handleIncrease = ({Name}) => {
-//     // const dish = { Name: Name, Quantity: 1, Price: Number(Price) };
 //     const dishesOrdered = JSON.parse(localStorage.getItem('DishesOrdered')) || [];
 
 //     const existingDish = dishesOrdered.find((d) => d.Name === Name);
 //     if (existingDish) {
 //       existingDish.Quantity += 1;
-//       setQuantity(existingDish.Quantity);
+//       const dishQuantities = {...itemQuantity};
+//       dishQuantities[Name] = existingDish.Quantity;
+//       setItemQuantity(dishQuantities);
 //     } 
 //     localStorage.setItem('DishesOrdered', JSON.stringify(dishesOrdered));
 //   };
@@ -71,10 +58,13 @@
 //     const existingDish = dishesOrdered.find((d) => d.Name === Name);
 //     if (existingDish) {
 //       existingDish.Quantity -= 1;
+//       const dishQuantities = {...itemQuantity};
+//       dishQuantities[Name] = existingDish.Quantity;
+//       setItemQuantity(dishQuantities);
+      
 //       if(existingDish.Quantity === 0){
 //         const index = dishesOrdered.findIndex((d) => d.Name === existingDish.Name);
 //         dishesOrdered.splice(index, 1);
-//         setQuantity(0);
 //       }
 //     }
 //     localStorage.setItem('DishesOrdered', JSON.stringify(dishesOrdered));
@@ -94,18 +84,14 @@
 //             <p>${item.Price}</p>
 //           </div>
 //           <div className='additem'>
-//             {/* <button onClick={() => handleDecrease(index)}>-</button>
-//             <input type='number' value={item.Quantity} readOnly min={0} />
-//             <button onClick={() => handleIncrease(index)}>+</button> */}
-
 //             {item.Quantity > 0 ? (
 //               <>
-//                 <button onClick={handleDecrease(item.Name)}>-</button>
-//                 <input type="number" value={} readOnly />
-//                 <button onClick={handleIncrease(item.Name)}>+</button>
+//                 <button type="button" onClick={() => handleDecrease(item)}> - </button>
+//                 <input type="number" value={itemQuantity[item.Name]} readOnly />
+//                 <button type="button" onClick={() => handleIncrease(item)}> + </button>
 //               </>
 //             ) : (
-//               <button onClick={handleIncrease}>+</button>
+//               <></>
 //             )}
 //           </div>
 //         </div>
@@ -142,7 +128,7 @@
 //             localStorage.setItem('totalOrder', JSON.stringify(totalOrder));
 //           }
 //           else{
-//           localStorage.setItem('totalOrder', JSON.stringify(order));
+//             localStorage.setItem('totalOrder', JSON.stringify(order));
 //           }
 //           localStorage.removeItem('DishesOrdered');
 //         })
@@ -168,7 +154,12 @@
 //   );
 // };
 
-// export default Order;
+// export default Order; 
+
+
+
+
+
 
 
 
@@ -241,6 +232,7 @@ const Itemblock = ({ Category }) => {
       if(existingDish.Quantity === 0){
         const index = dishesOrdered.findIndex((d) => d.Name === existingDish.Name);
         dishesOrdered.splice(index, 1);
+        setItems([...dishesOrdered]);
       }
     }
     localStorage.setItem('DishesOrdered', JSON.stringify(dishesOrdered));
@@ -307,6 +299,7 @@ const Order = () => {
             localStorage.setItem('totalOrder', JSON.stringify(order));
           }
           localStorage.removeItem('DishesOrdered');
+          window.location.reload(); // Reload the page
         })
         .catch((error) => {
           console.log(error);
@@ -314,8 +307,6 @@ const Order = () => {
         .finally(() => {
           setIsOrdering(false);
         });
-
-      
       
     }
   };  
@@ -330,9 +321,4 @@ const Order = () => {
   );
 };
 
-export default Order; 
-
-
-
-
-
+export default Order;
