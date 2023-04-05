@@ -110,9 +110,10 @@ const Item = ({ Name, Price, Description }) => {
         />
         <div className="item-info">
           <h6>{Name}</h6>
-          <h5>{Description}</h5>
+          <h4>{Description}</h4>
           <p style={isAvailable ? {} : { color: 'red' }}>{isAvailable ? `$${Price}` : 'Out of Stock'}</p>
         </div>
+        <div className='button'>
         {isAvailable && (
           <>
             {quantity > 0 ? (
@@ -126,6 +127,7 @@ const Item = ({ Name, Price, Description }) => {
             )}
           </>
         )}
+        </div>
       </div>
     </div>
   );

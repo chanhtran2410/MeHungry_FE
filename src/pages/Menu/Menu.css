@@ -76,7 +76,7 @@ body{
 }
 .block .item .item-info{
     margin-left:1em;
-    width: 15em;
+    width: 16em;
     font-weight: bold;
 }
 .block .item .item-info h6{
@@ -88,11 +88,17 @@ body{
     color:black;
     margin:0;
 }
-.block .item .item-info h5{
+.block .item .item-info h4{
     font-size: 15px;
     color:var(--color-greytext);
     margin:0;
-    width:50%;
+    margin-right:0;
+}
+.block .item .button{
+    display: flex;
+    height:fit-content;
+    width:7em;
+    justify-content: right;
 }
 .OutStock{
     color: red;
@@ -118,7 +124,7 @@ body{
 .additem{
     display: flex;
     height:2.5em;
-    width:4em
+    width:5em
 }
 .additem input{
     width:2em;
@@ -126,6 +132,10 @@ body{
     border-radius: 5px;
     text-align: center;
     font-size: 15px;;
+}
+.additem button{
+    width:2em;
+    height:2em;
 }
 .block #note{
     height:2.5em;
