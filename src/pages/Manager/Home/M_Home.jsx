@@ -85,6 +85,8 @@ const TableSelect = () =>{
     const [selection, setSelection] = useState(0);
     const [isToggled, toggle] = useState(false)
     const [statusDisplay, setStatusDisplay] = useState(0)
+    const [tableList, setTableList] = useState([]);
+    const [orderList, setOrderList] = useState([]);
 
     let displayB = false;
     if (selection < 1) {displayB = false}
@@ -95,11 +97,6 @@ const TableSelect = () =>{
     }
 
     const checkout = () => {
-      setSelection(0)
-    }
-
-    const startServing = (() => {
-
       const config = {
         headers: {
           Authorization:
@@ -108,15 +105,48 @@ const TableSelect = () =>{
         },
       }
       console.log(config)
-      axios.post(`http://localhost:1500/api/change-status/${selection}`, config.headers)
-        .then((response) => {response.json()})
-        .then((tdata) => {
-          console.log(tdata)
-          // const newTabL = tdata.map((tdataEle) => {return [tdataEle.table_number/*, tdataEle.status*/]})
-          // setTableList(newTabL)
-          // console.log(tableList)
+      fetch(`http://localhost:1500/api/change-status/${selection}`, {
+          method: "POST",
+          headers: config.headers,
         })
-        .catch((error) => console.log(error))
+          .then((response) => response.json())
+          // .then((data) => {
+          //   console.log(data);
+          // })
+          // .catch((error) => console.log(error));
+        
+          .then((tdata) => {
+            console.log(tdata)
+          })
+          .catch((error) => console.log(error))
+
+      setSelection(0)
+    }
+
+    const startServing = (() => {
+      toggle(isToggled)
+      const config = {
+        headers: {
+          Authorization:
+            "Bearer " +
+            JSON.parse(localStorage.getItem("user")).access_token,
+        },
+      }
+      console.log(config)
+      fetch(`http://localhost:1500/api/change-status/${selection}`, {
+          method: "POST",
+          headers: config.headers,
+        })
+          .then((response) => response.json())
+          // .then((data) => {
+          //   console.log(data);
+          // })
+          // .catch((error) => console.log(error));
+        
+          .then((tdata) => {
+            console.log(tdata)
+          })
+          .catch((error) => console.log(error))
     });
 
     // const select = (props) => {
@@ -124,33 +154,7 @@ const TableSelect = () =>{
     //   toggle(free)
     // }
 
-    const [tableList, setTableList] = useState([]);
     useEffect(() => {
-      // fetch(`http://localhost:1500/api/tables`, {
-      //   method: "GET",
-      //   headers: config.headers,
-      // })
-
-
-      // const config = {
-      //   headers: {
-      //     Authorization:
-      //       "Bearer " +
-      //       JSON.parse(localStorage.getItem("user")).access_token,
-      //   },
-      // }
-      // axios.get(`http://localhost:1500/api/tables`, config.headers)
-      //   .then((response) => response.json())
-      //   .then((data) => {
-      //     console.log(data)
-      //     console.log("hello")
-      //     // const newTabL = tdata.map((tdataEle) => {return [tdataEle.table_number/*, tdataEle.status*/]})
-      //     // setTableList(newTabL)
-      //     // console.log(tableList)
-      //   })
-      //   .catch((error) => console.log(error))
-
-
       if(localStorage.getItem("user")){
         const config = {
           headers: {
@@ -165,17 +169,47 @@ const TableSelect = () =>{
           headers: config.headers,
         })
           .then((response) => response.json())
-          .then((data) => {
-            console.log(data);
+          // .then((data) => {
+          //   console.log(data);
+          // })
+          // .catch((error) => console.log(error));
+        
+          .then((tdata) => {
+            console.log(tdata)
+            // const newTabL = tdata
+            const newTabL = tdata.map((tdataEle) => {return [tdataEle.table_number, tdataEle.status]})
+            setTableList(newTabL)
           })
-          .catch((error) => console.log(error));
+          .catch((error) => console.log(error))
+        
+          console.log("List: ", tableList)
+
+          fetch(`http://localhost:1500/api/view-current-orders`, {
+            method: "GET",
+            headers: config.headers,
+          })
+            .then((response) => response.json())
+            // .then((data) => {
+            //   console.log(data);
+            // })
+            // .catch((error) => console.log(error));
+          
+            .then((odata) => {
+              console.log(odata)
+              // const newTabL = tdata
+              const newTabL = odata.map((odataEle) => {return [odataEle.item_name, odataEle.price]})
+              setOrderList(newTabL)
+            })
+            .catch((error) => console.log(error))
+          
+            console.log("OrderList: ", orderList)
       }
-    }, []);
+    }, [toggle, setSelection]);
 
     return(
         <div className="tableSelect">
             <h1 className='title'>TABLES</h1>
-            {tableStatus.map((Tstatus) => {
+            {tableList.map((Tstatus) => {
                 return <Table idn={Tstatus[0]} free={Tstatus[1]} setSel={setSelection} setTog={toggle} setStat={setStatusDisplay}/>
             })}
             {displayB && <TableContent tablenumber={selection} turnoff={turnoff} tog={isToggled} togf={toggle} checkout={checkout} paying={tableStatus[selection-1][1]} statusD={statusDisplay}/>}
@@ -211,22 +245,6 @@ const TableContent = (props) =>{
     orderComponent[props.tablenumber%2].map((dish) => {
         total = total + dish[1]})
     total = total + tip
-    // console.log(props.tog)
-    // const checkoutF = (() => {
-    //   // fetch(`http://localhost:1500/api/tables`, {
-    //   //   method: "GET",
-    //   //   headers: config.headers,
-    //   // })
-    //   axios.get(`http://localhost:1500/api/tables`, config.headers)
-    //     .then((response) => response.json())
-    //     .then((tdata) => {
-    //       console.log(tdata)
-    //       // const newTabL = tdata.map((tdataEle) => {return [tdataEle.table_number/*, tdataEle.status*/]})
-    //       // setTableList(newTabL)
-    //       // console.log(tableList)
-    //     })
-    //     .catch((error) => console.log(error))
-    // });
 
     return(
         <div className="tableContent">

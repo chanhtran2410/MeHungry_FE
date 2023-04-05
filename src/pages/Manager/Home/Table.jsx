@@ -20,7 +20,7 @@ const Table = (props) =>{
     if (props.free == 0) setColor(Cwhite)
     else if (props.free == 1) setColor(Cyellow)
     else if (props.free == 2) setColor(Corange)
-    else if (props.free == 3) setColor(Cgreen)
+    else setColor(Cgreen)
     // if (free == true) {setColor(Corange);}
     // else if (paying == false) {setColor(Cgreen);}
     // else {setColor(Cwhite);}
@@ -41,9 +41,9 @@ const Table = (props) =>{
     if (props.free == 0) setColor(Cwhite)
     else if (props.free == 1) setColor(Cyellow)
     else if (props.free == 2) setColor(Corange)
-    else if (props.free == 3) setColor(Cgreen)
+    else setColor(Cgreen)
     // props.setSel(props.idn, props.free)
-  }, [])
+  }, [props.setTog, props.setSel, props.setStat])
 
   const buttonStyles = {
     background : color,
