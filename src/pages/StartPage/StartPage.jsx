@@ -100,6 +100,20 @@ const Form = () =>{
         const table_number = localStorage.getItem('Table_number');
         try {
           axios.post(`http://localhost:1500/api/assign-table/${table_number}/${textinput}`);
+          const interval = setInterval(() => {
+            const tableId = localStorage.getItem("tableID");
+            axios.post(`http://localhost:1500/api/request-table/${tableId}`)
+              .then((response) => {
+                console.log(response.data.status)
+                if(response.data.status === 2){
+                  clearInterval(interval);
+                  window.location.href = "/home"
+                }
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          }, 2000);
         } catch (error) {
           console.error(error);
         }
@@ -144,24 +158,18 @@ const Form = () =>{
 // };
 const StartPage = () => {
   useEffect(() => {
-    const interval = setInterval(() => {
       const tableId = localStorage.getItem("tableID");
       axios.post(`http://localhost:1500/api/request-table/${tableId}`)
         .then((response) => {
           console.log(response.data);
           localStorage.setItem('Table_number',response.data.table_number)
           console.log(response.data.status)
-          if(response.data.status === 2){
-            clearInterval(interval);
-            window.location.href = "/home"
-          }
         })
         .catch((error) => {
           console.log(error);
         });
-    }, 2000);
   
-    return () => clearInterval(interval);
+
   }, []);
 
 
