@@ -151,7 +151,7 @@ const StartPage = () => {
           console.log(response.data);
           localStorage.setItem('Table_number',response.data.table_number)
           console.log(response.data.status)
-          if(response.data.status === 1){
+          if(response.data.status === 2){
             clearInterval(interval);
             window.location.href = "/home"
           }
