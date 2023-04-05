@@ -3,6 +3,7 @@ import Sidebar from '../../../components/Sidebar/Sidebar'
 import MainContent from '../../../components/MainContent/MainContent'
 import Table from "./Table"
 import { Tabs } from 'antd';
+import axios from 'axios';
 // import {
 //     StyleSheet,
 //     Text,
@@ -78,7 +79,6 @@ const DishPrice = (props) => {
     )
 }
 
-
 //Main structure
 
 const TableSelect = () =>{
@@ -88,6 +88,19 @@ const TableSelect = () =>{
     let displayB = false;
     if (selection < 1) {displayB = false}
     else {displayB = true}
+
+//
+  // if (localStorage.getItem("user")){
+  //   const config = {
+  //     headers: {
+  //       Authorization:
+  //         "Bearer " +
+  //         JSON.parse(localStorage.getItem("user")).access_token,
+  //     },
+  //   }
+  // }
+//
+
     const turnoff = () => {
       // tableStatus[selection-1][2] = false
     }
@@ -96,16 +109,59 @@ const TableSelect = () =>{
       setSelection(0)
     }
 
+    const startServing = (() => {
+      // fetch(`http://localhost:1500/api/tables`, {
+      //   method: "GET",
+      //   headers: config.headers,
+      // })
+      
+      // const config = {
+      //   headers: {
+      //     Authorization:
+      //       "Bearer " +
+      //       JSON.parse(localStorage.getItem("user")).access_token,
+      //   },
+      // }
+      console.log(config)
+      axios.post(`http://localhost:1500/api/change-status/${selection}`, config.headers)
+        .then((response) => {response.json()})
+        .then((tdata) => {
+          console.log(tdata)
+          // const newTabL = tdata.map((tdataEle) => {return [tdataEle.table_number/*, tdataEle.status*/]})
+          // setTableList(newTabL)
+          // console.log(tableList)
+        })
+        .catch((error) => console.log(error))
+    });
+
     // const select = (props) => {
     //   setSelection(props.idn)
     //   toggle(free)
     // }
 
-    useEffect(() =>{
-        // setSelection(0)
-    }
-    , []
-    )
+    const [tableList, setTableList] = useState([]);
+    useEffect(() => {
+      // fetch(`http://localhost:1500/api/tables`, {
+      //   method: "GET",
+      //   headers: config.headers,
+      // })
+      const config = {
+        headers: {
+          Authorization:
+            "Bearer " +
+            JSON.parse(localStorage.getItem("user")).access_token,
+        },
+      }
+      axios.get(`http://localhost:1500/api/tables`, config.headers)
+        .then((response) => response.json())
+        .then((tdata) => {
+          console.log(tdata)
+          // const newTabL = tdata.map((tdataEle) => {return [tdataEle.table_number/*, tdataEle.status*/]})
+          // setTableList(newTabL)
+          // console.log(tableList)
+        })
+        .catch((error) => console.log(error))
+    }, []);
 
     return(
         <div className="tableSelect">
@@ -147,6 +203,21 @@ const TableContent = (props) =>{
         total = total + dish[1]})
     total = total + tip
     // console.log(props.tog)
+    // const checkoutF = (() => {
+    //   // fetch(`http://localhost:1500/api/tables`, {
+    //   //   method: "GET",
+    //   //   headers: config.headers,
+    //   // })
+    //   axios.get(`http://localhost:1500/api/tables`, config.headers)
+    //     .then((response) => response.json())
+    //     .then((tdata) => {
+    //       console.log(tdata)
+    //       // const newTabL = tdata.map((tdataEle) => {return [tdataEle.table_number/*, tdataEle.status*/]})
+    //       // setTableList(newTabL)
+    //       // console.log(tableList)
+    //     })
+    //     .catch((error) => console.log(error))
+    // });
 
     return(
         <div className="tableContent">
