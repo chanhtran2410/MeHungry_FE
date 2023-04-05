@@ -170,15 +170,7 @@ const Item = ({ item, onDelete }) => {
 
 const Food = () => {
   const [menuItems, setMenuItems] = useState([]);
-  if(localStorage.getItem("user")){
-    const config = {
-      headers: {
-        Authorization:
-          "Bearer " +
-          JSON.parse(localStorage.getItem("user")).access_token,
-      },
-    };
-  }
+  
 
   useEffect(() => {
     fetch("http://localhost:1500/api/menu")
@@ -189,17 +181,27 @@ const Food = () => {
 
   const handleDeleteItem = (itemId) => {
     console.log(itemId);
-    fetch(`http://localhost:1500/api/delete-item/${itemId}`, {
-      method: "POST",
-      headers: config.headers,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        const updatedItems = menuItems.filter((item) => item.item_id !== itemId);
-        setMenuItems(updatedItems);
+    if(localStorage.getItem("user")){
+      const config = {
+        headers: {
+          Authorization:
+            "Bearer " +
+            JSON.parse(localStorage.getItem("user")).access_token,
+        },
+      };
+    
+      fetch(`http://localhost:1500/api/delete-item/${itemId}`, {
+        method: "POST",
+        headers: config.headers,
       })
-      .catch((error) => console.log(error));
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          const updatedItems = menuItems.filter((item) => item.item_id !== itemId);
+          setMenuItems(updatedItems);
+        })
+        .catch((error) => console.log(error));
+    }
   };
 
   return (
