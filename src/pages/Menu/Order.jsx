@@ -202,7 +202,7 @@ const Itemblock = ({ Category }) => {
 
   useEffect(() => {
     if(localStorage.getItem('DishesOrdered')){
-    const data = JSON.parse(localStorage.getItem('DishesOrdered'));
+    const data = JSON.parse(localStorage.getItem('DishesOrdered')) || [];
     setItems(data);
     }
   }, []);

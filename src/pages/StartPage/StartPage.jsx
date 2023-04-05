@@ -65,7 +65,7 @@
 
 
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { useState, useCallback } from 'react';
 import axios from 'axios';
 import "./StartPage.css"
@@ -121,18 +121,49 @@ const Form = () =>{
   )
 }
 
+// const StartPage = () => {
+//   useEffect(() => {
+//     const tableId = localStorage.getItem("tableID");
+//     axios.post(`http://localhost:1500/api/request-table/${tableId}`)
+//       .then((response) => {
+//         console.log(response.data);
+//         localStorage.setItem('Table_number',response.data.table_number)
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+//   }, []);
+
+//   return (
+//     <div className='startpage'>
+//       <BgImage />
+//       <Logo />
+//       <Form />
+//     </div>
+//   )
+// };
 const StartPage = () => {
   useEffect(() => {
-    const tableId = localStorage.getItem("tableID");
-    axios.post(`http://localhost:1500/api/request-table/${tableId}`)
-      .then((response) => {
-        console.log(response.data);
-        localStorage.setItem('Table_number',response.data.table_number)
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const interval = setInterval(() => {
+      const tableId = localStorage.getItem("tableID");
+      axios.post(`http://localhost:1500/api/request-table/${tableId}`)
+        .then((response) => {
+          console.log(response.data);
+          localStorage.setItem('Table_number',response.data.table_number)
+          console.log(response.data.status)
+          if(response.data.status === 1){
+            clearInterval(interval);
+            window.location.href = "/home"
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }, 2000);
+  
+    return () => clearInterval(interval);
   }, []);
+
 
   return (
     <div className='startpage'>
@@ -142,5 +173,6 @@ const StartPage = () => {
     </div>
   )
 };
+
 
 export default StartPage
