@@ -313,9 +313,9 @@ const Order = () => {
   return (
     <div>
         <Navbar />
-      <form>
+      <form className='menu'>
         <Itemblock Category='Selected' />
-        <button type='submit' className='order' onClick={onOrderBtnClick}>Order</button>
+        <button type='submit' className='order floating-btn' onClick={onOrderBtnClick}>Order</button>
       </form>
     </div>
   );

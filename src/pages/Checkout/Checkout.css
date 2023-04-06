@@ -110,3 +110,21 @@ hr{
 .result button svg{
    font-size: 25px;
 }
+
+.checkout .item img{
+   width: 6em !important;
+   height:6em !important;
+
+}
+.checkout .item-info h6{
+    font-size: 25px !important;
+
+}
+.checkout .item-info p{
+    margin-top:.5em !important;
+    width:100%;
+    font-size: 22px !important;
+    display: flex;
+    justify-content: space-around;
+    font-weight: normal !important;
+}

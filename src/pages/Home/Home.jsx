@@ -27,11 +27,12 @@ const BgImage = () => {
 
 const Info = () => {
   const customer_name = localStorage.getItem(NAME_STORAGE_KEY) ? JSON.parse(localStorage.getItem(NAME_STORAGE_KEY)): "unknown";
+  const table_number = localStorage.getItem('Table_number');
   return (
     <div className="home-info">
       <h6 className="title">Restaurent's name</h6>
       <p className="description">
-        <GiMeal></GiMeal> &nbsp; 11 - Main hall
+        <GiMeal></GiMeal> &nbsp; Table {table_number}
       </p>
       <p className="description">
         <FaUser></FaUser> &nbsp; {customer_name}

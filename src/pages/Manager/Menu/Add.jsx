@@ -199,6 +199,7 @@ const Add = () => {
       console.log(data);
       await axios.post("http://localhost:1500/api/add-item", data, config);
       message.success("Item added successfully");
+      window.location.href = "/manager/menu"
     } catch (error) {
       console.error(error);
       message.error("Error adding item");
