@@ -18,7 +18,10 @@ const Table = (props) =>{
     props.setStat(props.free)
 
     if (props.free == 0) setColor(Cwhite)
-    else if (props.free == 1) setColor(Cyellow)
+    else if (props.free == 1) setInterval(function () {
+              if (color == Cwhite) {setColor(Corange)}
+              else {setColor(Cwhite)}
+            }, 1000);
     else if (props.free == 2) setColor(Corange)
     else setColor(Cgreen)
   }
@@ -31,13 +34,16 @@ const Table = (props) =>{
     props.setSel(props.idn)
     setInterval(function () {
       if (props.free == 0) setColor(Cwhite)
-      else if (props.free == 1) setColor(Cyellow)
+      else if (props.free == 1) setInterval(function () {
+        if (color == Cwhite) {setColor(Corange)}
+        else {setColor(Cwhite)}
+      }, 1000);
       else if (props.free == 2) setColor(Corange)
       else setColor(Cgreen)
     }, 2000);
-  }, [props.setStat])
+  }, [])
 
-  const buttonStyles = {
+  let buttonStyles = {
     background : color,
     width: '100px',
     height: '100px',

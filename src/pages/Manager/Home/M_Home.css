@@ -39,6 +39,10 @@
     margin:0;
   }
 
+  #billContainer{
+  overflow-x: hidden;
+  overflow-y: scroll;
+  }
 
   .M_home .bill{
     width: 350px; 

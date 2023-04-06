@@ -42,10 +42,27 @@ const TableSelect = () =>{
     const [statusDisplay, setStatusDisplay] = useState(0)
     const [tableList, setTableList] = useState([]);
     const [orderList, setOrderList] = useState([]);
+    const [dishList, setDishList] = useState([])
 
     let displayB = false;
     if (selection < 1) {displayB = false}
     else {displayB = true}
+
+    // console.log("TabNum:", [props.tablenumber])
+    const findDish = () => {
+      // for (let i=0; i<orderList.length; i++)
+      // {
+      //   if (orderList[i][0] == selection ) {
+      //   console.log(selection, "->", orderList[i])
+      //   for (let j=1; j<orderList[i].length; j++)
+      //   {
+      //     dishList.push(orderList[i][j])
+      //   }
+      //   }
+      // }
+      // setDishList(orderList[selection-1])
+      console.log("Dishlist", selection, dishList)
+    }
 
     const turnoff = () => {
       // tableStatus[selection-1][2] = false
@@ -55,28 +72,28 @@ const TableSelect = () =>{
       setStatusDisplay(3)
     }
     const checkout = () => {
-      // const config = {
-      //   headers: {
-      //     Authorization:
-      //       "Bearer " +
-      //       JSON.parse(localStorage.getItem("user")).access_token,
-      //   },
-      // }
-      // console.log(config)
-      // fetch(`http://localhost:1500/api/change-status/${selection}`, {
-      //     method: "POST",
-      //     headers: config.headers,
-      //   })
-      //     .then((response) => response.json())
-      //     // .then((data) => {
-      //     //   console.log(data);
-      //     // })
-      //     // .catch((error) => console.log(error));
+      const config = {
+        headers: {
+          Authorization:
+            "Bearer " +
+            JSON.parse(localStorage.getItem("user")).access_token,
+        },
+      }
+      console.log(config)
+      fetch(`http://localhost:1500/api/change-status/${selection}`, {
+          method: "POST",
+          headers: config.headers,
+        })
+          .then((response) => response.json())
+          // .then((data) => {
+          //   console.log(data);
+          // })
+          // .catch((error) => console.log(error));
         
-      //     .then((tdata) => {
-      //       console.log(tdata)
-      //     })
-      //     .catch((error) => console.log(error))
+          .then((tdata) => {
+            console.log(tdata)
+          })
+          .catch((error) => console.log(error))
 
       setSelection(0)
       setStatusDisplay(0)
@@ -85,23 +102,23 @@ const TableSelect = () =>{
     const startServing = (() => {
       toggle(isToggled)
       setStatusDisplay(2)
-      // const config = {
-      //   headers: {
-      //     Authorization:
-      //       "Bearer " +
-      //       JSON.parse(localStorage.getItem("user")).access_token,
-      //   },
-      // }
-      // console.log(config)
-      // fetch(`http://localhost:1500/api/change-status/${selection}`, {
-      //     method: "POST",
-      //     headers: config.headers,
-      //   })
-      //     .then((response) => response.json())
-      //     .then((tdata) => {
-      //       console.log(tdata)
-      //     })
-      //     .catch((error) => console.log(error))
+      const config = {
+        headers: {
+          Authorization:
+            "Bearer " +
+            JSON.parse(localStorage.getItem("user")).access_token,
+        },
+      }
+      console.log(config)
+      fetch(`http://localhost:1500/api/change-status/${selection}`, {
+          method: "POST",
+          headers: config.headers,
+        })
+          .then((response) => response.json())
+          .then((tdata) => {
+            console.log(tdata)
+          })
+          .catch((error) => console.log(error))
     });
 
     // const select = (props) => {
@@ -118,41 +135,93 @@ const TableSelect = () =>{
               JSON.parse(localStorage.getItem("user")).access_token,
           },
         };
-      
-        fetch(`http://localhost:1500/api/tables`, {
+        setInterval(function () {
+          fetch(`http://localhost:1500/api/tables`, {
           method: "GET",
           headers: config.headers,
         })
           .then((response) => response.json())
-          // .then((data) => {
-          //   console.log(data);
-          // })
-          // .catch((error) => console.log(error));
         
           .then((tdata) => {
             console.log(tdata)
-            // const newTabL = tdata
             const newTabL = tdata.map((tdataEle) => {return [tdataEle.table_number, tdataEle.status]})
             setTableList(newTabL)
           })
           .catch((error) => console.log(error))
+        }, 5000);
+        // fetch(`http://localhost:1500/api/tables`, {
+        //   method: "GET",
+        //   headers: config.headers,
+        // })
+        //   .then((response) => response.json())
         
-          console.log("List: ", tableList)
+        //   .then((tdata) => {
+        //     console.log(tdata)
+        //     const newTabL = tdata.map((tdataEle) => {return [tdataEle.table_number, tdataEle.status]})
+        //     setTableList(newTabL)
+        //   })
+        //   .catch((error) => console.log(error))
+        
+          // console.log("List: ", tableList)
 
-          // fetch(`http://localhost:1500/api/view-current-orders`, {
-          //   method: "GET",
-          //   headers: config.headers,
-          // })
-          //   .then((response) => response.json())
-          //   .then((odata) => {
-          //     console.log(odata)
-          //     // const newTabL = tdata
-          //     const newTabL = odata.map((odataEle) => {return [odataEle.item_name, odataEle.price]})
-          //     setOrderList(newTabL)
-          //   })
-          //   .catch((error) => console.log(error))
+          fetch(`http://localhost:1500/api/view-current-orders`, {
+            method: "GET",
+            headers: config.headers,
+          })
+            .then((response) => response.json())
+            .then((odata) => {
+              // console.log("Data: ", odata)
+              const newOrdL = odata.map((odataEle) => {
+                let temp = [odataEle.item_name, odataEle.price, odataEle.table_number]
+                let comOrdL = [temp[2]]
+                // if (temp[0].length == 0) return [temp[2]]
+                // else if (temp[0].length == 1) return [temp[2], [temp[0], temp[1]]]
+                // console.log("Temp: ", temp)
+              for (let i=0; i<temp[0].length; i++)
+              {
+                comOrdL.push([temp[0][i], temp[1][i]])
+              }
+                // console.log("After loop: ", comOrdL)
+                return comOrdL /*= [temp[2]] + comOrdL*/
+              })
+              const num=["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"]
+                // for (let i=0; i<newOrdL.length; i++)
+                // {
+                //   if (props.orderComponent[0] == props.tablenumber ) {
+                //     for (let i=0; i<newOrdL.length; i++)
+                //     {
+                //       for (let j=1; j<newOrdL[i].length; j++)
+                //       {
+                //         dishList.push(newOrdL[i][j])
+                //       }
+                //     }
+                //   }
+                // }
+      let temp2 = []
+      for (let i=0; i<num.length; i++)
+      {
+        let tempTab = []
+        for (let k=0; k<newOrdL.length; k++)
+        {
+        if (newOrdL[k][0] ==  num[i]) {
+          // console.log(selection, "->", newOrdL[k])
+            for (let j=1; j<newOrdL[k].length; j++)
+            {
+              tempTab.push(newOrdL[k][j])
+            }
+          }
+        // else temp2.push([])
+        }
+        temp2.push(tempTab)
+      }
+      // setDishList(orderList[selection-1])
+              setOrderList(temp2)
+              console.log("NewO: ", newOrdL)
+              console.log("Temp2: ", temp2)
+            })
+            .catch((error) => console.log(error))
           
-          //   console.log("OrderList: ", orderList)
+            // console.log("OrderList: ", orderList)
       }
     }, [toggle, setSelection]);
     // tableList
@@ -160,10 +229,11 @@ const TableSelect = () =>{
         <div className="tableSelect">
             <h1 className='title'>TABLES</h1>
             {tableList.map((Tstatus) => {
-                return <Table idn={Tstatus[0]} free={Tstatus[1]} setSel={setSelection} setTog={toggle} setStat={setStatusDisplay}/>
+                return <Table idn={Tstatus[0]} free={Tstatus[1]} setSel={setSelection} setTog={toggle} setStat={setStatusDisplay} serve={startServing} checkout={checkout}/>
             })}
-            {displayB && <TableContent
+            {(statusDisplay == 1 || statusDisplay == 2 || statusDisplay == 3) && <TableContent
               tablenumber={selection}
+              setSel={setSelection}
               turnoff={turnoff}
               tog={isToggled}
               togf={toggle}
@@ -172,7 +242,10 @@ const TableSelect = () =>{
               checkout={checkout}
               paying={tableList[selection-1][1]}
               statusD={statusDisplay}
-              orderComponent={orderComponent}/>}
+              orderComponent={orderList}
+              dis={dishList}
+              findDis={findDish}
+              />}
         </div>
     )
 }
@@ -196,11 +269,14 @@ const Toggle = ({ label, tog, togf, onClick, turnoff, startServing, payrequest})
 )}
 
 const TableContent = (props) =>{
-    
     let total = 0
-    orderComponent[props.tablenumber%2].map((dish) => {
-        total = total + dish[1]})
+    props.orderComponent[(props.tablenumber-1)%16].map((dish) => {
+      total = total + dish[1]})
     total = total + tip
+
+    useEffect(() => {
+      props.findDis()
+  }, [])
 
     return(
         <div className="tableContent">
@@ -222,7 +298,9 @@ const TableContent = (props) =>{
             </div>}
           {(props.statusD == 2 || props.statusD == 3) && <div id="billContainer">
                 {/* <ScrollArea> */}
-                {props.orderComponent[props.tablenumber%2].map((dish) => {
+                {
+                  // props.orderComponent[props.tablenumber%2]
+                props.orderComponent[(props.tablenumber-1)%16].map((dish) => {
                     return <DishPrice className="bstextillTitle" name={dish[0]} price={dish[1]}/>
                 })}
                 {/* </ScrollArea> */}
