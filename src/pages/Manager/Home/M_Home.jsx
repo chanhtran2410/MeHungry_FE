@@ -26,10 +26,21 @@ const DishPrice = (props) => {
     return(
         <div className="bill">
             <h2 className="billTitle">{props.name}
+                <h2 className="billQuan">x{props.quan}</h2>
                 <h2 className="billPrice">${props.price}</h2>
             </h2>
         </div>
     )
+}
+
+const DishPrice2 = (props) => {
+  return(
+      <div className="bill">
+          <h2 className="billTitle">{props.name}
+              <h2 className="billPrice">${props.price}</h2>
+          </h2>
+      </div>
+  )
 }
 
 //Main structure
@@ -42,7 +53,10 @@ const TableSelect = () =>{
     const [orderList, setOrderList] = useState([]);
     const [dishList, setDishList] = useState([]);
     const [tip,setTip] = useState(10);
-    const [blink, setBlink] = useState("rgba(255, 255, 255, 0.5)");
+    const [changeC, setChangeC] = useState(true);
+
+    // const [blinkC, setBlinkC] = useState("rgba(255, 200, 50, 0.3)");
+    let blinkC = "rgba(255, 200, 50, 0.3)"
 
     let displayB = false;
     if (selection < 1) {displayB = false}
@@ -90,16 +104,16 @@ const TableSelect = () =>{
           .catch((error) => console.log(error))
 
     //DELETE LATER
-      fetch(`http://localhost:1500/api/request-checkout/${selection}`, {
-        method: "POST",
-        headers: config.headers,
-      })
-        .then((response) => response.json())
-        .then((tdata) => {
-          // console.log("Tip: ",tdata.tip)
-          // if (tdata.tip.type = "int") setTip(tdata.tip)
-        })
-        .catch((error) => console.log(error))
+      // fetch(`http://localhost:1500/api/request-checkout/${selection}`, {
+      //   method: "POST",
+      //   headers: config.headers,
+      // })
+      //   .then((response) => response.json())
+      //   .then((tdata) => {
+      //     // console.log("Tip: ",tdata.tip)
+      //     // if (tdata.tip.type = "int") setTip(tdata.tip)
+      //   })
+      //   .catch((error) => console.log(error))
     }
     const checkout = () => {
       const config = {
@@ -162,24 +176,36 @@ const TableSelect = () =>{
     //   toggle(free)
     // }
 
+    const blinkColor = () => {
+      
+    }
+
+
+/* USE EFFECT !!!!!!!!!!!!!!!!!! */
     useEffect(() => {
       const num=["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"]
-
+      
       setInterval(function () {
-        if (blink == "rgba(255, 255, 255, 0.5)") {
-          setBlink("rgba(255, 200, 50, 0.3)")
+        if (blinkC == "rgba(255, 255, 255, 0.5)") {
+          blinkC = ("rgba(255, 200, 50, 0.3)")
+          console.log("BLINK O")
+          // setChangeC(!changeC)
         }
-        else setBlink("rgba(255, 255, 255, 0.5)")
-                      }, 4000);
-
+        else {blinkC = ("rgba(255, 255, 255, 0.5)")
+        console.log("BLINK W")
+        // setChangeC(!changeC)
+      }
+        // console.log("BLINK: ", blink)
+      }, 4000);
+      let config = {}
       if(localStorage.getItem("user")){
-        const config = {
+        config = {
           headers: {
             Authorization:
               "Bearer " +
               JSON.parse(localStorage.getItem("user")).access_token,
           },
-        };
+        };}
         /*Run for the first time*/
         fetch(`http://localhost:1500/api/tables`, {
           method: "GET",
@@ -203,7 +229,7 @@ const TableSelect = () =>{
                       // console.log("Num=", i, newTabL[k])
                       if (newTabL[k][1] == 0) {newTabL[k].push("white")}
                       else if (newTabL[k][1] == 1) {
-                      newTabL[k].push("rgba(255, 200, 50, 0.3)")
+                      newTabL[k].push(blinkC)
                       // setTimeout(function () {
                       //   newTabL[k][2] = "rgba(255, 255, 255, 0.5)"
                       // }, 2000);
@@ -262,10 +288,8 @@ const TableSelect = () =>{
                       // console.log("Num=", i, newTabL[k])
                       if (newTabL[k][1] == 0) {newTabL[k].push("white")}
                       else if (newTabL[k][1] == 1) {
-                      newTabL[k].push(blink)
-                      // setTimeout(function () {
-                      //   newTabL[k][2] = "rgba(255, 255, 255, 0.5)"
-                      // }, 2000);
+                      newTabL[k].push(blinkC)
+                      console.log("BlinkC: ", blinkC)
                       }
                       else if (newTabL[k][1] == 2) {newTabL[k].push("rgba(255, 200, 50, 0.6)")}
                       else {newTabL[k].push("rgba(0, 255, 0, 0.5)")}
@@ -305,16 +329,16 @@ const TableSelect = () =>{
           })
             .then((response) => response.json())
             .then((odata) => {
-              // console.log("Data: ", odata)
+              console.log("Data: ", odata)
               const newOrdL = odata.map((odataEle) => {
-                let temp = [odataEle.item_name, odataEle.price, odataEle.table_number]
+                let temp = [odataEle.item_name, odataEle.price, odataEle.table_number, odataEle.quantity]
                 let comOrdL = [temp[2]]
                 // if (temp[0].length == 0) return [temp[2]]
                 // else if (temp[0].length == 1) return [temp[2], [temp[0], temp[1]]]
                 // console.log("Temp: ", temp)
               for (let i=0; i<temp[0].length; i++)
               {
-                comOrdL.push([temp[0][i], temp[1][i]])
+                comOrdL.push([temp[0][i], temp[1][i], temp[3][i]])
               }
                 // console.log("After loop: ", comOrdL)
                 return comOrdL /*= [temp[2]] + comOrdL*/
@@ -358,9 +382,8 @@ const TableSelect = () =>{
           }, 2000);
             
             // console.log("OrderList: ", orderList)
-          }
         }
-, [toggle, setSelection]);
+      , [/*toggle, setSelection*/]);
     // tableList
     return(
         <div className="tableSelect">
@@ -408,10 +431,13 @@ const Toggle = ({ label, tog, togf, onClick, turnoff, startServing, payrequest})
 
 const TableContent = (props) =>{
     let total = 0
-    props.orderComponent[(props.tablenumber-1)%16].map((dish) => {
-      total = total + dish[1]})
+    {props.orderComponent[(props.tablenumber-1)%16].map((dish) => {
+      total = total + (dish[1]*dish[2])})
     if (props.statusD == 3)
-    {total = total + props.tip}
+    {total = total + props.tip
+      }
+    // else total.toFixed(2)
+  }
 
     useEffect(() => {
       props.findDis()
@@ -440,18 +466,18 @@ const TableContent = (props) =>{
                 {
                   // props.orderComponent[props.tablenumber%2]
                 props.orderComponent[(props.tablenumber-1)%16].map((dish) => {
-                    return <DishPrice className="bstextillTitle" name={dish[0]} price={dish[1]}/>
+                    return <DishPrice className="bstextillTitle" name={dish[0]} price={dish[1]} quan={dish[2]}/>
                 })}
                 {/* </ScrollArea> */}
             {(props.statusD == 3) && (
             <div>
-                <DishPrice className="billTitle" name={"Tip"} price={props.tip}/>
+                <DishPrice2 className="billTitle" name={"Tip"} price={props.tip}/>
             </div>
               )}
               {(props.statusD == 1 || props.statusD == 2 || props.statusD == 3) && (
             <div>
                 <hr/>
-                <DishPrice className="billTitle" name={"Total"} price={total}/>
+                <DishPrice2 className="billTitle" name={"Total"} price={total.toFixed(2)}/>
             </div>
             )}
             {(props.statusD == 3) && (

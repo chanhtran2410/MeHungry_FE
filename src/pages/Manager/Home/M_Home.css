@@ -79,6 +79,34 @@
     text-align: right;
   }
 
+  .M_home .billPrice2{
+    position: absolute;
+    width: 150px; 
+    height: 57px;
+    margin-top: 0px;
+    top: 0px;
+    left: 200px;
+    font-family: 'Roboto Condensed'; 
+    font-size: 25px;
+    color: darkgray;
+    /* line-height: 38px; */
+    text-align: right;
+  }
+
+  .M_home .billQuan{
+    position: absolute;
+    width: 150px; 
+    height: 57px;
+    margin-top: 0px;
+    top: 0px;
+    left: 100px;
+    font-family: 'Roboto Condensed'; 
+    font-size: 25px;
+    color: darkgray;
+    /* line-height: 38px; */
+    text-align: right;
+  }
+
   
 
 
