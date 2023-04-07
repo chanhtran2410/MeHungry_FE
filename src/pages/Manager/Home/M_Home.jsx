@@ -42,7 +42,7 @@ const TableSelect = () =>{
     const [orderList, setOrderList] = useState([]);
     const [dishList, setDishList] = useState([]);
     const [tip,setTip] = useState(10);
-    const [colorT, setColorT] = useState([]);
+    const [blink, setBlink] = useState("rgba(255, 255, 255, 0.5)");
 
     let displayB = false;
     if (selection < 1) {displayB = false}
@@ -88,6 +88,18 @@ const TableSelect = () =>{
             // if (tdata.tip.type = "int") setTip(tdata.tip)
           })
           .catch((error) => console.log(error))
+
+    //DELETE LATER
+      fetch(`http://localhost:1500/api/request-checkout/${selection}`, {
+        method: "POST",
+        headers: config.headers,
+      })
+        .then((response) => response.json())
+        .then((tdata) => {
+          // console.log("Tip: ",tdata.tip)
+          // if (tdata.tip.type = "int") setTip(tdata.tip)
+        })
+        .catch((error) => console.log(error))
     }
     const checkout = () => {
       const config = {
@@ -103,15 +115,21 @@ const TableSelect = () =>{
           headers: config.headers,
         })
           .then((response) => response.json())
-          // .then((data) => {
-          //   console.log(data);
-          // })
-          // .catch((error) => console.log(error));
         
           .then((tdata) => {
             console.log(tdata)
           })
           .catch((error) => console.log(error))
+      fetch(`http://localhost:1500/api/change-status/${selection}`, {
+        method: "POST",
+        headers: config.headers,
+      })
+        .then((response) => response.json())
+      
+        .then((tdata) => {
+          console.log(tdata)
+        })
+        .catch((error) => console.log(error))
 
       setSelection(0)
       setStatusDisplay(0)
@@ -146,7 +164,14 @@ const TableSelect = () =>{
 
     useEffect(() => {
       const num=["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"]
-      
+
+      setInterval(function () {
+        if (blink == "rgba(255, 255, 255, 0.5)") {
+          setBlink("rgba(255, 200, 50, 0.3)")
+        }
+        else setBlink("rgba(255, 255, 255, 0.5)")
+                      }, 4000);
+
       if(localStorage.getItem("user")){
         const config = {
           headers: {
@@ -163,10 +188,10 @@ const TableSelect = () =>{
           .then((response) => response.json())
         
           .then((tdata) => {
-            console.log(tdata)
+            // console.log(tdata)
             const newTabL = tdata.map((tdataEle) => {return [tdataEle.table_number, tdataEle.status]})
             // setTableList(newTabL)
-            console.log("OldTab:", newTabL)
+            // console.log("OldTab:", newTabL)
               let temp3 = []
               for (let i=0; i<num.length; i++)
               {
@@ -179,9 +204,9 @@ const TableSelect = () =>{
                       if (newTabL[k][1] == 0) {newTabL[k].push("white")}
                       else if (newTabL[k][1] == 1) {
                       newTabL[k].push("rgba(255, 200, 50, 0.3)")
-                      setTimeout(function () {
-                        newTabL[k][2] = "rgba(255, 255, 255, 0.5)"
-                      }, 2000);
+                      // setTimeout(function () {
+                      //   newTabL[k][2] = "rgba(255, 255, 255, 0.5)"
+                      // }, 2000);
                       }
                       else if (newTabL[k][1] == 2) {newTabL[k].push("rgba(255, 200, 50, 0.6)")}
                       else {newTabL[k].push("rgba(0, 255, 0, 0.5)")}
@@ -237,10 +262,10 @@ const TableSelect = () =>{
                       // console.log("Num=", i, newTabL[k])
                       if (newTabL[k][1] == 0) {newTabL[k].push("white")}
                       else if (newTabL[k][1] == 1) {
-                      newTabL[k].push("rgba(255, 200, 50, 0.3)")
-                      setTimeout(function () {
-                        newTabL[k][2] = "rgba(255, 255, 255, 0.5)"
-                      }, 2000);
+                      newTabL[k].push(blink)
+                      // setTimeout(function () {
+                      //   newTabL[k][2] = "rgba(255, 255, 255, 0.5)"
+                      // }, 2000);
                       }
                       else if (newTabL[k][1] == 2) {newTabL[k].push("rgba(255, 200, 50, 0.6)")}
                       else {newTabL[k].push("rgba(0, 255, 0, 0.5)")}
@@ -330,7 +355,7 @@ const TableSelect = () =>{
             })
             .catch((error) => console.log(error))
           
-          }, 4000);
+          }, 2000);
             
             // console.log("OrderList: ", orderList)
           }
