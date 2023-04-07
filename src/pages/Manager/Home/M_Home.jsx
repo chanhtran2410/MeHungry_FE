@@ -153,11 +153,8 @@ const TableSelect = () =>{
               JSON.parse(localStorage.getItem("user")).access_token,
           },
         };
-        
-        const num=["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"]
-
-        setInterval(function () {
-          fetch(`http://localhost:1500/api/tables`, {
+        /*Run for the first time*/
+        fetch(`http://localhost:1500/api/tables`, {
           method: "GET",
           headers: config.headers,
         })
@@ -211,25 +208,22 @@ const TableSelect = () =>{
               // }, 2000);
           })
           .catch((error) => console.log(error))
-
-          
-                // for (let i=0; i<newOrdL.length; i++)
-                // {
-                //   if (props.orderComponent[0] == props.tablenumber ) {
-                //     for (let i=0; i<newOrdL.length; i++)
-                //     {
-                //       for (let j=1; j<newOrdL[i].length; j++)
-                //       {
-                //         dishList.push(newOrdL[i][j])
-                //       }
-                //     }
-                //   }
-                // }
+        /*Run every next 5 sec*/
+        setInterval(function () {
+          fetch(`http://localhost:1500/api/tables`, {
+          method: "GET",
+          headers: config.headers,
+        })
+          .then((response) => response.json())
         
-      //SORT TABLE
-      
-      
-        
+          .then((tdata) => {
+            console.log(tdata)
+            const newTabL = tdata.map((tdataEle) => {return [tdataEle.table_number, tdataEle.status]})
+            setTableList(newTabL)
+            console.log("hello")
+          })
+          .catch((error) => console.log(error))
+        }, 5000);
         // fetch(`http://localhost:1500/api/tables`, {
         //   method: "GET",
         //   headers: config.headers,
