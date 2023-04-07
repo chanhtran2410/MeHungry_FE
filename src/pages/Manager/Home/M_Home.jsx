@@ -196,7 +196,7 @@ const TableSelect = () =>{
         // setChangeC(!changeC)
       }
         // console.log("BLINK: ", blink)
-      }, 4000);
+      }, 2000);
       let config = {}
       if(localStorage.getItem("user")){
         config = {
@@ -379,7 +379,7 @@ const TableSelect = () =>{
             })
             .catch((error) => console.log(error))
           
-          }, 2000);
+          }, 1000);
             
             // console.log("OrderList: ", orderList)
         }
