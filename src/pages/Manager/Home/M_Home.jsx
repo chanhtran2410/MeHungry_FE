@@ -135,6 +135,20 @@ const TableSelect = () =>{
               JSON.parse(localStorage.getItem("user")).access_token,
           },
         };
+        /*Run for the first time*/
+        fetch(`http://localhost:1500/api/tables`, {
+          method: "GET",
+          headers: config.headers,
+        })
+          .then((response) => response.json())
+        
+          .then((tdata) => {
+            console.log(tdata)
+            const newTabL = tdata.map((tdataEle) => {return [tdataEle.table_number, tdataEle.status]})
+            setTableList(newTabL)
+          })
+          .catch((error) => console.log(error))
+        /*Run every next 5 sec*/
         setInterval(function () {
           fetch(`http://localhost:1500/api/tables`, {
           method: "GET",
@@ -146,6 +160,7 @@ const TableSelect = () =>{
             console.log(tdata)
             const newTabL = tdata.map((tdataEle) => {return [tdataEle.table_number, tdataEle.status]})
             setTableList(newTabL)
+            console.log("hello")
           })
           .catch((error) => console.log(error))
         }, 5000);
