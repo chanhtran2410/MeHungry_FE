@@ -21,7 +21,7 @@ const Table = (props) =>{
     else if (props.free == 1) setInterval(function () {
               if (color == Cwhite) {setColor(Corange)}
               else {setColor(Cwhite)}
-            }, 1000);
+            }, 2000);
     else if (props.free == 2) setColor(Corange)
     else setColor(Cgreen)
   }
@@ -37,14 +37,14 @@ const Table = (props) =>{
       else if (props.free == 1) setInterval(function () {
         if (color == Cwhite) {setColor(Corange)}
         else {setColor(Cwhite)}
-      }, 1000);
+      }, 2000);
       else if (props.free == 2) setColor(Corange)
       else setColor(Cgreen)
-    }, 2000);
+    }, 4000);
   }, [])
 
   let buttonStyles = {
-    background : color,
+    background : props.color,
     width: '100px',
     height: '100px',
     borderRadius: '15px',
@@ -72,7 +72,7 @@ const Table = (props) =>{
 
     return(
         <div className="Table">
-            <button style={buttonStyles}  onClick={handleClick}>{props.idn}</button>
+            <button style={buttonStyles} /*background={props.color}*/ onClick={handleClick}>{props.idn}</button>
         </div>
     )
   }

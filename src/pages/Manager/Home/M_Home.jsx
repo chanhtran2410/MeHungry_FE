@@ -21,8 +21,6 @@ const tableStatus = [[1, 0], [2, 0], [3, 2], [4, 3], [5, 2], [6, 3], [7, 0], [8,
 
 const orderComponent = [[["Dish1", 100000], ["Dish2", 100000]],[["Dish3", 100000], ["Dish4", 100000], ["Dish5", 100000]]]
 
-const tip = 10
-
 
 const DishPrice = (props) => {
     return(
@@ -42,7 +40,9 @@ const TableSelect = () =>{
     const [statusDisplay, setStatusDisplay] = useState(0)
     const [tableList, setTableList] = useState([]);
     const [orderList, setOrderList] = useState([]);
-    const [dishList, setDishList] = useState([])
+    const [dishList, setDishList] = useState([]);
+    const [tip,setTip] = useState(10);
+    const [colorT, setColorT] = useState([]);
 
     let displayB = false;
     if (selection < 1) {displayB = false}
@@ -70,6 +70,24 @@ const TableSelect = () =>{
 
     const payrequest = () => {
       setStatusDisplay(3)
+      const config = {
+        headers: {
+          Authorization:
+            "Bearer " +
+            JSON.parse(localStorage.getItem("user")).access_token,
+        },
+      }
+      console.log(config)
+      fetch(`http://localhost:1500/api/view-payment/${selection}`, {
+          method: "GET",
+          headers: config.headers,
+        })
+          .then((response) => response.json())
+          .then((tdata) => {
+            console.log("Tip: ",tdata.tip)
+            // if (tdata.tip.type = "int") setTip(tdata.tip)
+          })
+          .catch((error) => console.log(error))
     }
     const checkout = () => {
       const config = {
@@ -80,7 +98,7 @@ const TableSelect = () =>{
         },
       }
       console.log(config)
-      fetch(`http://localhost:1500/api/change-status/${selection}`, {
+      fetch(`http://localhost:1500/api/finish-order/${selection}`, {
           method: "POST",
           headers: config.headers,
         })
@@ -135,6 +153,9 @@ const TableSelect = () =>{
               JSON.parse(localStorage.getItem("user")).access_token,
           },
         };
+        
+        const num=["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"]
+
         setInterval(function () {
           fetch(`http://localhost:1500/api/tables`, {
           method: "GET",
@@ -145,10 +166,70 @@ const TableSelect = () =>{
           .then((tdata) => {
             console.log(tdata)
             const newTabL = tdata.map((tdataEle) => {return [tdataEle.table_number, tdataEle.status]})
-            setTableList(newTabL)
+            // setTableList(newTabL)
+            console.log("OldTab:", newTabL)
+              let temp3 = []
+              for (let i=0; i<num.length; i++)
+              {
+                // let tempTabl = []
+                for (let k=0; k<newTabL.length; k++)
+                {
+                if (newTabL[k][0] ==  num[i]) {
+                  // console.log(selection, "->", newTabL[k])
+                      // console.log("Num=", i, newTabL[k])
+                      if (newTabL[k][1] == 0) {newTabL[k].push("white")}
+                      else if (newTabL[k][1] == 1) {
+                      newTabL[k].push("rgba(255, 200, 50, 0.3)")
+                      setTimeout(function () {
+                        newTabL[k][2] = "rgba(255, 255, 255, 0.5)"
+                      }, 2000);
+                      }
+                      else if (newTabL[k][1] == 2) {newTabL[k].push("rgba(255, 200, 50, 0.6)")}
+                      else {newTabL[k].push("rgba(0, 255, 0, 0.5)")}
+                      
+                      temp3.push(newTabL[k])
+                  }
+                // else temp2.push([])
+                }
+                // temp3.push(tempTabl)
+              }
+              console.log("NewTab:", temp3)
+              setTableList(temp3)
+
+              // setInterval(function () {
+              //   let temT = tableList
+              //   for (let k=0; k<temT.length; k++)
+              //     {
+              //     if (temT[k][1] ==  1) {
+              //       temT[k][2] = "rgba(255, 255, 255, 0.5)"
+              //       }
+              //       // console.log("Nooooo: ",k , temT)
+              //     }
+              //   console.log("Nooooo: ", temT)
+              //   setTableList(temT)
+              //   // setTimeout(() => {}, 2000)
+              // }, 2000);
           })
           .catch((error) => console.log(error))
-        }, 5000);
+
+          
+                // for (let i=0; i<newOrdL.length; i++)
+                // {
+                //   if (props.orderComponent[0] == props.tablenumber ) {
+                //     for (let i=0; i<newOrdL.length; i++)
+                //     {
+                //       for (let j=1; j<newOrdL[i].length; j++)
+                //       {
+                //         dishList.push(newOrdL[i][j])
+                //       }
+                //     }
+                //   }
+                // }
+        
+      //SORT TABLE
+      
+      
+        
         // fetch(`http://localhost:1500/api/tables`, {
         //   method: "GET",
         //   headers: config.headers,
@@ -217,19 +298,24 @@ const TableSelect = () =>{
       // setDishList(orderList[selection-1])
               setOrderList(temp2)
               console.log("NewO: ", newOrdL)
-              console.log("Temp2: ", temp2)
+              console.log("NewerO: ", temp2)
             })
             .catch((error) => console.log(error))
           
+            
+            
             // console.log("OrderList: ", orderList)
+          }, 4000);
+
       }
+
     }, [toggle, setSelection]);
     // tableList
     return(
         <div className="tableSelect">
             <h1 className='title'>TABLES</h1>
             {tableList.map((Tstatus) => {
-                return <Table idn={Tstatus[0]} free={Tstatus[1]} setSel={setSelection} setTog={toggle} setStat={setStatusDisplay} serve={startServing} checkout={checkout}/>
+                return <Table idn={Tstatus[0]} free={Tstatus[1]} setSel={setSelection} setTog={toggle} setStat={setStatusDisplay} serve={startServing} checkout={checkout} color={Tstatus[2]}/>
             })}
             {(statusDisplay == 1 || statusDisplay == 2 || statusDisplay == 3) && <TableContent
               tablenumber={selection}
@@ -245,6 +331,7 @@ const TableSelect = () =>{
               orderComponent={orderList}
               dis={dishList}
               findDis={findDish}
+              tip={tip}
               />}
         </div>
     )
@@ -272,7 +359,8 @@ const TableContent = (props) =>{
     let total = 0
     props.orderComponent[(props.tablenumber-1)%16].map((dish) => {
       total = total + dish[1]})
-    total = total + tip
+    if (props.statusD == 3)
+    {total = total + props.tip}
 
     useEffect(() => {
       props.findDis()
@@ -306,10 +394,17 @@ const TableContent = (props) =>{
                 {/* </ScrollArea> */}
             {(props.statusD == 3) && (
             <div>
-                <DishPrice className="billTitle" name={"Tip"} price={tip}/>
+                <DishPrice className="billTitle" name={"Tip"} price={props.tip}/>
+            </div>
+              )}
+              {(props.statusD == 1 || props.statusD == 2 || props.statusD == 3) && (
+            <div>
                 <hr/>
                 <DishPrice className="billTitle" name={"Total"} price={total}/>
-            
+            </div>
+            )}
+            {(props.statusD == 3) && (
+            <div>
                 <div id="checkoutContainer">
                     <button id="checkoutButton" onClick={props.checkout}>Checkout</button>
                 </div>
