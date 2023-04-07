@@ -145,6 +145,8 @@ const TableSelect = () =>{
     // }
 
     useEffect(() => {
+      const num=["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"]
+      
       if(localStorage.getItem("user")){
         const config = {
           headers: {
@@ -208,6 +210,9 @@ const TableSelect = () =>{
               // }, 2000);
           })
           .catch((error) => console.log(error))
+
+
+
         /*Run every next 5 sec*/
         setInterval(function () {
           fetch(`http://localhost:1500/api/tables`, {
@@ -219,10 +224,40 @@ const TableSelect = () =>{
           .then((tdata) => {
             console.log(tdata)
             const newTabL = tdata.map((tdataEle) => {return [tdataEle.table_number, tdataEle.status]})
-            setTableList(newTabL)
-            console.log("hello")
+            // setTableList(newTabL)
+            console.log("OldTab:", newTabL)
+              let temp3 = []
+              for (let i=0; i<num.length; i++)
+              {
+                // let tempTabl = []
+                for (let k=0; k<newTabL.length; k++)
+                {
+                if (newTabL[k][0] ==  num[i]) {
+                  // console.log(selection, "->", newTabL[k])
+                      // console.log("Num=", i, newTabL[k])
+                      if (newTabL[k][1] == 0) {newTabL[k].push("white")}
+                      else if (newTabL[k][1] == 1) {
+                      newTabL[k].push("rgba(255, 200, 50, 0.3)")
+                      setTimeout(function () {
+                        newTabL[k][2] = "rgba(255, 255, 255, 0.5)"
+                      }, 2000);
+                      }
+                      else if (newTabL[k][1] == 2) {newTabL[k].push("rgba(255, 200, 50, 0.6)")}
+                      else {newTabL[k].push("rgba(0, 255, 0, 0.5)")}
+                      
+                      temp3.push(newTabL[k])
+                  }
+                // else temp2.push([])
+                }
+                // temp3.push(tempTabl)
+              }
+              console.log("NewTab:", temp3)
+              setTableList(temp3)
           })
           .catch((error) => console.log(error))
+
+
+          
         
         // fetch(`http://localhost:1500/api/tables`, {
         //   method: "GET",
@@ -259,7 +294,6 @@ const TableSelect = () =>{
                 // console.log("After loop: ", comOrdL)
                 return comOrdL /*= [temp[2]] + comOrdL*/
               })
-              const num=["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"]
                 // for (let i=0; i<newOrdL.length; i++)
                 // {
                 //   if (props.orderComponent[0] == props.tablenumber ) {
