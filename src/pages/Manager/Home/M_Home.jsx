@@ -83,7 +83,7 @@ const TableSelect = () =>{
     }
 
     const payrequest = () => {
-      setStatusDisplay(3)
+      // setStatusDisplay(3)
       const config = {
         headers: {
           Authorization:
@@ -98,8 +98,8 @@ const TableSelect = () =>{
         })
           .then((response) => response.json())
           .then((tdata) => {
-            console.log("Tip: ",tdata.tip)
-            // if (tdata.tip.type = "int") setTip(tdata.tip)
+            // console.log("Tip: ",tdata.tip)
+            setTip(tdata.tip)
           })
           .catch((error) => console.log(error))
 
@@ -379,6 +379,12 @@ const TableSelect = () =>{
             })
             .catch((error) => console.log(error))
           
+//Take tip
+  if (statusDisplay == 3) payrequest()
+
+
+
+
           }, 1000);
             
             // console.log("OrderList: ", orderList)
