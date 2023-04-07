@@ -223,7 +223,7 @@ const TableSelect = () =>{
             console.log("hello")
           })
           .catch((error) => console.log(error))
-        }, 5000);
+        
         // fetch(`http://localhost:1500/api/tables`, {
         //   method: "GET",
         //   headers: config.headers,
@@ -296,14 +296,12 @@ const TableSelect = () =>{
             })
             .catch((error) => console.log(error))
           
-            
+          }, 4000);
             
             // console.log("OrderList: ", orderList)
-          }, 4000);
-
-      }
-
-    }, [toggle, setSelection]);
+          }
+        }
+, [toggle, setSelection]);
     // tableList
     return(
         <div className="tableSelect">
