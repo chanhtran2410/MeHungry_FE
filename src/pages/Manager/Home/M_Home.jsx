@@ -52,11 +52,11 @@ const TableSelect = () =>{
     const [tableList, setTableList] = useState([]);
     const [orderList, setOrderList] = useState([]);
     const [dishList, setDishList] = useState([]);
-    const [tip,setTip] = useState(10);
+    const [tip,setTip] = useState(0);
     const [changeC, setChangeC] = useState(true);
 
-    // const [blinkC, setBlinkC] = useState("rgba(255, 200, 50, 0.3)");
-    let blinkC = "rgba(255, 200, 50, 0.3)"
+    // const [blinkC, setBlinkC] = useState("rgba(255, 200, 50, 0.7)");
+    let blinkC = "rgba(255, 100, 50, 0.7)"
 
     let displayB = false;
     if (selection < 1) {displayB = false}
@@ -187,7 +187,7 @@ const TableSelect = () =>{
       
       setInterval(function () {
         if (blinkC == "rgba(255, 255, 255, 0.5)") {
-          blinkC = ("rgba(255, 200, 50, 0.3)")
+          blinkC = ("rgba(255, 100, 50, 0.7)")
           console.log("BLINK O")
           // setChangeC(!changeC)
         }
@@ -196,7 +196,7 @@ const TableSelect = () =>{
         // setChangeC(!changeC)
       }
         // console.log("BLINK: ", blink)
-      }, 2000);
+      }, 1000);
       let config = {}
       if(localStorage.getItem("user")){
         config = {
@@ -385,7 +385,7 @@ const TableSelect = () =>{
 
 
 
-          }, 1000);
+          }, 500);
             
             // console.log("OrderList: ", orderList)
         }
@@ -453,8 +453,8 @@ const TableContent = (props) =>{
         <div className="tableContent">
             <h1 id="tablelab">Table {props.tablenumber} </h1>
             <h3 className='stext'>Checkin time: 19:35:27</h3>
-            <h1 id="orderlab">Orders</h1>
-            {(props.statusD == 1 || props.statusD == 2) &&
+            <h1 id="orderlab">Order</h1>
+            {(props.statusD == 1/* || props.statusD == 2*/) &&
             <div>
               <Toggle className="Togglebutton"
               label=""
@@ -475,6 +475,7 @@ const TableContent = (props) =>{
                     return <DishPrice className="bstextillTitle" name={dish[0]} price={dish[1]} quan={dish[2]}/>
                 })}
                 {/* </ScrollArea> */}
+                <div className='billBottom'>
             {(props.statusD == 3) && (
             <div>
                 <DishPrice2 className="billTitle" name={"Tip"} price={props.tip}/>
@@ -483,9 +484,10 @@ const TableContent = (props) =>{
               {(props.statusD == 1 || props.statusD == 2 || props.statusD == 3) && (
             <div>
                 <hr/>
-                <DishPrice2 className="billTitle" name={"Total"} price={total.toFixed(2)}/>
+                <DishPrice2 className="billTitle" id="tiptext" name={"Total"} price={total.toFixed(2)}/>
             </div>
             )}
+            </div>
             {(props.statusD == 3) && (
             <div>
                 <div id="checkoutContainer">

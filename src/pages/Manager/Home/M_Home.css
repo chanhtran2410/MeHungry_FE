@@ -116,6 +116,11 @@
     align-items: center;
   }
   
+  .M_home .billBottom{
+    position: absolute;
+    top: 380px;
+  }
+
   .M_home #checkoutButton{
     position: absolute;
     top:32em;
