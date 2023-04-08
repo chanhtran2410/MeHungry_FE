@@ -206,3 +206,15 @@
   #orderlab{
     margin:0;
   }
+
+  .Table button{
+    width: 100px;
+    height: 100px;
+    border-radius: 15px;
+    position: absolute;
+    font-size: 50px;
+    font-family: Roboto Condensed;
+    font-weight:bold;
+    border:none;
+    box-shadow:5px 10px 18px #acacac;
+  }
