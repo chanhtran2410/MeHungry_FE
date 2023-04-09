@@ -226,7 +226,7 @@ const Loading = () => {
 
 
 const Form = () => {
-  const [textinput, settextinput] = useState('');
+  const [textinput, settextinput] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
   const onTextInputChange = useCallback((e) => {
@@ -279,9 +279,18 @@ const Form = () => {
           {isLoading ? (
             <Loading />
           ) : (
-            <button type='submit' disabled={!textinput} onClick={onAddBtnClick}>
+            // <button type='submit' disabled={!textinput} onClick={onAddBtnClick}>
+            //   Get Started
+            // </button>
+            textinput ? (
+              <button type='submit' disabled={!textinput} onClick={onAddBtnClick}>
               Get Started
             </button>
+            ):(
+              <button type='submit' disabled={!textinput} onClick={onAddBtnClick} style={{backgroundColor: 'rgb(254, 210, 162)'}}>
+              Get Started
+            </button>
+            )
           )}
         </form>
       </div>

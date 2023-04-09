@@ -34,12 +34,12 @@ const LoginForm = () => {
             refresh_token: token.refreshToken,
           }),
         );
-        window.location.reload(false);
-        navigate('/manager');
+        window.location.href = '/manager';
       })
       .catch((err) => {
         console.log({ err });
         setErrorMessage(err.response.data.message);
+        
       });
   };
 

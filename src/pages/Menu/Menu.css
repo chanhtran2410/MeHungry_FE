@@ -32,7 +32,9 @@ body{
 .nav-top svg{
     font-size: 30px;
 }
-
+.menu{
+    padding-bottom: 8em;
+}
 .menu .search-wrapper{
     display: flex;
     justify-content: center;
