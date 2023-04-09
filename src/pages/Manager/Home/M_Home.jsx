@@ -301,6 +301,7 @@ const TableSelect = () =>{
                 // temp3.push(tempTabl)
               }
               console.log("NewTab:", temp3)
+
               setTableList(temp3)
           })
           .catch((error) => console.log(error))
