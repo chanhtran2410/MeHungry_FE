@@ -454,7 +454,7 @@ const TableContent = (props) =>{
             <h1 id="tablelab">Table {props.tablenumber} </h1>
             <h3 className='stext'>Checkin time: 19:35:27</h3>
             <h1 id="orderlab">Order</h1>
-            {(props.statusD == 1/* || props.statusD == 2*/) &&
+            {(props.statusD == 1 || props.statusD == 2) &&
             <div>
               <Toggle className="Togglebutton"
               label=""
@@ -475,18 +475,18 @@ const TableContent = (props) =>{
                     return <DishPrice className="bstextillTitle" name={dish[0]} price={dish[1]} quan={dish[2]}/>
                 })}
                 {/* </ScrollArea> */}
-                <div className='billBottom'>
-            {(props.statusD == 3) && (
-            <div>
-                <DishPrice2 className="billTitle" name={"Tip"} price={props.tip}/>
-            </div>
-              )}
-              {(props.statusD == 1 || props.statusD == 2 || props.statusD == 3) && (
-            <div>
-                <hr/>
-                <DishPrice2 className="billTitle" id="tiptext" name={"Total"} price={total.toFixed(2)}/>
-            </div>
-            )}
+            <div className='billBottom'>
+                {(props.statusD == 3) && (
+                <div id="tiptext">
+                    <DishPrice2 className="billTitle" name={"Tip"} price={props.tip}/>
+                </div>
+                  )}
+                  {(props.statusD == 1 || props.statusD == 2 || props.statusD == 3) && (
+                <div id="tiptext">
+                    <hr/>
+                    <DishPrice2 className="billTitle"  name={"Total"} price={total.toFixed(2)}/>
+                </div>
+                )}
             </div>
             {(props.statusD == 3) && (
             <div>

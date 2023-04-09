@@ -10,7 +10,9 @@
     font-family: 'Roboto Condensed';
   }
   hr{
-    width:95%;
+    margin-top: 70px;
+    margin-bottom: 0px;
+    width: 95%;
     margin-left:-.2em;
     color: var(--color-greytext);
   }
@@ -39,7 +41,7 @@
     margin:0;
   }
 
-  #billContainer{
+  .tableContent #billContainer body{
   height: 250px;
   overflow-x: hidden;
   overflow-y: scroll;
@@ -63,6 +65,25 @@
     font-size: 25px; 
     /* line-height: 38px; */
     font-weight: bold;
+    /* padding-bottom: 10px; */
+  }
+
+  #tiptext {
+    position: absolute;
+    /* top:32em; */
+    height: 2.5em; 
+    width:8em;
+    top: 50px;
+    left: 0px;
+  }
+
+  #totaltext {
+    position: absolute;
+    /* top:32em; */
+    height: 2.5em; 
+    width:8em;
+    top: 50px;
+    left: 0px
   }
   
   .M_home .billPrice{
@@ -119,6 +140,10 @@
   .M_home .billBottom{
     position: absolute;
     top: 380px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: bottom;
   }
 
   .M_home #checkoutButton{
