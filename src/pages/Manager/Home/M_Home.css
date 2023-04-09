@@ -40,7 +40,7 @@
   }
 
   #billContainer{
-  height: 450px;
+  height: 250px;
   overflow-x: hidden;
   overflow-y: scroll;
   }

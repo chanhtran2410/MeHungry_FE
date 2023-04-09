@@ -51,15 +51,16 @@ const Table = (props) =>{
 
   useEffect(() => {
     props.setSel(props.idn)
-    setInterval(function () {
-      if (props.free == 0) setColor(Cwhite)
-      else if (props.free == 1) setInterval(function () {
-        if (color == Cwhite) {setColor(Corange)}
-        else {setColor(Cwhite)}
-      }, 1000);
-      else if (props.free == 2) setColor(Corange)
-      else setColor(Cgreen)
-    }, 4000);
+    // setInterval(function () {
+    //   if (props.free == 0) setColor(Cwhite)
+    //   else if (props.free == 1) setInterval(function () {
+    //     if (color == Cwhite) {setColor(Corange)}
+    //     else {setColor(Cwhite)}
+    //   }, 1000);
+    //   else if (props.free == 2) setColor(Corange)
+    //   else setColor(Cgreen)
+    // }, 4000);
+
     // setButtonStyles({
     //   background : props.color,
     //   width: '100px',

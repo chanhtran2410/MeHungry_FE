@@ -75,7 +75,7 @@ const TableSelect = () =>{
       //   }
       // }
       // setDishList(orderList[selection-1])
-      console.log("Dishlist", selection, dishList)
+      // console.log("Dishlist", selection, dishList)
     }
 
     const turnoff = () => {
@@ -91,7 +91,7 @@ const TableSelect = () =>{
             JSON.parse(localStorage.getItem("user")).access_token,
         },
       }
-      console.log(config)
+      // console.log(config)
       fetch(`http://localhost:1500/api/view-payment/${selection}`, {
           method: "GET",
           headers: config.headers,
@@ -123,7 +123,7 @@ const TableSelect = () =>{
             JSON.parse(localStorage.getItem("user")).access_token,
         },
       }
-      console.log(config)
+      // console.log(config)
       fetch(`http://localhost:1500/api/finish-order/${selection}`, {
           method: "POST",
           headers: config.headers,
@@ -131,7 +131,7 @@ const TableSelect = () =>{
           .then((response) => response.json())
         
           .then((tdata) => {
-            console.log(tdata)
+            // console.log(tdata)
           })
           .catch((error) => console.log(error))
       fetch(`http://localhost:1500/api/change-status/${selection}`, {
@@ -141,7 +141,7 @@ const TableSelect = () =>{
         .then((response) => response.json())
       
         .then((tdata) => {
-          console.log(tdata)
+          // console.log(tdata)
         })
         .catch((error) => console.log(error))
 
@@ -159,14 +159,14 @@ const TableSelect = () =>{
             JSON.parse(localStorage.getItem("user")).access_token,
         },
       }
-      console.log(config)
+      // console.log(config)
       fetch(`http://localhost:1500/api/change-status/${selection}`, {
           method: "POST",
           headers: config.headers,
         })
           .then((response) => response.json())
           .then((tdata) => {
-            console.log(tdata)
+            // console.log(tdata)
           })
           .catch((error) => console.log(error))
     });
@@ -188,14 +188,13 @@ const TableSelect = () =>{
       setInterval(function () {
         if (blinkC == "rgba(255, 255, 255, 0.5)") {
           blinkC = ("rgba(255, 100, 50, 0.7)")
-          console.log("BLINK O")
+          // console.log("BLINK O")
           // setChangeC(!changeC)
         }
         else {blinkC = ("rgba(255, 255, 255, 0.5)")
-        console.log("BLINK W")
+        // console.log("BLINK W")
         // setChangeC(!changeC)
       }
-        // console.log("BLINK: ", blink)
       }, 1000);
       let config = {}
       if(localStorage.getItem("user")){
@@ -243,7 +242,7 @@ const TableSelect = () =>{
                 }
                 // temp3.push(tempTabl)
               }
-              console.log("NewTab:", temp3)
+              // console.log("NewTab:", temp3)
               setTableList(temp3)
 
               // setInterval(function () {
@@ -273,10 +272,10 @@ const TableSelect = () =>{
           .then((response) => response.json())
         
           .then((tdata) => {
-            console.log(tdata)
+            // console.log(tdata)
             const newTabL = tdata.map((tdataEle) => {return [tdataEle.table_number, tdataEle.status]})
             // setTableList(newTabL)
-            console.log("OldTab:", newTabL)
+            // console.log("OldTab:", newTabL)
               let temp3 = []
               for (let i=0; i<num.length; i++)
               {
@@ -289,7 +288,7 @@ const TableSelect = () =>{
                       if (newTabL[k][1] == 0) {newTabL[k].push("white")}
                       else if (newTabL[k][1] == 1) {
                       newTabL[k].push(blinkC)
-                      console.log("BlinkC: ", blinkC)
+                      // console.log("BlinkC: ", blinkC)
                       }
                       else if (newTabL[k][1] == 2) {newTabL[k].push("rgba(255, 200, 50, 0.6)")}
                       else {newTabL[k].push("rgba(0, 255, 0, 0.5)")}
@@ -300,7 +299,7 @@ const TableSelect = () =>{
                 }
                 // temp3.push(tempTabl)
               }
-              console.log("NewTab:", temp3)
+              // console.log("NewTab:", temp3)
 
               setTableList(temp3)
           })
@@ -330,7 +329,7 @@ const TableSelect = () =>{
           })
             .then((response) => response.json())
             .then((odata) => {
-              console.log("Data: ", odata)
+              // console.log("Data: ", odata)
               const newOrdL = odata.map((odataEle) => {
                 let temp = [odataEle.item_name, odataEle.price, odataEle.table_number, odataEle.quantity]
                 let comOrdL = [temp[2]]
@@ -375,8 +374,8 @@ const TableSelect = () =>{
       }
       // setDishList(orderList[selection-1])
               setOrderList(temp2)
-              console.log("NewO: ", newOrdL)
-              console.log("NewerO: ", temp2)
+              // console.log("NewO: ", newOrdL)
+              // console.log("NewerO: ", temp2)
             })
             .catch((error) => console.log(error))
           
