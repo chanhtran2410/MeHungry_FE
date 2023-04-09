@@ -87,7 +87,14 @@ const Tipbar = ({tip1, tip2, tip3, tip4, selectedTip, setSelectedTip}) => {
 
 
 const PaymentMethod = () => {
-    const payMethod = localStorage.getItem('PayMethod') ? localStorage.getItem('PayMethod'): 'Cash';
+    let payMethod = '';
+    if(localStorage.getItem('PayMethod')){
+      payMethod =  localStorage.getItem('PayMethod');
+    }
+    else{
+      payMethod = 'Cash';
+      localStorage.setItem('PayMethod',payMethod)
+    }
     return (
         <div className='paymentmethod'>
             <div className='intro'>
@@ -212,7 +219,7 @@ const Checkout = () => {
         
         <PaymentMethod />
         <Total selectedTip={selectedTip} />
-        <Link to='/rating'><button type='submit' className='payment' onClick={onCheckoutBtnClick}>Make Payment</button></Link>
+        <button type='submit' className='payment' onClick={onCheckoutBtnClick}>Make Payment</button>
       </form>
     </div>
   );
