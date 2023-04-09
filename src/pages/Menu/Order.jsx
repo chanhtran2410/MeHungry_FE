@@ -299,6 +299,7 @@ const Order = () => {
             localStorage.setItem('totalOrder', JSON.stringify(order));
           }
           localStorage.removeItem('DishesOrdered');
+          window.location.href = '/home';
           // window.location.reload(); // Reload the page
         })
         .catch((error) => {
