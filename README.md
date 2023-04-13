@@ -8,16 +8,6 @@ PSE project
 * WARNINGs: 0
 * ALERTS: 3 -->
 
-<p style="color: red; font-weight: bold">>>>>>  gd2md-html alert:  ERRORs: 0; WARNINGs: 0; ALERTS: 3.</p>
-<ul style="color: red; font-weight: bold"><li>See top comment block for details on ERRORs and WARNINGs. <li>In the converted Markdown or HTML, search for inline alerts that start with >>>>>  gd2md-html alert:  for specific instances that need correction.</ul>
-
-<p style="color: red; font-weight: bold">Links to alert messages:</p><a href="#gdcalert1">alert1</a>
-<a href="#gdcalert2">alert2</a>
-<a href="#gdcalert3">alert3</a>
-
-<p style="color: red; font-weight: bold">>>>>> PLEASE check and correct alert issues and delete this message and the inline alerts.<hr></p>
-
-
 Here is a manual for the on-site ordering web-app for both manager and customer:
 
 **Customer UI:**
@@ -49,10 +39,6 @@ _<span style="text-decoration:underline;">Home Page:</span>_
 The home page displays the status and orders of each table. The manager can view the status of each table. There are 4 status “0, 1, 2, 3” corresponding to “free”, “request to open the table”, “ready to take order” and “request checkout”. 
 
 
-
-<p id="gdcalert1" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image1.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert2">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
 ![alt_text](images/image1.png "image_tooltip")
  \
 White stands for the free tables. Yellow color is for the in–use tables, and Green is for the tables which requests a checkout. When a customer wants to open a table, that table in the manager screen will start blinking in order to inform. All the manager needs to do is open it using a toggle connected to each table.
@@ -60,18 +46,10 @@ White stands for the free tables. Yellow color is for the in–use tables, and G
 _<span style="text-decoration:underline;">Menu Page:</span>_
 
 The manager can also view the name, availability, price, and descriptions for each item.
-
-<p id="gdcalert2" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image2.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert3">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
 ![alt_text](images/image2.png "image_tooltip")
 
 
 The menu page allows the manager to add, delete, or customize the items in the menu.  Changes made to the menu are reflected in the customer UI.
-
-
-
-<p id="gdcalert3" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image3.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert4">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
 
 
 ![alt_text](images/image3.png "image_tooltip")
