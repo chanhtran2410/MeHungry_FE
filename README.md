@@ -45,7 +45,7 @@ White stands for the free tables. Yellow color is for the in–use tables, and G
 
 _<span style="text-decoration:underline;">Menu Page:</span>_
 
-The manager can also view the name, availability, price, and descriptions for each item.
+The manager can also view the name, availability, price, and descriptions for each item. They are displayed in form of a bill for efficient visibility and billing.
 ![alt_text](images/image2.png "image_tooltip")
 
 
