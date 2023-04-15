@@ -467,13 +467,17 @@ const TableContent = (props) =>{
               togf={props.togf}
               />
             </div>}
-          {(props.statusD == 2 || props.statusD == 3) && <div id="billContainer">
+          {(props.statusD == 2 || props.statusD == 3) && <div>
                 {/* <ScrollArea> */}
+                <div id="billContainer">
+                  <div>
                 {
                   // props.orderComponent[props.tablenumber%2]
                 props.orderComponent[(props.tablenumber-1)%16].map((dish) => {
                     return <DishPrice className="bstextillTitle" name={dish[0]} price={dish[1]} quan={dish[2]}/>
                 })}
+                </div>
+                </div>
                 {/* </ScrollArea> */}
             <div className='billBottom'>
                 {(props.statusD == 3) && (
@@ -494,7 +498,8 @@ const TableContent = (props) =>{
                     <button id="checkoutButton" onClick={props.checkout}>Checkout</button>
                 </div>
             </div>)}
-            </div>}
+            </div>
+            }
         </div>
     )
 }

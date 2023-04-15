@@ -41,13 +41,16 @@
     margin:0;
   }
 
-  .tableContent #billContainer body{
-  height: 250px;
+  /* .tableContent*/ #billContainer{
+  /* border: solid 2px black; */
+  height: 300px;
+  overflow: scroll;
   overflow-x: hidden;
   overflow-y: scroll;
   }
 
   .M_home .bill{
+    position: relative;
     width: 350px; 
     height: 55px;
     font-family: 'Roboto Condensed';
@@ -58,7 +61,7 @@
   
   .M_home .billTitle{
     position: absolute;
-    width: 190px; 
+    width: 200px; 
     height: 57px;
     /* top: 200px; */
     font-family: 'Roboto Condensed';
