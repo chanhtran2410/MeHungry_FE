@@ -13,7 +13,7 @@ Here is a manual for the on-site ordering web-app for both manager and customer:
 **Customer UI:**
 
 _<span style="text-decoration:underline;">Home page:</span>_
-<img src="captures/homepage.png" align="left" width=70 height=128 style='margin:0 2em;'>
+<img src="captures/homepage.png" align="left" width=100 height=180 style='margin:0 2em;'>
 
 The home page for customers consists of 3 buttons corresponding to 3 main functionalities which are view menu and order, request to checkout and call staff when needed.
 <br/><br/><br/><br/><br/>
@@ -21,27 +21,28 @@ The home page for customers consists of 3 buttons corresponding to 3 main functi
 
 _<span style="text-decoration:underline;">Menu Page:</span>_
 
-<img src="captures/menupage.png" align="right" width=70 height=128 style='margin:0 2em;'>
+<img src="captures/menupage.png" align="right" width=100 height=180 style='margin:0 2em;'>
 The menu page displays a list of food and drinks available for order. The items are categorized and include the name, price, and a short description. The customer can browse through the items and select the desired food and drinks and add it to their order. After finishing the order, the customer can again check it in the order page and customize it if needed.
-<br/><br/>
+<br/><br/><br/><br/><br/>
 
 
 _<span style="text-decoration:underline;">Ordering Page:</span>_
-<img src="captures/orderpage.png" align="left" width=70 height=128 style='margin:0 2em;'>
+<img src="captures/orderpage.png" align="left" width=100 height=180 style='margin:0 2em;'>
 
 The ordering page allows the customer to add items to their order. The customer can choose the quantity, customize the order and leave notes for chef. The customer can also remove items or cancel the order if needed. When they click the button “Order”, their order will be sent to the manager view for preparing and processing.
-<br/><br/><br/>
+<br/><br/><br/><br/><br/>
 
 _<span style="text-decoration:underline;">Checkout Page:</span>_
 
-<img src="captures/checkoutpage.png" align="right" width=70 height=128 style='margin:0 2em;'>
+<img src="captures/checkoutpage.png" align="right" width=100 height=180 style='margin:0 2em;'>
 The checkout page displays the summary of the order, including the name, quantity, and total cost of each item. The customer can review the order and choose a specific payment method before submitting it (if not, the payment method would be “Cash” in default). The customer can also leave a tip for good services. Finally, the customer confirms the order and proceeds to payment. The checkout request will be sent to the manager.
-<br/><br/>
+<br/><br/><br/><br/><br/>
 
 _<span style="text-decoration:underline;">Call Staff Page:</span>_
-<img src="captures/requestpage.png" align="left" width=70 height=64 style='margin:0 2em;'>
+<img src="captures/requestpage.png" align="left" width=100 height=100 style='margin:0 2em;'>
 
 The call staff page is a button that the customer can press to call a waiter or waitress for assistance.
+<br/><br/><br/><br/><br/>
 
 **Manager UI:**
 <br/>
