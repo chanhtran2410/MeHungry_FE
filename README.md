@@ -78,11 +78,11 @@ The menu page allows the manager to add, delete, or customize the items in the m
 **Tech-Stack:**
 
 The web-app is built using the MERN stack, which stands for MongoDB, Express, React, and Node.js. 
-<div style='display:flex'>
-<img src="https://webimages.mongodb.com/_com_assets/cms/kuzt9r42or1fxvlq2-Meta_Generic.png" align="center" width=150px style='margin:0 1em;'>
-<img src="https://geekflare.com/wp-content/uploads/2023/01/expressjs.png" align="center" width=150px style='margin:0 1em;'>
-<img src="https://www.cozumpark.com/wp-content/uploads/2022/12/react-nedir-react-ile-neler-yapilabilir-jpeg.webp" align="center" width=150px style='margin:0 1em;'>
-<img src="https://caodang.fpt.edu.vn/wp-content/uploads/Thi%E1%BA%BFt-k%E1%BA%BF-ch%C6%B0a-c%C3%B3-t%C3%AAn-13.png" align="center" width=150px style='margin:0 1em;'>
+<div style='display:flex; justify-content:space-around;'>
+<img src="https://webimages.mongodb.com/_com_assets/cms/kuzt9r42or1fxvlq2-Meta_Generic.png" align="center" width=150px >
+<img src="https://geekflare.com/wp-content/uploads/2023/01/expressjs.png" align="center" width=150px>
+<img src="https://www.vectorlogo.zone/logos/reactjs/reactjs-ar21.png" align="center" width=150px>
+<img src="https://caodang.fpt.edu.vn/wp-content/uploads/Thi%E1%BA%BFt-k%E1%BA%BF-ch%C6%B0a-c%C3%B3-t%C3%AAn-13.png" align="center" width=150px>
 </div>
 <br/>
 
