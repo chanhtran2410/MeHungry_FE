@@ -20,7 +20,7 @@ const NAME_STORAGE_KEY = "Customer_name";
 const BgImage = () => {
   return (
     <div className="bgimg">
-      <img src="https://www.digitalmomblog.com/wp-content/uploads/2022/08/cookie-monster-hungry-meme.jpg" alt="Logo"/>
+      <img src="https://www.spoon-restaurant.com/wp-content/uploads/2022/06/Spoon_cLe_Bonbon-1-scaled.jpg" alt="Logo"/>
     </div>
   );
 };

@@ -30,7 +30,7 @@ const GetTotal = () => {
   return (
     <div className='getTotal'>
       <h6>TOTAL</h6>
-      <h1>${total}.000</h1>
+      <h1>${total}</h1>
     </div>
   );
 };

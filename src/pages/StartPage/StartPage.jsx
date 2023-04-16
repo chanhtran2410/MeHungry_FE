@@ -198,7 +198,7 @@ import './StartPage.css';
 const Logo = () => {
   return (
     <div className='logo'>
-      <img src='https://www.digitalmomblog.com/wp-content/uploads/2022/08/cookie-monster-hungry-meme.jpg' alt='Logo' />
+      <img src='/src/assets/logo.png' alt='Logo' />
       <h4>
         <b>Restaurant's name</b>
       </h4>
@@ -209,7 +209,7 @@ const Logo = () => {
 const BgImage = () => {
   return (
     <div className='bgimg'>
-      <img src='https://www.digitalmomblog.com/wp-content/uploads/2022/08/cookie-monster-hungry-meme.jpg' alt='Logo' />
+      <img src="https://www.spoon-restaurant.com/wp-content/uploads/2022/06/Spoon_cLe_Bonbon-1-scaled.jpg" alt="Logo"/>
     </div>
   );
 };

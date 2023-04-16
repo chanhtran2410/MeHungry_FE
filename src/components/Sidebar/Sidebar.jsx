@@ -11,8 +11,8 @@ import {AiOutlineAppstore, AiOutlineHome} from 'react-icons/ai'
 const Logo = () => {
   return (
     <div className="logo">
-      <img src="https://www.digitalmomblog.com/wp-content/uploads/2022/08/cookie-monster-hungry-meme.jpg" />
-      <h4><b>RESTAURENT NAME</b></h4>
+      <img src='/src/assets/logo.png' alt='Logo' />
+      <h4><b>RESTAURANT NAME</b></h4>
     </div>
   );
 };
