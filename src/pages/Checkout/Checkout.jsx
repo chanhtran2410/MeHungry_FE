@@ -181,6 +181,7 @@ const Checkout = () => {
       axios.post(`http://localhost:1500/api/request-checkout/${table_number}`,data)
         .then((response) => {
           console.log(response.data);
+          window.location.href = '/rating';
         })
         .catch((error) => {
           console.log(error);
