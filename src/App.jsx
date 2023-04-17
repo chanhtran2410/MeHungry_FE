@@ -25,7 +25,7 @@ function App() {
   const match = window.location.pathname.match(tableIDRegex);
   const pathname  = window.location.pathname;
   console.log(pathname)
-  const table_id_list = ['31OFbdzA','ip34Rpen','1qAKpsUL','LxSbuAx6','5WLK1rFw','tNtCr66t','BVWsY4aO','2c7frm8R','fZnZSQY3','h3NnGZDt','T50TEDbb','FOrrfz55','WMzr98ty','buSNXOX0','NsmU1O5Q','tNtCr66t'];
+  const table_id_list = ['31OFbdzA','ip34Rpen','1qAKpsUL','LxSbuAx6','5WLK1rFw','tnTCr66t','BVWsY4aO','2c7frm8R','fZnZSQY3','h3NnGZDt','T50TEDbb','FOrrfz55','WMzr98ty','buSNXOX0','NsmU1O5Q','tNtCr66t'];
   const path = ['/home', '/menu', '/order', '/request','/check_out', '/paymethod', '/rating', '/login', '/manager', '/manager/menu', '/manager/add', '/manager/edit/:id']
   if (match !== null && table_id_list.includes(match[1]) ) {
     const tableID = match[1];

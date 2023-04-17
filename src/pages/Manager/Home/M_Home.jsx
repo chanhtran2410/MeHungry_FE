@@ -330,6 +330,7 @@ const TableSelect = () =>{
             .then((response) => response.json())
             .then((odata) => {
               // console.log("Data: ", odata)
+			  console.log(odata)
               const newOrdL = odata.map((odataEle) => {
                 let temp = [odataEle.item_name, odataEle.price, odataEle.table_number, odataEle.quantity]
                 let comOrdL = [temp[2]]
