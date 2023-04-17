@@ -54,6 +54,7 @@ const TableSelect = () =>{
     const [dishList, setDishList] = useState([]);
     const [tip,setTip] = useState(0);
     const [changeC, setChangeC] = useState(true);
+    const [orderID, setOrderID] = useState("");
 
     // const [blinkC, setBlinkC] = useState("rgba(255, 200, 50, 0.7)");
     let blinkC = "rgba(255, 100, 50, 0.7)"
@@ -92,13 +93,14 @@ const TableSelect = () =>{
         },
       }
       // console.log(config)
-      fetch(`http://localhost:1500/api/view-payment/${selection}`, {
+      fetch(`http://localhost:1500/api/view-payment/${orderID[selection-1][0]}`, {
           method: "GET",
           headers: config.headers,
         })
           .then((response) => response.json())
           .then((tdata) => {
-            // console.log("Tip: ",tdata.tip)
+            console.log("Tip: ",tdata.tip)
+            console.log("Selection: ",selection)
             setTip(tdata.tip)
           })
           .catch((error) => console.log(error))
@@ -329,11 +331,12 @@ const TableSelect = () =>{
           })
             .then((response) => response.json())
             .then((odata) => {
-              // console.log("Data: ", odata)
-			  console.log(odata)
+        //       console.log("Data: ", odata)
+			  // console.log(odata)
+              let tempOID = []
               const newOrdL = odata.map((odataEle) => {
-                let temp = [odataEle.item_name, odataEle.price, odataEle.table_number, odataEle.quantity]
-                let comOrdL = [temp[2]]
+                let temp = [odataEle.item_name, odataEle.price, odataEle.table_number, odataEle.quantity, odataEle.order_id]
+                let comOrdL = [[temp[2], temp[4]]]
                 // if (temp[0].length == 0) return [temp[2]]
                 // else if (temp[0].length == 1) return [temp[2], [temp[0], temp[1]]]
                 // console.log("Temp: ", temp)
@@ -360,23 +363,28 @@ const TableSelect = () =>{
       for (let i=0; i<num.length; i++)
       {
         let tempTab = []
+        let temOID2 = []
         for (let k=0; k<newOrdL.length; k++)
         {
-        if (newOrdL[k][0] ==  num[i]) {
+        if (newOrdL[k][0][0] ==  num[i]) {
           // console.log(selection, "->", newOrdL[k])
             for (let j=1; j<newOrdL[k].length; j++)
             {
               tempTab.push(newOrdL[k][j])
             }
+            temOID2 = [newOrdL[k][0][1]]
           }
         // else temp2.push([])
         }
         temp2.push(tempTab)
+        tempOID.push(temOID2)
       }
       // setDishList(orderList[selection-1])
               setOrderList(temp2)
+              setOrderID(tempOID)
               // console.log("NewO: ", newOrdL)
               // console.log("NewerO: ", temp2)
+              console.log("OID: ", tempOID)
             })
             .catch((error) => console.log(error))
           
