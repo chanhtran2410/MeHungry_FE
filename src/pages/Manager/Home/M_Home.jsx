@@ -263,6 +263,47 @@ const TableSelect = () =>{
           })
           .catch((error) => console.log(error))
 
+        
+          fetch(`http://localhost:1500/api/view-current-orders`, {
+            method: "GET",
+            headers: config.headers,
+          })
+            .then((response) => response.json())
+            .then((odata) => {
+              let tempOID = []
+              const newOrdL = odata.map((odataEle) => {
+                let temp = [odataEle.item_name, odataEle.price, odataEle.table_number, odataEle.quantity, odataEle.order_id]
+                let comOrdL = [[temp[2], temp[4]]]
+              for (let i=0; i<temp[0].length; i++)
+              {
+                comOrdL.push([temp[0][i], temp[1][i], temp[3][i]])
+              }
+                return comOrdL
+              })
+
+      let temp2 = []
+      for (let i=0; i<num.length; i++)
+      {
+        let tempTab = []
+        let temOID2 = []
+        for (let k=0; k<newOrdL.length; k++)
+        {
+        if (newOrdL[k][0][0] ==  num[i]) {
+            for (let j=1; j<newOrdL[k].length; j++)
+            {
+              tempTab.push(newOrdL[k][j])
+            }
+            temOID2 = [newOrdL[k][0][1]]
+          }
+        }
+        temp2.push(tempTab)
+        tempOID.push(temOID2)
+      }
+              setOrderList(temp2)
+              setOrderID(tempOID)
+            })
+            .catch((error) => console.log(error))
+
 
 
         /*Run every next 5 sec*/
@@ -384,7 +425,7 @@ const TableSelect = () =>{
               setOrderID(tempOID)
               // console.log("NewO: ", newOrdL)
               // console.log("NewerO: ", temp2)
-              console.log("OID: ", tempOID)
+              // console.log("OID: ", tempOID)
             })
             .catch((error) => console.log(error))
           
@@ -456,6 +497,7 @@ const TableContent = (props) =>{
 
     useEffect(() => {
       props.findDis()
+      if (props.statusD == 3) props.payrequest()
   }, [])
 
     return(

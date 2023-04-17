@@ -50,7 +50,7 @@ const Table = (props) =>{
   // }
 
   useEffect(() => {
-    props.setSel(props.idn)
+    // props.setSel(props.idn)
     // setInterval(function () {
     //   if (props.free == 0) setColor(Cwhite)
     //   else if (props.free == 1) setInterval(function () {
