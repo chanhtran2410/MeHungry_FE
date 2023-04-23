@@ -498,7 +498,8 @@ const TableContent = (props) =>{
     useEffect(() => {
       props.findDis()
       if (props.statusD == 3) props.payrequest()
-  }, [])
+      // total = total.toFixed(2)
+  }, [props.setSel])
 
     return(
         <div className="tableContent">
@@ -539,7 +540,7 @@ const TableContent = (props) =>{
                   {(props.statusD == 1 || props.statusD == 2 || props.statusD == 3) && (
                 <div id="tiptext">
                     <hr/>
-                    <DishPrice2 className="billTitle"  name={"Total"} price={total.toFixed(2)}/>
+                    <DishPrice2 className="billTitle"  name={"Total"} price={((total*1000)-(total*1000)%10)/1000/*.toFixed(2)*/}/>
                 </div>
                 )}
             </div>
