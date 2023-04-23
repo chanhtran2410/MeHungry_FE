@@ -105,17 +105,6 @@ const TableSelect = () =>{
           })
           .catch((error) => console.log(error))
 
-    //DELETE LATER
-      // fetch(`http://localhost:1500/api/request-checkout/${selection}`, {
-      //   method: "POST",
-      //   headers: config.headers,
-      // })
-      //   .then((response) => response.json())
-      //   .then((tdata) => {
-      //     // console.log("Tip: ",tdata.tip)
-      //     // if (tdata.tip.type = "int") setTip(tdata.tip)
-      //   })
-      //   .catch((error) => console.log(error))
     }
     const checkout = () => {
       const config = {
@@ -173,11 +162,6 @@ const TableSelect = () =>{
           .catch((error) => console.log(error))
     });
 
-    // const select = (props) => {
-    //   setSelection(props.idn)
-    //   toggle(free)
-    // }
-
     const blinkColor = () => {
       
     }
@@ -217,7 +201,6 @@ const TableSelect = () =>{
           .then((tdata) => {
             // console.log(tdata)
             const newTabL = tdata.map((tdataEle) => {return [tdataEle.table_number, tdataEle.status]})
-            // setTableList(newTabL)
             // console.log("OldTab:", newTabL)
               let temp3 = []
               for (let i=0; i<num.length; i++)
@@ -231,10 +214,6 @@ const TableSelect = () =>{
                       if (newTabL[k][1] == 0) {newTabL[k].push("white")}
                       else if (newTabL[k][1] == 1) {
                       newTabL[k].push(blinkC)
-                      // setTimeout(function () {
-                      //   newTabL[k][2] = "rgba(255, 255, 255, 0.5)"
-                      // }, 2000);
-                      }
                       else if (newTabL[k][1] == 2) {newTabL[k].push("rgba(255, 200, 50, 0.6)")}
                       else {newTabL[k].push("rgba(0, 255, 0, 0.5)")}
                       
@@ -246,20 +225,6 @@ const TableSelect = () =>{
               }
               // console.log("NewTab:", temp3)
               setTableList(temp3)
-
-              // setInterval(function () {
-              //   let temT = tableList
-              //   for (let k=0; k<temT.length; k++)
-              //     {
-              //     if (temT[k][1] ==  1) {
-              //       temT[k][2] = "rgba(255, 255, 255, 0.5)"
-              //       }
-              //       // console.log("Nooooo: ",k , temT)
-              //     }
-              //   console.log("Nooooo: ", temT)
-              //   setTableList(temT)
-              //   // setTimeout(() => {}, 2000)
-              // }, 2000);
           })
           .catch((error) => console.log(error))
 
