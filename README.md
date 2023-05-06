@@ -110,7 +110,12 @@ cd <root folder>
 npm install
 ```
 
-4. Create a .env file in the root directory and update it with the required credentials (e.g. database URI, secret key,...).
+4. Create a .env file in the root directory and update it with the required credentials: database URI (mongoDB in this case), secret key and refresh key
+```
+ATLAS_URI=//YOUR_DATABASE_URI
+SECRET_KEY=//YOUR_SECRET_KEY
+REFRESH_KEY=//YOUR_REFRESH_KEY
+```
 
 5. Run `npm start` to start the server.
 ```
