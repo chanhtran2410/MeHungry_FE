@@ -199,7 +199,7 @@ const TableSelect = () =>{
           .then((response) => response.json())
         
           .then((tdata) => {
-            // console.log(tdata)
+            console.log(tdata)
             const newTabL = tdata.map((tdataEle) => {return [tdataEle.table_number, tdataEle.status]})
             // console.log("OldTab:", newTabL)
               let temp3 = []
@@ -213,7 +213,7 @@ const TableSelect = () =>{
                       // console.log("Num=", i, newTabL[k])
                       if (newTabL[k][1] == 0) {newTabL[k].push("white")}
                       else if (newTabL[k][1] == 1) {
-                      newTabL[k].push(blinkC)
+                      newTabL[k].push(blinkC)}
                       else if (newTabL[k][1] == 2) {newTabL[k].push("rgba(255, 200, 50, 0.6)")}
                       else {newTabL[k].push("rgba(0, 255, 0, 0.5)")}
                       
